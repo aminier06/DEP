@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dirección de Educación Primaria del Ministerio de Educación de la República Dominicana.">
+  <meta name="author" content="Ministerio de Educación de la República Dominicana">
+  <title>Dirección de Educación Primaria | MINERD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --azul:#053e67;
+      --azul2:#0b5fa5;
+      --rojo:#c4162a;
+      --dorado:#f3b21b;
+      --verde:#1f8a5b;
+      --gris:#f3f6fa;
+      --gris2:#e8eef5;
+      --texto:#26364a;
+      --suave:#66788f;
+      --blanco:#fff;
+      --sombra:0 18px 45px rgba(5,62,103,.14);
+      --radio:18px;
+      --ancho:1180px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Open Sans',Arial,sans-serif;color:var(--texto);background:#fff;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    .topbar{background:var(--azul);color:#fff;font-size:14px}
+    .wrap{max-width:var(--ancho);margin:auto;padding:0 22px}
+    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:9px;padding-bottom:9px}
+    .toplinks{display:flex;gap:18px;flex-wrap:wrap;opacity:.95}
+    .header{background:#fff;border-bottom:1px solid var(--gris2)}
+    .header .wrap{display:flex;align-items:center;justify-content:space-between;gap:22px;padding-top:20px;padding-bottom:20px}
+    .brand{display:flex;align-items:center;gap:18px}
+    .brand img{height:74px;max-width:290px;object-fit:contain}
+    .brandText{border-left:1px solid #d7e1ec;padding-left:18px}
+    .brandText strong{display:block;color:var(--azul);font-size:20px;line-height:1.1;font-family:Roboto,Arial,sans-serif}
+    .brandText span{font-size:13px;color:var(--suave);text-transform:uppercase;letter-spacing:.06em}
+    .search{display:flex;min-width:260px;border:1px solid #d8e2ed;border-radius:999px;overflow:hidden;background:#fff}
+    .search input{border:0;outline:0;padding:11px 14px;width:100%;font-size:14px}
+    .search button{border:0;background:var(--rojo);color:#fff;padding:0 18px;font-weight:700;cursor:pointer}
+    .nav{background:#0b5fa5;color:#fff}
+    .nav .wrap{display:flex;gap:2px;align-items:center;flex-wrap:wrap}
+    .nav a{padding:15px 18px;display:block;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.02em}
+    .nav a:hover,.nav a.active{background:rgba(255,255,255,.16)}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(115deg,rgba(5,62,103,.97),rgba(11,95,165,.88)),url('/img/primaria.jpg') center/cover;min-height:360px;color:#fff}
+    .hero::after{content:"";position:absolute;inset:auto -80px -160px auto;width:440px;height:440px;border-radius:50%;background:rgba(243,178,27,.22)}
+    .hero .wrap{position:relative;z-index:1;padding-top:58px;padding-bottom:58px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .hero h1{font-family:Roboto,Arial,sans-serif;font-size:48px;line-height:1.05;margin:18px 0 16px;font-weight:700;max-width:780px}
+    .hero p{font-size:18px;max-width:760px;margin:0 0 26px;color:rgba(255,255,255,.92)}
+    .heroActions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:10px;font-weight:800;transition:.2s ease}
+    .btn.primary{background:var(--dorado);color:#1d2d3e}
+    .btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}
+    .heroCard{background:#fff;color:var(--texto);border-radius:var(--radio);box-shadow:var(--sombra);padding:24px}
+    .heroCard h2{margin:0 0 12px;color:var(--azul);font-size:20px;font-family:Roboto,Arial,sans-serif}
+    .contactList{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+    .contactList li{display:flex;gap:10px;align-items:flex-start;color:#40556d;font-size:14px}
+    .icon{min-width:34px;height:34px;border-radius:10px;background:#edf4fb;color:var(--azul2);display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+    .main{background:linear-gradient(#fff,#f7faff)}
+    .layout{display:grid;grid-template-columns:285px 1fr;gap:30px;padding-top:34px;padding-bottom:52px}
+    .sidebar{position:sticky;top:20px;align-self:start;background:#fff;border:1px solid var(--gris2);border-radius:var(--radio);box-shadow:0 10px 28px rgba(5,62,103,.08);overflow:hidden}
+    .sidebar h3{margin:0;padding:18px 20px;background:var(--azul);color:#fff;font-size:17px}
+    .sideMenu{list-style:none;margin:0;padding:10px}
+    .sideMenu a{display:flex;align-items:center;gap:10px;padding:12px 12px;border-radius:10px;color:#35506b;font-weight:700;font-size:14px}
+    .sideMenu a:hover,.sideMenu a.active{background:#edf4fb;color:var(--azul2)}
+    .content{min-width:0}
+    .breadcrumb{font-size:13px;color:var(--suave);margin-bottom:18px}
+    .section{background:#fff;border:1px solid var(--gris2);border-radius:var(--radio);box-shadow:0 10px 28px rgba(5,62,103,.06);padding:28px;margin-bottom:24px}
+    .section h2{font-family:Roboto,Arial,sans-serif;color:var(--azul);font-size:29px;line-height:1.15;margin:0 0 14px}
+    .lead{font-size:17px;color:#465b74;margin-top:0}
+    .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+    .pillar{border:1px solid #dfe8f2;border-radius:16px;padding:18px;background:#fbfdff}
+    .pillar .badge{width:42px;height:42px;border-radius:13px;background:#edf4fb;color:var(--azul2);display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:12px}
+    .pillar h3{margin:0 0 8px;color:#123e67;font-size:17px}
+    .pillar p{margin:0;color:#5b7087;font-size:14px}
+    .quickGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .quickCard{background:#fff;border:1px solid #dfe8f2;border-radius:16px;padding:18px;min-height:126px;transition:.2s ease;position:relative;overflow:hidden}
+    .quickCard::after{content:"";position:absolute;right:-30px;bottom:-36px;width:90px;height:90px;border-radius:50%;background:#edf4fb}
+    .quickCard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(5,62,103,.12);border-color:#b8d1ea}
+    .quickCard strong{display:block;color:var(--azul);font-size:16px;margin-bottom:6px;position:relative;z-index:1}
+    .quickCard span{font-size:13px;color:var(--suave);position:relative;z-index:1}
+    .docs{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+    .docs li{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border:1px solid #dfe8f2;border-radius:14px;padding:14px 16px;background:#fff}
+    .docTitle{font-weight:700;color:#284663}
+    .docMeta{font-size:13px;color:var(--suave);margin-top:3px}
+    .download{background:var(--azul2);color:#fff;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:800}
+    .notice{border-left:5px solid var(--dorado);background:#fff8e8;padding:16px 18px;border-radius:12px;color:#5b4a19;margin-top:18px}
+    .footer{background:#26364a;color:#dce6f1;padding:26px 0;font-size:14px}
+    .footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media (max-width:900px){
+      .hero .wrap,.layout{grid-template-columns:1fr}
+      .hero h1{font-size:38px}
+      .search{display:none}
+      .sidebar{position:relative;top:auto}
+      .pillars{grid-template-columns:1fr}
+      .quickGrid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      .topbar .wrap,.header .wrap{align-items:flex-start;flex-direction:column}
+      .brand img{height:58px}
+      .brandText{padding-left:12px}
+      .hero h1{font-size:31px}
+      .quickGrid{grid-template-columns:1fr}
+      .docs li{grid-template-columns:1fr}
+      .nav a{padding:12px 13px;font-size:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div>República Dominicana</div>
+      <div class="toplinks">
+        <a href="https://www.ministeriodeeducacion.gob.do/contactos">Contactos</a>
+        <a href="https://www.ministeriodeeducacion.gob.do/transparencia">Transparencia</a>
+        <a href="https://outlook.com/owa/minerd.gob.do" target="_blank" rel="noopener">Correo institucional</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Inicio MINERD">
+        <img src="/img/logo/logoMinerdHD.svg" alt="Logo institucional del Ministerio de Educación de la República Dominicana">
+        <span class="brandText"><strong>Dirección de Educación Primaria</strong><span>Ministerio de Educación</span></span>
+      </a>
+      <form class="search" action="/busqueda" method="GET">
+        <input name="buscar" type="search" placeholder="¿Qué estás buscando?" aria-label="Buscar">
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Menú principal">
+    <div class="wrap">
+      <a href="/">Inicio</a>
+      <a class="active" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria">Primaria</a>
+      <a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/sobre-nosotros">Sobre nosotros</a>
+      <a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/guias">Guías</a>
+      <a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/informes">Informes</a>
+      <a href="/contactos">Contactos</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">MINERD · Nivel Primario</span>
+        <h1>Dirección de Educación Primaria</h1>
+        <p>Instancia responsable de orientar, acompañar y fortalecer los procesos pedagógicos, curriculares y de gestión del Nivel Primario, con énfasis en los aprendizajes fundamentales de niñas y niños.</p>
+        <div class="heroActions">
+          <a class="btn primary" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/guias">Consultar guías</a>
+          <a class="btn secondary" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/registros">Registros de grado</a>
+        </div>
+      </div>
+      <aside class="heroCard" aria-label="Datos de contacto">
+        <h2>Información de contacto</h2>
+        <ul class="contactList">
+          <li><span class="icon">☎</span><span><strong>(809) 688-9700 Ext. 3657</strong><br>Centro de contacto institucional</span></li>
+          <li><span class="icon">@</span><span><strong>contacto@minerd.gob.do</strong><br>Correo institucional</span></li>
+          <li><span class="icon">⌂</span><span><strong>Av. Máximo Gómez No. 02</strong><br>Sede principal, 3er nivel</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="wrap layout">
+      <aside class="sidebar">
+        <h3>Menú de Primaria</h3>
+        <ul class="sideMenu">
+          <li><a class="active" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria">Portada</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/sobre-nosotros">Sobre nosotros</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/guias">Guías</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/informes">Informes</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/registros">Registros</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/adecuaciones">Adecuaciones</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/ordenanzas">Ordenanzas</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/orientaciones">Orientaciones</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/diseno-curricular">Diseño Curricular</a></li>
+          <li><a href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/protocolo">Protocolo</a></li>
+        </ul>
+      </aside>
+
+      <section class="content" id="contenido-principal">
+        <div class="breadcrumb">Inicio / Sobre nosotros / Áreas Institucionales / Dirección de Educación Primaria</div>
+
+        <article class="section">
+          <h2>Una dirección enfocada en los aprendizajes fundamentales</h2>
+          <p class="lead">La Dirección de Educación Primaria acompaña la implementación curricular, la organización pedagógica del nivel y el fortalecimiento de las prácticas docentes en los centros educativos del país.</p>
+          <div class="pillars">
+            <div class="pillar"><div class="badge">1</div><h3>Currículo y planificación</h3><p>Orientaciones para la implementación del Diseño Curricular y las adecuaciones vigentes.</p></div>
+            <div class="pillar"><div class="badge">2</div><h3>Acompañamiento pedagógico</h3><p>Apoyo técnico a regionales, distritos y centros para mejorar la enseñanza y el aprendizaje.</p></div>
+            <div class="pillar"><div class="badge">3</div><h3>Seguimiento a los aprendizajes</h3><p>Uso de evidencias, registros e informes para tomar decisiones pedagógicas oportunas.</p></div>
+          </div>
+          <div class="notice">Esta versión evita el aspecto de “plantilla copiada” y organiza la portada con identidad propia para el Nivel Primario: propósito, accesos rápidos, contacto y documentos.</div>
+        </article>
+
+        <article class="section">
+          <h2>Accesos rápidos</h2>
+          <div class="quickGrid">
+            <a class="quickCard" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/guias"><strong>Guías</strong><span>Materiales de apoyo pedagógico para el aula.</span></a>
+            <a class="quickCard" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/registros"><strong>Registros</strong><span>Registros de grado del Nivel Primario.</span></a>
+            <a class="quickCard" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/diseno-curricular"><strong>Diseño Curricular</strong><span>Documentos curriculares y orientaciones oficiales.</span></a>
+            <a class="quickCard" href="/sobre-nosotros/areas-institucionales/direccion-de-educacion-primaria/orientaciones"><strong>Orientaciones</strong><span>Lineamientos para regionales, distritos y centros.</span></a>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Documentos destacados</h2>
+          <ul class="docs">
+            <li><div><div class="docTitle">Registro de 1er grado del Nivel Primario</div><div class="docMeta">Documento PDF · Dirección de Educación Primaria</div></div><a class="download" href="/docs/direccion-general-de-educacion-primaria/E4B9-registro-1er-grado-nivel-primariopdf.pdf" target="_blank" rel="noopener">Ver PDF</a></li>
+            <li><div><div class="docTitle">Registro de 2do grado del Nivel Primario</div><div class="docMeta">Documento PDF · Dirección de Educación Primaria</div></div><a class="download" href="/docs/direccion-general-de-educacion-primaria/registro-2do-grado-nivel-primariopdf.pdf" target="_blank" rel="noopener">Ver PDF</a></li>
+            <li><div><div class="docTitle">Registro de 3er grado del Nivel Primario</div><div class="docMeta">Documento PDF · Dirección de Educación Primaria</div></div><a class="download" href="/docs/direccion-general-de-educacion-primaria/aaAu-registro-3er-grado-nivel-primariopdf.pdf" target="_blank" rel="noopener">Ver PDF</a></li>
+          </ul>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>© 2026 Ministerio de Educación de la República Dominicana</div>
+      <div>Dirección de Educación Primaria · MINERD</div>
+    </div>
+  </footer>
+</body>
+</html>
