@@ -427,6 +427,66 @@
     .conf.bb{background:#fdecee;color:#8b1020}.conf.ca{background:#fff4d6;color:#6b4a00}
     .sube{color:#1f8a5b;font-size:11px}.bajaT{color:var(--rojo);font-size:11px}
 
+    /* Datos oficiales (tableros del SIIE) */
+    .tbFiltros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .tbGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+    .tbCard{
+      display:flex;flex-direction:column;gap:8px;border:1px solid #dfe8f2;border-radius:16px;
+      padding:18px;background:#fff;transition:.2s ease;
+    }
+    .tbCard:hover{box-shadow:0 14px 30px rgba(5,62,103,.10);border-color:#b8d1ea}
+    .tbCard .preg{font-family:Roboto,Arial,sans-serif;font-weight:700;color:var(--azul);font-size:17px;line-height:1.25}
+    .tbCard .tit{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--azul2)}
+    .tbCard p{margin:0;font-size:14px;color:#4f647c}
+    .tbCard .pie{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+    .tbCard select{
+      border:1px solid #d3e0ee;border-radius:9px;padding:8px 10px;font-family:inherit;font-size:13px;
+      background:#fff;color:var(--texto);max-width:100%;
+    }
+    .tbBadge{
+      align-self:flex-start;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;
+      background:#fff1f3;color:var(--rojo);
+    }
+    .tbBadge[hidden]{display:none}
+    .tbFuente{margin-top:16px;font-size:13px;color:var(--suave)}
+    .tbFuente a{color:var(--azul2);text-decoration:underline}
+
+    /* Visor de tableros */
+    .visor{
+      width:min(1240px,96vw);height:min(880px,94vh);max-width:none;max-height:none;padding:0;border:0;
+      border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(5,30,55,.35);background:#fff;color:var(--texto);
+    }
+    .visor[open]{display:flex;flex-direction:column}
+    .visor::backdrop{background:rgba(5,30,55,.62)}
+    .visorBar{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+      padding:12px 16px;border-bottom:1px solid var(--gris2);
+    }
+    .visorBar b{display:block;color:var(--azul);font-size:16px;line-height:1.2}
+    .visorBar small{color:var(--suave);font-size:13px}
+    .visorAcc{display:flex;gap:8px;flex-wrap:wrap}
+    .visorCodigo{
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 16px;
+      background:#fff5f6;border-bottom:1px solid #f6d3d8;font-size:14px;
+    }
+    .visorCodigo[hidden]{display:none}
+    .visorCodigo input{
+      width:96px;height:36px;border:1px solid #e9b9c0;border-radius:9px;padding:0 10px;
+      font-family:inherit;font-size:15px;font-weight:700;letter-spacing:.06em;text-align:center;
+    }
+    .visor iframe{flex:1;width:100%;border:0;background:#f3f6fa}
+    .visorPie{padding:6px 16px;font-size:12px;color:var(--suave);border-top:1px solid var(--gris2)}
+
+    /* Datos oficiales dentro de la consulta */
+    .ofiGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:10px 0}
+    .ofiBtn{
+      display:flex;gap:12px;align-items:center;text-align:left;border:1px solid #dfe8f2;border-radius:12px;
+      background:#fff;padding:12px 14px;cursor:pointer;font-family:inherit;color:var(--texto);transition:.2s ease;
+    }
+    .ofiBtn:hover{border-color:#b8d1ea;background:#f7fbff}
+    .ofiBtn b{display:block;color:var(--azul);font-size:14px}
+    .ofiBtn small{color:var(--suave);font-size:12px}
+
     /* Preguntas frecuentes */
     .faq details{border:1px solid #dfe8f2;border-radius:12px;padding:0 16px;margin-bottom:10px;background:#fff}
     .faq summary{
@@ -511,7 +571,7 @@
     }
 
     @media print{
-      .topbar,.aviso,.nav,.sidebar,.toTop,.heroActions,.search,.cForm,.cAcc,.cPer,#cCandidatos{display:none!important}
+      .topbar,.aviso,.nav,.sidebar,.toTop,.heroActions,.search,.cForm,.cAcc,.cPer,#cCandidatos,.cOficial,.visor,.tbFiltros,.tbCard .pie{display:none!important}
       .hero{background:#fff;color:#000;min-height:0}
       .section{box-shadow:none;break-inside:avoid}
       #consulta{break-inside:auto}
@@ -577,6 +637,7 @@
         <a href="#accesos">Recursos</a>
         <a href="#documentos">Documentos</a>
         <a href="#consulta">Consulta SIREV</a>
+        <a href="#datos-oficiales">Datos oficiales</a>
         <a href="#preguntas">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </div>
@@ -638,6 +699,7 @@
           <li><a href="#calendario"><span class="dot"></span>Calendario de evaluación</a></li>
           <li><a href="#documentos"><span class="dot"></span>Documentos</a></li>
           <li><a href="#consulta"><span class="dot"></span>Consulta SIREV</a></li>
+          <li><a href="#datos-oficiales"><span class="dot"></span>Datos oficiales</a></li>
           <li><a href="#preguntas"><span class="dot"></span>Preguntas frecuentes</a></li>
           <li><a href="#enlaces"><span class="dot"></span>Enlaces de interés</a></li>
           <li><a href="#contacto"><span class="dot"></span>Contacto</a></li>
@@ -763,6 +825,26 @@
           <div id="cResultado" aria-live="polite"></div>
         </article>
 
+        <!-- DATOS OFICIALES (tableros del SIIE) -->
+        <article class="section" id="datos-oficiales">
+          <h2>Datos oficiales del Nivel Primario</h2>
+          <p class="sub">Tableros estadísticos del MINERD publicados en el SIIE, organizados según la pregunta que responden.
+            Se abren aquí mismo, sin salir de la página.</p>
+
+          <div class="tbFiltros" role="group" aria-label="Filtrar tableros">
+            <button class="chip" type="button" data-tbf="todos" aria-pressed="true">Todos</button>
+            <button class="chip" type="button" data-tbf="centro" aria-pressed="false">Consulta por centro</button>
+            <button class="chip" type="button" data-tbf="aprendizajes" aria-pressed="false">Aprendizajes</button>
+            <button class="chip" type="button" data-tbf="trayectoria" aria-pressed="false">Trayectoria escolar</button>
+            <button class="chip" type="button" data-tbf="sistema" aria-pressed="false">Matrícula y recursos</button>
+          </div>
+
+          <div class="tbGrid" id="tbGrid"><!-- Se genera desde TABLEROS (ver script) --></div>
+
+          <p class="tbFuente">Fuente: <a href="https://siie.minerd.gob.do/tableros-de-informacion" target="_blank" rel="noopener">Tableros de Información del SIIE, Ministerio de Educación</a>.
+            Los datos y su actualización corresponden a esa plataforma.</p>
+        </article>
+
         <!-- PREGUNTAS FRECUENTES -->
         <article class="section faq" id="preguntas">
           <h2>Preguntas frecuentes</h2>
@@ -828,6 +910,7 @@
             <li><a href="#accesos">Recursos</a></li>
             <li><a href="#documentos">Documentos</a></li>
             <li><a href="#consulta">Consulta de resultados</a></li>
+            <li><a href="#datos-oficiales">Datos oficiales</a></li>
             <li><a href="#preguntas">Preguntas frecuentes</a></li>
           </ul>
         </div>
@@ -840,6 +923,24 @@
   </footer>
 
   <button class="toTop" id="toTop" type="button" aria-label="Volver arriba">↑</button>
+
+  <dialog class="visor" id="visor" aria-labelledby="visorTitulo">
+    <div class="visorBar">
+      <div><b id="visorTitulo">Tablero</b><small id="visorSub"></small></div>
+      <div class="visorAcc">
+        <a class="btn small claro" id="visorNueva" href="#" target="_blank" rel="noopener">Abrir en pestaña nueva ↗</a>
+        <button class="btn small azul" type="button" id="visorCerrar">Cerrar</button>
+      </div>
+    </div>
+    <div class="visorCodigo" id="visorCodigo" hidden>
+      <span>Para ver un centro, pega su código en la casilla <b>Código SIGERD</b> del tablero.</span>
+      <label for="visorCod" class="sr-only">Código SIGERD</label>
+      <input id="visorCod" inputmode="numeric" maxlength="5" placeholder="00000" autocomplete="off">
+      <button class="btn small sirev" type="button" id="visorCopiar">Copiar código</button>
+    </div>
+    <iframe id="visorFrame" title="Tablero de información" allowfullscreen></iframe>
+    <div class="visorPie">Fuente: Tableros de Información del SIIE, Ministerio de Educación de la República Dominicana.</div>
+  </dialog>
 
   <script>
   /* =====================================================================
@@ -922,6 +1023,84 @@
     { p: "Tengo un problema con una plataforma, ¿a quién contacto?",
       r: "Comuníquese con el técnico de su distrito o con la Dirección por los medios de la sección Contacto." }
   ];
+
+  // Tableros oficiales del SIIE (https://siie.minerd.gob.do/tableros-de-informacion).
+  // Cada versión: e = etiqueta (año o serie), u = enlace público de Power BI,
+  // centro: true si el tablero permite consultar un centro por su código SIGERD.
+  const PBI = "https://app.powerbi.com/view?r=";
+  const TABLEROS = [
+    { id: "mapa", grupo: "trayectoria", pregunta: "¿Cómo cerró el año escolar mi centro?",
+      titulo: "Mapa escolar · Indicadores del centro",
+      desc: "Porcentaje de promovidos, reprobados y abandono de cada centro. Se busca por código SIGERD o con filtros de regional, distrito, provincia, zona y sector.",
+      versiones: [
+        { e: "2024-2025", u: PBI + "eyJrIjoiYzg5ZGYwMjEtMzc1YS00YjY1LWFiZjgtZWM4Y2NhYTVlZWExIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9", centro: true },
+        { e: "2023-2024", u: PBI + "eyJrIjoiYzU5NWFlZTEtNDEzMC00NmJkLWE1M2UtZjNkZThlMjdkODY2IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9", centro: true },
+        { e: "2022-2023", u: PBI + "eyJrIjoiOTI5ZjA2NjEtODAwNS00YjU0LWI2ODMtNjczYzM2ZDk4YWQzIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9", centro: true },
+        { e: "2019-2020", u: PBI + "eyJrIjoiNmMxYWYxZWMtZGNlYi00YzI2LWE3ZDQtZjdiOWRhN2ZiZGNmIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9", centro: true }
+      ] },
+    { id: "edn6", grupo: "aprendizajes", pregunta: "¿Cómo salieron los estudiantes de 6to en la EDN?",
+      titulo: "Evaluación Diagnóstica Nacional · 6to grado",
+      desc: "Resultados promedio y niveles de desempeño por asignatura. Permite consultar un centro y filtrar por regional, distrito, tanda, zona, sexo y quintil socioeconómico.",
+      versiones: [
+        { e: "2024", u: PBI + "eyJrIjoiZGMyYWY3NTEtNmVkNi00NTYxLWJjMmQtMzQ0YTMwNjc3ZmYxIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9", centro: true },
+        { e: "2018", u: PBI + "eyJrIjoiMjBhZjQzYjYtNDYwMy00ODJkLTkyN2UtZmEwNjI5YWMyNjZhIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9" }
+      ] },
+    { id: "edn3", grupo: "aprendizajes", pregunta: "¿Cómo salieron los estudiantes de 3ro en la EDN?",
+      titulo: "Evaluación Diagnóstica Nacional · 3er grado",
+      desc: "Resultados de la evaluación diagnóstica de 3er grado de primaria por asignatura y nivel de desempeño.",
+      versiones: [
+        { e: "2023", u: PBI + "eyJrIjoiOThiNzE0MWEtZWRmYS00ZWQ1LWFmNDktODc0YzliZDE5YTQ0IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9", centro: true },
+        { e: "2017", u: PBI + "eyJrIjoiNTk2NGMzNTEtZGFjMS00ZDUzLWI1YjUtMjZkYWZiMGM4Yzk5IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9" }
+      ] },
+    { id: "efi", grupo: "trayectoria", pregunta: "¿Cuántos estudiantes promueven, reprueban o abandonan?",
+      titulo: "Eficiencia interna",
+      desc: "Indicadores de promoción, reprobación y abandono del sistema educativo por año escolar.",
+      versiones: [
+        ["2024-2025", "eyJrIjoiZmE3ZjIyYmItM2ZlMi00OWIwLThiNmEtNGVjZTBiZjFkZjVhIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2023-2024", "eyJrIjoiZmRkNWIwMjctOTBmNS00MzNmLTk5NTItOTcxZGY0MGQwNDczIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2022-2023", "eyJrIjoiZjczYTcyNzMtYjFlZi00MTcwLThhMWMtNDhiMWI3ZTc0Mjg4IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2021-2022", "eyJrIjoiNWQ2NTgyYTgtYWY5MS00NmYxLWE5ZjMtYTA1MjBmYjA5YTcwIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2020-2021", "eyJrIjoiMDgyNGIxNGMtOWI1NS00ZDkzLTg4ZTgtMWRiZmRhNWNjYzQ5IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2019-2020", "eyJrIjoiNTdjNjlmYzEtZDAzMC00NmVmLWExYmMtNjU2NzYzYmE0Mzc1IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2018-2019", "eyJrIjoiYTgwYzhhYzItYmZiNi00MDBjLWFkMzgtNWQwODMyODUyYWIwIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2017-2018", "eyJrIjoiOTY3MGNjNWMtODZkOS00YzhkLTgxMjgtNWMxZjViNzczODg1IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2016-2017", "eyJrIjoiMTM0ZGU1ZWYtYjdjYS00NmMxLTg0ODgtMWQ1MWE2Y2VlYzc1IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"]
+      ] },
+    { id: "cob", grupo: "trayectoria", pregunta: "¿Cuántos niños en edad escolar están en la escuela?",
+      titulo: "Cobertura y asistencia", etiqueta: "Serie",
+      desc: "Tasas netas de cobertura por nivel y de asistencia por grupos de edad.",
+      versiones: [
+        ["Por nivel, 2015-2025", "eyJrIjoiYzIxNGE2ZWItNzczYi00Mjk5LWFiNzgtZDgzNDkyMGRlZDYzIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["Por grupos de edad, 2018-2025", "eyJrIjoiMzQyNWM1OGEtMjEwMS00NDNiLTk0NGEtYzg1NWI5YmQ1N2M2IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["Serie histórica 2008-2024", "eyJrIjoiMGVhY2RhMzgtMTZlMC00NGU2LWIwMDUtMWIwMjA0ODljNTUxIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"]
+      ] },
+    { id: "mat", grupo: "sistema", pregunta: "¿Cuántos estudiantes están matriculados?",
+      titulo: "Matrícula estudiantil",
+      desc: "Número de estudiantes matriculados por año escolar.",
+      versiones: [
+        ["2024-2025", "eyJrIjoiYWQxZTdmNTgtZjY5OS00ZjA5LWIzN2UtYTM2NmU2NDcyODdhIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2023-2024", "eyJrIjoiNWE3ZjAyNDItYjU1OS00MGUyLTlmMzUtNjY3N2FlNWJiNTg5IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9&pageName=ReportSection64fb81f62c05023c9656"],
+        ["2022-2023", "eyJrIjoiZDQwZThkYzctODUwZi00ZGJmLTgwNzItNDQ3NmFkOTMzOWEzIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2021-2022", "eyJrIjoiZDhkZTcwOGUtNGQ2Mi00NWRjLTk2MGUtMWYzM2NhNjhkNzhhIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"],
+        ["2020-2021", "eyJrIjoiYTM1MWRiYjUtMTk3Yy00YWYxLWIwZmQtOWUxMDIzYTJkZDY2IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9"]
+      ] },
+    { id: "centros", grupo: "sistema", pregunta: "¿Cuántos centros educativos hay?",
+      titulo: "Centros educativos",
+      desc: "Número de centros educativos por año escolar.",
+      versiones: [
+        ["2024-2025", "eyJrIjoiYWQxZTdmNTgtZjY5OS00ZjA5LWIzN2UtYTM2NmU2NDcyODdhIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9&pageName=bc39ce6102eebc04acee"],
+        ["2023-2024", "eyJrIjoiNWE3ZjAyNDItYjU1OS00MGUyLTlmMzUtNjY3N2FlNWJiNTg5IiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9&pageName=ReportSection64fb81f62c05023c9656"],
+        ["2022-2023", "eyJrIjoiZDQwZThkYzctODUwZi00ZGJmLTgwNzItNDQ3NmFkOTMzOWEzIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9&pageName=ReportSection64fb81f62c05023c9656"]
+      ] },
+    { id: "razon", grupo: "sistema", pregunta: "¿Cuántos estudiantes hay por docente, sección y aula?",
+      titulo: "Indicadores de razón",
+      desc: "Relación entre estudiantes, docentes, secciones, aulas, centros educativos y planteles.",
+      versiones: [
+        ["2024-2025", "eyJrIjoiN2VmZmViNDItNmYyOC00MWZlLTlkODEtYTIwNzA1ZTc3ODFmIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9&pageName=721f3586806bb2d683b9"],
+        ["2023-2024", "eyJrIjoiN2VmZmViNDItNmYyOC00MWZlLTlkODEtYTIwNzA1ZTc3ODFmIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9&pageName=1268277696d538ce240a"],
+        ["2022-2023", "eyJrIjoiN2VmZmViNDItNmYyOC00MWZlLTlkODEtYTIwNzA1ZTc3ODFmIiwidCI6IjY2ZTI4OThiLTJjMzUtNDMzZi1hNzUzLWJkNjRhY2EzOWFmYiIsImMiOjF9&pageName=b437d877be7822590768"]
+      ] }
+  ].map(t => ({ ...t, versiones: t.versiones.map(v => Array.isArray(v) ? { e: v[0], u: PBI + v[1] } : v) }));
 
   /* =====================================================================
      LÓGICA
@@ -1036,6 +1215,7 @@
     $$("#accesos .quickCard").forEach(a => items.push({ tipo: "Recurso", titulo: $("strong", a).textContent, texto: $("span", a).textContent, url: a.getAttribute("href"), ext: true }));
     PREGUNTAS.forEach(f => items.push({ tipo: "Pregunta", titulo: f.p, texto: f.r, url: "#preguntas", ext: false }));
     items.push({ tipo: "Consulta", titulo: "Consulta los resultados de tu centro en SIREV", texto: "codigo sigerd centro resultados evaluacion lectura desempeno cobertura informe", url: "#consulta", ext: false });
+    TABLEROS.forEach(t => items.push({ tipo: "Dato oficial", titulo: t.titulo + " — " + t.pregunta, texto: t.desc + " " + t.versiones.map(v => v.e).join(" ") + " siie tablero", url: "#datos-oficiales", ext: false }));
     items.push({ tipo: "Sección", titulo: "Calendario de evaluación formativa", texto: "cortes septiembre noviembre marzo mayo evaluacion diagnostica seguimiento", url: "#calendario", ext: false });
     return items;
   }
@@ -1482,6 +1662,24 @@
         </tbody></table></div></div>`;
     }
 
+    // Otros datos oficiales del centro (tableros del SIIE que permiten buscar por código)
+    const ofi = [
+      { t: "mapa", txt: "Promoción, reprobación y abandono" },
+      grados.some(g => g >= 4) && { t: "edn6", txt: "Evaluación Diagnóstica de 6to grado" },
+      grados.some(g => g <= 3) && { t: "edn3", txt: "Evaluación Diagnóstica de 3er grado" }
+    ].filter(Boolean);
+    h += `<div class="cBloque cOficial"><h4>Otros datos oficiales del centro</h4>
+      <p class="hint">Tableros del MINERD publicados en el SIIE. Se abren aquí mismo y el código ${esc(c.codigo)} se copia
+        para que lo pegues en la casilla «Código SIGERD» del tablero.</p>
+      <div class="ofiGrid">${ofi.map(o => {
+        const tb = tablero(o.t);
+        return `<button class="ofiBtn" type="button" data-ofi="${o.t}"><span class="icon">▤</span>
+          <span><b>${esc(o.txt)}</b><small>${esc(tb.titulo.split(" · ")[0])} ${esc(tb.versiones[0].e)}</small></span></button>`;
+      }).join("")}</div>
+      <p class="hint">Son mediciones distintas: SIREV reúne evaluaciones formativas aplicadas durante el año; la EDN es una
+        prueba estandarizada externa; la eficiencia interna muestra cómo cerró el año escolar. Léalas como miradas
+        complementarias, sin comparar sus porcentajes entre sí.</p></div>`;
+
     h += `<p class="nota">Resultados de evaluaciones <strong>formativas</strong>, aplicadas con rúbricas y tablas de especificaciones.
       Úselos para ajustar el plan de acción del centro y la práctica en el aula. No son pruebas estandarizadas
       y no deben compararse con la Evaluación Diagnóstica Nacional. Con pocos evaluados, los porcentajes cambian mucho con pocos estudiantes.</p>`;
@@ -1489,6 +1687,7 @@
     $("#cResultado").innerHTML = h;
 
     $$("#cResultado .cPer .chip").forEach(b => b.addEventListener("click", () => { consulta.sel = b.dataset.per; pintarConsulta(); }));
+    $$("#cResultado .ofiBtn").forEach(b => b.addEventListener("click", () => abrirTablero(b.dataset.ofi, 0, c.codigo)));
     $("#cImprimir").addEventListener("click", () => {
       document.body.classList.add("imprimirConsulta");
       window.print();
@@ -1521,6 +1720,88 @@
       setTimeout(() => $("#consulta").scrollIntoView(), 50);
     }
   })();
+
+  /* ===== Datos oficiales: tarjetas y visor de tableros ===== */
+  const tablero = id => TABLEROS.find(t => t.id === id);
+
+  function pintarTableros(filtro) {
+    const lista = TABLEROS.filter(t =>
+      filtro === "todos" || (filtro === "centro" ? t.versiones.some(v => v.centro) : t.grupo === filtro));
+    $("#tbGrid").innerHTML = lista.map(t => `
+      <div class="tbCard" data-tb="${t.id}">
+        <span class="tit">${esc(t.titulo)}</span>
+        <span class="preg">${esc(t.pregunta)}</span>
+        <p>${esc(t.desc)}</p>
+        <span class="tbBadge" ${t.versiones[0].centro ? "" : "hidden"}>Consulta por centro</span>
+        <div class="pie">
+          ${t.versiones.length > 1
+            ? `<label class="sr-only" for="sel-${t.id}">${esc(t.etiqueta || "Año")}</label>
+               <select id="sel-${t.id}">${t.versiones.map((v, i) => `<option value="${i}">${esc(v.e)}</option>`).join("")}</select>`
+            : `<span class="hint">${esc(t.versiones[0].e)}</span>`}
+          <button class="btn small azul" type="button" data-abrir="${t.id}">Ver tablero</button>
+        </div>
+      </div>`).join("");
+    $$("#tbGrid .tbCard").forEach(card => {
+      const t = tablero(card.dataset.tb), sel = $("select", card);
+      if (sel) sel.addEventListener("change", () => { $(".tbBadge", card).hidden = !t.versiones[+sel.value].centro; });
+      $("[data-abrir]", card).addEventListener("click", () => abrirTablero(t.id, sel ? +sel.value : 0));
+    });
+  }
+  $$(".tbFiltros .chip").forEach(b => b.addEventListener("click", () => {
+    $$(".tbFiltros .chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+    pintarTableros(b.dataset.tbf);
+  }));
+  pintarTableros("todos");
+
+  // Código del centro más reciente que el usuario haya consultado o escrito
+  function codigoActual() {
+    if (consulta && consulta.codigo) return consulta.codigo;
+    const v = ($("#cCentro").value || $("#hcCentro").value || "").trim();
+    return /^\d{1,5}$/.test(v) ? v.padStart(5, "0") : "";
+  }
+  async function copiarCodigo(cod, boton) {
+    if (!cod) return false;
+    try {
+      await navigator.clipboard.writeText(cod);
+      if (boton) { boton.textContent = "Código copiado ✓"; setTimeout(() => { boton.textContent = "Copiar código"; }, 2500); }
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function abrirTablero(id, iVersion, codigo) {
+    const t = tablero(id), v = t.versiones[iVersion || 0];
+    const visor = $("#visor");
+    $("#visorTitulo").textContent = t.titulo;
+    $("#visorSub").textContent = (t.etiqueta || "Año") + ": " + v.e;
+    $("#visorNueva").href = v.u;
+    $("#visorFrame").title = t.titulo + " " + v.e;
+    $("#visorFrame").src = v.u;
+    const cod = codigo || codigoActual();
+    $("#visorCodigo").hidden = !v.centro;
+    $("#visorCod").value = cod;
+    if (v.centro && cod) copiarCodigo(cod, $("#visorCopiar"));
+    if (typeof visor.showModal === "function") {
+      visor.showModal();
+      document.body.style.overflow = "hidden";
+    } else {
+      window.open(v.u, "_blank", "noopener");
+    }
+  }
+  function cerrarVisor() {
+    const visor = $("#visor");
+    if (visor.open) visor.close();
+  }
+  $("#visor").addEventListener("close", () => {
+    $("#visorFrame").src = "about:blank";
+    document.body.style.overflow = "";
+  });
+  $("#visorCerrar").addEventListener("click", cerrarVisor);
+  $("#visor").addEventListener("click", e => { if (e.target === $("#visor")) cerrarVisor(); });
+  $("#visorCopiar").addEventListener("click", e => {
+    const v = $("#visorCod").value.trim();
+    if (/^\d{1,5}$/.test(v)) { $("#visorCod").value = v.padStart(5, "0"); copiarCodigo(v.padStart(5, "0"), e.currentTarget); }
+    else $("#visorCod").focus();
+  });
 
   // Menú lateral activo según la sección visible + botón volver arriba
   const secciones = $$(".content .section");
