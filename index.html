@@ -788,21 +788,21 @@
           <h2>Recursos institucionales</h2>
           <p class="sub">Materiales de consulta frecuente para el trabajo en el aula y en el centro.</p>
           <div class="quickGrid">
-            <a class="quickCard" href="documentos/guias/" target="_blank" rel="noopener">
+            <a class="quickCard" href="#documentos" data-filtro="Registros">
+              <strong>Registros</strong>
+              <span>Registros de grado de 1ro a 6to del Nivel Primario.</span>
+            </a>
+            <a class="quickCard" href="#documentos" data-filtro="Diseño Curricular">
+              <strong>Diseño Curricular</strong>
+              <span>Currículo del Nivel Primario y orientaciones oficiales.</span>
+            </a>
+            <a class="quickCard" href="#documentos" data-filtro="Orientaciones">
+              <strong>Orientaciones</strong>
+              <span>Calendario escolar y lineamientos para regionales, distritos y centros.</span>
+            </a>
+            <a class="quickCard" href="#documentos" data-filtro="Guías">
               <strong>Guías</strong>
               <span>Materiales de apoyo pedagógico para el aula.</span>
-            </a>
-            <a class="quickCard" href="documentos/registros/" target="_blank" rel="noopener">
-              <strong>Registros</strong>
-              <span>Registros de grado del Nivel Primario.</span>
-            </a>
-            <a class="quickCard" href="documentos/diseno-curricular/" target="_blank" rel="noopener">
-              <strong>Diseño Curricular</strong>
-              <span>Documentos curriculares y orientaciones oficiales.</span>
-            </a>
-            <a class="quickCard" href="documentos/orientaciones/" target="_blank" rel="noopener">
-              <strong>Orientaciones</strong>
-              <span>Lineamientos para regionales, distritos y centros.</span>
             </a>
           </div>
         </article>
@@ -1168,10 +1168,14 @@
   // Documentos. Agregue una línea por documento.
   const DOCUMENTOS = [
     { titulo: "Calendario Escolar 2026-2027", cat: "Orientaciones", fuente: "Ministerio de Educación", url: "documentos/orientaciones/calendario-escolar-2026-2027.pdf" },
-    { titulo: "Registro de 1er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "documentos/registros/registro-1er-grado-nivel-primario.pdf" },
-    { titulo: "Registro de 2do grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "documentos/registros/registro-2do-grado-nivel-primario.pdf" },
-    { titulo: "Registro de 3er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "documentos/registros/registro-3er-grado-nivel-primario.pdf" }
-    // { titulo: "Guía de ...", cat: "Guías", fuente: "...", url: "documentos/guias/archivo.pdf" },
+    { titulo: "Diseño Curricular del Nivel Primario", cat: "Diseño Curricular", fuente: "Ministerio de Educación", url: "curriculo-primaria.pdf" },
+    { titulo: "Registro de 1er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-primero.pdf" },
+    { titulo: "Registro de 2do grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-segundo.pdf" },
+    { titulo: "Registro de 3er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-tercero.pdf" },
+    { titulo: "Registro de 4to grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-cuarto.pdf" },
+    { titulo: "Registro de 5to grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-quinto.pdf" },
+    { titulo: "Registro de 6to grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-sexto.pdf" }
+    // { titulo: "Guía de ...", cat: "Guías", fuente: "...", url: "nombre-del-archivo.pdf" },
   ];
 
   // Preguntas frecuentes
@@ -1493,6 +1497,18 @@
   $("#filtroDoc").addEventListener("input", pintarDocs);
   pintarDocs();
 
+  // Tarjetas de recursos: muestran cuántos documentos hay y filtran la lista de Documentos
+  function filtrarDocs(cat) {
+    const chip = $$(".filtros .chip").find(b => b.dataset.cat === cat);
+    if (chip) chip.click();
+  }
+  $$("#accesos .quickCard").forEach(a => {
+    const cat = a.dataset.filtro, n = DOCUMENTOS.filter(d => d.cat === cat).length;
+    const s = $("span", a);
+    s.textContent += n ? ` ${n} documento${n > 1 ? "s" : ""}.` : " Próximamente.";
+    a.addEventListener("click", () => filtrarDocs(cat));
+  });
+
   // Preguntas frecuentes
   $("#listaFaq").innerHTML = PREGUNTAS.map(f =>
     `<details><summary>${esc(f.p)}</summary><p>${esc(f.r)}</p></details>`).join("");
@@ -1502,7 +1518,7 @@
     const items = [];
     PLATAFORMAS.forEach(p => items.push({ tipo: "Plataforma", titulo: p.nombre + " — " + p.completo, texto: p.descripcion + " " + p.tags.join(" "), url: p.url || "#plataformas", ext: !!p.url }));
     DOCUMENTOS.forEach(d => items.push({ tipo: "Documento", titulo: d.titulo, texto: d.cat + " " + d.fuente, url: d.url, ext: true }));
-    $$("#accesos .quickCard").forEach(a => items.push({ tipo: "Recurso", titulo: $("strong", a).textContent, texto: $("span", a).textContent, url: a.getAttribute("href"), ext: true }));
+    $$("#accesos .quickCard").forEach(a => items.push({ tipo: "Recurso", titulo: $("strong", a).textContent, texto: $("span", a).textContent, url: a.getAttribute("href"), ext: false }));
     PREGUNTAS.forEach(f => items.push({ tipo: "Pregunta", titulo: f.p, texto: f.r, url: "#preguntas", ext: false }));
     items.push({ tipo: "Consulta", titulo: "Consulta los resultados de tu centro en SIREV", texto: "codigo sigerd centro resultados evaluacion lectura desempeno cobertura informe", url: "#consulta", ext: false });
     EVENTOS.forEach(e => items.push({ tipo: "Fecha · " + rango(e.inicio, e.fin), titulo: e.texto, texto: CATEGORIAS[e.cat].nombre + " calendario agenda", url: "#calendario", ext: false }));
