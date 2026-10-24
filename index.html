@@ -328,12 +328,47 @@
     }
     .corte .mes{font-family:Roboto,Arial,sans-serif;font-size:20px;font-weight:700;color:var(--azul)}
     .corte .tipo{font-size:13px;color:var(--suave)}
+    .corte ul{list-style:none;margin:10px 0 0;padding:10px 0 0;border-top:1px solid #e5edf6;display:grid;gap:4px;font-size:13px}
+    .corte li{display:flex;justify-content:space-between;gap:8px;color:#4f647c}
+    .corte li b{color:#284663;font-weight:700;white-space:nowrap}
     .corte.actual{border-color:var(--rojo);background:#fff5f6}
-    .corte.actual::before{
+    .corte.actual::before,.corte.encurso::before{
       content:"Próximo";position:absolute;top:-10px;right:12px;background:var(--rojo);color:#fff;
       font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;text-transform:uppercase;
     }
+    .corte.encurso{border-color:var(--verde);background:#f1faf5}
+    .corte.encurso::before{content:"En curso";background:var(--verde)}
     .corte.pasado{opacity:.6}
+    .calDatos{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:6px}
+    .calDatos div{border:1px solid #dfe8f2;border-radius:12px;padding:12px;background:#fbfdff}
+    .calDatos b{display:block;font-family:Roboto,Arial,sans-serif;font-size:19px;color:var(--azul);line-height:1.2}
+    .calDatos span{font-size:12px;color:var(--suave)}
+    .calTit{margin:26px 0 6px;color:var(--azul);font-size:18px;font-family:Roboto,Arial,sans-serif}
+    .informes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .informe{border:1px solid #dfe8f2;border-radius:12px;padding:12px;text-align:center;background:#fff}
+    .informe small{display:block;font-size:11px;font-weight:800;color:var(--azul2);text-transform:uppercase;letter-spacing:.05em}
+    .informe b{display:block;font-family:Roboto,Arial,sans-serif;font-size:18px;color:var(--azul);margin:2px 0}
+    .informe span{font-size:12px;color:var(--suave)}
+    .informe.pasado{opacity:.55}
+    .informe.proximo{border-color:var(--azul2);background:#f2f7fd}
+    .agFiltros{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+    .agFiltros .chip i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+    .agBarra{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+    .agCheck{font-size:14px;color:#35506b;display:flex;gap:8px;align-items:center;cursor:pointer}
+    .agMes{margin:18px 0 8px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--suave)}
+    .agLista{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .agItem{
+      display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;border:1px solid #dfe8f2;
+      border-left:5px solid var(--c,#94a8bf);border-radius:12px;padding:10px 14px;background:#fff;
+    }
+    .agItem.hoy{background:#fffaf0;border-color:#f3dca0;border-left-color:var(--c)}
+    .agItem.pasado{opacity:.55}
+    .agFecha{font-weight:800;color:#284663;font-size:14px;line-height:1.25}
+    .agFecha small{display:block;font-weight:700;font-size:11px;color:var(--suave);text-transform:uppercase;letter-spacing:.04em}
+    .agTxt{font-size:14px;color:#3b4f66}
+    .agTxt .cat{display:inline-block;font-size:11px;font-weight:800;margin-right:6px;color:var(--c)}
+    .agTxt .ya{display:inline-block;font-size:11px;font-weight:800;background:var(--c);color:#fff;border-radius:999px;padding:1px 8px;margin-left:6px}
+    .agVacio{color:var(--suave);font-size:14px;padding:8px 0}
     .nota{
       margin-top:16px;font-size:14px;color:#465b74;background:#f3f7fc;
       border-left:4px solid var(--azul2);padding:12px 14px;border-radius:0 10px 10px 0;
@@ -538,6 +573,8 @@
       .sidebar{display:none}
       .pillars{grid-template-columns:1fr}
       .timeline{grid-template-columns:repeat(2,1fr)}
+      .calDatos{grid-template-columns:repeat(3,1fr)}
+      .informes{grid-template-columns:repeat(3,1fr)}
       .kpis{grid-template-columns:repeat(2,1fr)}
       .contactGrid{grid-template-columns:1fr}
       .footGrid{grid-template-columns:1fr 1fr}
@@ -564,6 +601,8 @@
       .section{padding:20px}
       .section h2{font-size:24px}
       .timeline{grid-template-columns:1fr}
+      .calDatos,.informes{grid-template-columns:repeat(2,1fr)}
+      .agItem{grid-template-columns:1fr;gap:4px}
       .docs li{grid-template-columns:auto 1fr}
       .docs li .download{grid-column:1/-1;text-align:center}
       .footGrid{grid-template-columns:1fr}
@@ -770,13 +809,38 @@
 
         <!-- CALENDARIO -->
         <article class="section" id="calendario">
-          <h2>Calendario de evaluación formativa</h2>
-          <p class="sub">Cuatro cortes durante el año escolar. Sus resultados se registran y consultan en SIREV Primaria.</p>
+          <h2>Calendario escolar 2026-2027</h2>
+          <p class="sub">Fechas y procesos del Nivel Primario tomados del Calendario Escolar oficial del Ministerio de Educación.</p>
+
+          <div class="calDatos">
+            <div><b>24 ago 2026</b><span>Inicio de clases</span></div>
+            <div><b>18 jun 2027</b><span>Cierre del año escolar</span></div>
+            <div><b>190 días</b><span>De docencia efectiva (40 semanas)</span></div>
+            <div><b>950 h</b><span>Tanda regular · 8:00–12:30 y 2:00–6:00</span></div>
+            <div><b>1,520 h</b><span>Jornada Escolar Extendida · 8:00–4:00</span></div>
+          </div>
+
+          <h3 class="calTit">Evaluaciones formativas</h3>
+          <p class="hint" style="margin:0 0 12px">Cuatro cortes durante el año. Sus resultados se cargan y consultan en SIREV Primaria
+            y se analizan en mesas técnicas distritales con los equipos de gestión.</p>
           <div class="timeline" id="timeline"><!-- Se genera desde CORTES (ver script) --></div>
+
+          <h3 class="calTit">Entregas del informe de aprendizaje</h3>
+          <div class="informes" id="informes"><!-- Se genera desde INFORMES --></div>
+
+          <h3 class="calTit">Agenda del Nivel Primario</h3>
+          <div class="agFiltros" role="group" aria-label="Filtrar agenda" id="agFiltros"></div>
+          <div class="agBarra">
+            <label class="agCheck"><input type="checkbox" id="agPasadas"> Mostrar fechas pasadas</label>
+            <button class="btn small claro" type="button" id="agIcs">Añadir a mi calendario (.ics)</button>
+          </div>
+          <div id="agenda" aria-live="polite"><!-- Se genera desde EVENTOS --></div>
+
           <p class="nota">
-            Estas evaluaciones son de carácter <strong>formativo</strong>. Se aplican a partir de rúbricas
-            y tablas de especificaciones y sirven para ajustar los planes de acción del centro.
-            No son pruebas estandarizadas y sus resultados no deben compararse con la Evaluación Diagnóstica Nacional.
+            Las evaluaciones de SIREV son de carácter <strong>formativo</strong>: se aplican con rúbricas
+            y tablas de especificaciones para ajustar los planes de acción del centro. No son pruebas estandarizadas
+            y no deben compararse con la Evaluación Diagnóstica Nacional. Fuente de las fechas: Calendario Escolar 2026-2027,
+            Ministerio de Educación; ante cualquier cambio, prevalecen las comunicaciones oficiales.
           </p>
         </article>
 
@@ -990,16 +1054,120 @@
     }
   ];
 
-  // Cortes de evaluación formativa (mes: 1-12)
+  // ---------------------------------------------------------------------
+  // CALENDARIO ESCOLAR 2026-2027 (Calendario Escolar oficial, MINERD).
+  // Fechas en formato AAAA-MM-DD. Para un nuevo año escolar, actualice
+  // CORTES, INFORMES y EVENTOS.
+  // ---------------------------------------------------------------------
+  const ANIO_ESCOLAR = "2026-2027";
+
+  // Cortes de evaluación formativa (SIREV): aplicación, carga de resultados y mesa técnica distrital
   const CORTES = [
-    { mes: 9,  nombre: "Septiembre", tipo: "Evaluación diagnóstica" },
-    { mes: 11, nombre: "Noviembre",  tipo: "Evaluación de seguimiento" },
-    { mes: 3,  nombre: "Marzo",      tipo: "Evaluación de seguimiento" },
-    { mes: 5,  nombre: "Mayo",       tipo: "Evaluación de seguimiento" }
+    { nombre: "Septiembre", tipo: "Evaluación diagnóstica",
+      aplicacion: ["2026-09-01", "2026-09-11"], carga: ["2026-09-14", "2026-09-17"], mesa: ["2026-09-28", "2026-09-30"] },
+    { nombre: "Noviembre", tipo: "1.ª evaluación de seguimiento",
+      aplicacion: ["2026-11-02", "2026-11-13"], carga: ["2026-11-16", "2026-11-20"], mesa: ["2026-11-23", "2026-11-27"] },
+    { nombre: "Marzo", tipo: "2.ª evaluación de seguimiento",
+      aplicacion: ["2027-03-02", "2027-03-12"], carga: ["2027-03-16", "2027-03-19"], mesa: ["2027-03-29", "2027-04-02"] },
+    { nombre: "Mayo", tipo: "3.ª evaluación de seguimiento",
+      aplicacion: ["2027-05-10", "2027-05-14"], carga: ["2027-05-18", "2027-05-21"], mesa: ["2027-05-25", "2027-05-28"] }
   ];
+
+  // Entregas del informe de aprendizaje del Nivel Primario
+  const INFORMES = [
+    { etiqueta: "P1", fecha: "2026-10-30", texto: "Primer informe" },
+    { etiqueta: "P2", fecha: "2027-01-29", texto: "Segundo informe" },
+    { etiqueta: "P3", fecha: "2027-03-29", texto: "Tercer informe" },
+    { etiqueta: "P4", fecha: "2027-06-11", texto: "Cuarto informe" },
+    { etiqueta: "Boletín", fecha: "2027-06-25", texto: "Boletín de calificaciones" }
+  ];
+
+  // Categorías de la agenda
+  const CATEGORIAS = {
+    hito:        { nombre: "Inicio y cierre", color: "#053e67" },
+    evaluacion:  { nombre: "Evaluación", color: "#c4162a" },
+    informes:    { nombre: "Informes", color: "#0b5fa5" },
+    gestion:     { nombre: "Gestión y formación", color: "#1f8a5b" },
+    transicion:  { nombre: "Transición", color: "#6a3fa0" },
+    actividades: { nombre: "Olimpiadas y festivales", color: "#c98a00" },
+    receso:      { nombre: "Feriados y recesos", color: "#7a8796" }
+  };
+
+  // Agenda: [inicio, fin, categoría, descripción]
+  const EVENTOS = [
+    ["2026-08-03", "2026-08-07", "gestion", "Capacitación de verano para docentes del Segundo Ciclo"],
+    ["2026-08-10", "2026-08-14", "gestion", "Capacitación de verano para docentes del Primer Ciclo"],
+    ["2026-08-17", "2026-08-21", "gestion", "Ambientación y planificación del inicio del año escolar en los centros"],
+    ["2026-08-24", "2026-08-24", "hito", "Inicio del año escolar para los estudiantes"],
+    ["2026-08-24", "2026-09-11", "transicion", "Acogida a estudiantes que pasan de Primaria a Secundaria (Protocolo de Transición)"],
+    ["2026-09-01", "2026-09-11", "evaluacion", "Evaluación Diagnóstica: aplicación, corrección y registro"],
+    ["2026-09-01", "2026-09-30", "transicion", "Protocolo de Transición Inicial–Primaria, Fase I: levantamiento de información y seguimiento"],
+    ["2026-09-14", "2026-09-17", "evaluacion", "Carga de resultados de la Evaluación Diagnóstica"],
+    ["2026-09-21", "2026-09-23", "evaluacion", "Entrega del informe de la Evaluación Diagnóstica (regional-sede)"],
+    ["2026-09-24", "2026-09-24", "receso", "Feriado: Día de Nuestra Señora de las Mercedes"],
+    ["2026-09-28", "2026-09-30", "gestion", "Mesa técnica distrital con equipos de gestión: análisis de la Evaluación Diagnóstica"],
+    ["2026-10-05", "2026-10-09", "actividades", "Concurso literario del Segundo Ciclo: planificación y escritura"],
+    ["2026-10-05", "2026-10-16", "gestion", "Revisión y actualización de planes de acción y metas educativas de los centros"],
+    ["2026-10-26", "2026-10-30", "gestion", "Mesa técnica distrital con equipos de gestión"],
+    ["2026-10-30", "2026-10-30", "informes", "Primera entrega del informe de aprendizaje (P1)"],
+    ["2026-11-02", "2026-11-13", "evaluacion", "Primera evaluación de seguimiento: aplicación"],
+    ["2026-11-03", "2026-11-13", "actividades", "Presentación de la Olimpiada Nacional de Lectura y Escritura (ONALE)"],
+    ["2026-11-09", "2026-11-09", "receso", "Feriado: Día de la Constitución (trasladado al lunes)"],
+    ["2026-11-16", "2026-11-20", "evaluacion", "Carga de resultados de la evaluación de seguimiento"],
+    ["2026-11-23", "2026-11-27", "gestion", "Mesa técnica distrital con equipos de gestión"],
+    ["2026-11-24", "2026-11-27", "actividades", "Concurso literario del Segundo Ciclo: selección de textos ganadores"],
+    ["2026-11-25", "2026-11-27", "evaluacion", "Entrega del informe de evaluación del Nivel Primario (regional-sede)"],
+    ["2026-12-01", "2026-12-04", "actividades", "Reconocimiento a participantes del concurso literario del Segundo Ciclo"],
+    ["2026-12-08", "2026-12-14", "gestion", "Presentación de buenas prácticas de enseñanza y aprendizaje en los centros"],
+    ["2026-12-15", "2026-12-17", "gestion", "Mesa técnica distrital: análisis de resultados de la evaluación de seguimiento"],
+    ["2026-12-18", "2027-01-06", "receso", "Vacaciones navideñas"],
+    ["2027-01-07", "2027-01-07", "hito", "Reinicio de clases"],
+    ["2027-01-07", "2027-01-29", "transicion", "Protocolo de Transición Inicial–Primaria: seguimiento en primer grado e informe a las familias"],
+    ["2027-01-11", "2027-01-15", "actividades", "Preparativos del Trimestre Patrio"],
+    ["2027-01-11", "2027-01-15", "transicion", "Preparación de estudiantes y familias que egresan de Primaria (Protocolo de Transición)"],
+    ["2027-01-21", "2027-01-21", "receso", "Feriado: Día de Nuestra Señora de la Altagracia"],
+    ["2027-01-25", "2027-01-25", "receso", "Feriado: natalicio de Juan Pablo Duarte (trasladado al lunes)"],
+    ["2027-01-26", "2027-01-29", "gestion", "Mesa técnica distrital con equipos de gestión"],
+    ["2027-01-29", "2027-01-29", "informes", "Segunda entrega del informe de aprendizaje (P2)"],
+    ["2027-02-08", "2027-02-12", "actividades", "Planificación de la Feria Científica y el Maratón Matemático"],
+    ["2027-02-16", "2027-02-19", "actividades", "Festival Nacional de Lectura del Primer Ciclo (etapa de centros)"],
+    ["2027-02-23", "2027-02-26", "gestion", "Mesa técnica distrital con equipos de gestión"],
+    ["2027-03-01", "2027-03-31", "transicion", "Protocolo de Transición Inicial–Primaria, Fases II, III y IV"],
+    ["2027-03-02", "2027-03-12", "evaluacion", "Segunda evaluación de seguimiento: aplicación"],
+    ["2027-03-08", "2027-03-19", "actividades", "Festival de Lectura Distrital"],
+    ["2027-03-10", "2027-03-12", "actividades", "Maratón Matemático del Segundo Ciclo"],
+    ["2027-03-16", "2027-03-19", "evaluacion", "Carga de resultados de la evaluación de seguimiento"],
+    ["2027-03-22", "2027-03-26", "receso", "Semana Santa (Viernes Santo: 26 de marzo)"],
+    ["2027-03-29", "2027-03-29", "informes", "Tercera entrega del informe de aprendizaje (P3)"],
+    ["2027-03-29", "2027-04-02", "gestion", "Mesa técnica distrital: análisis de resultados de la evaluación de seguimiento"],
+    ["2027-04-05", "2027-04-09", "actividades", "Feria Científica en los centros educativos"],
+    ["2027-04-06", "2027-04-09", "actividades", "Festival de Lectura Regional"],
+    ["2027-04-19", "2027-04-23", "actividades", "Festival de Lectura Regional"],
+    ["2027-04-27", "2027-04-30", "gestion", "Mesa técnica distrital con equipos de gestión"],
+    ["2027-05-03", "2027-05-03", "receso", "Feriado: Día Internacional del Trabajo (trasladado al lunes)"],
+    ["2027-05-10", "2027-05-14", "evaluacion", "Tercera evaluación de seguimiento: aplicación"],
+    ["2027-05-10", "2027-05-14", "actividades", "Feria Científica Regional"],
+    ["2027-05-17", "2027-05-21", "actividades", "Feria Científica Regional del Segundo Ciclo"],
+    ["2027-05-18", "2027-05-21", "evaluacion", "Carga de resultados de la evaluación de seguimiento"],
+    ["2027-05-18", "2027-05-21", "gestion", "Evaluación e informe del plan de reducción de la sobreedad"],
+    ["2027-05-18", "2027-05-28", "evaluacion", "Evaluación Diagnóstica Censal de 6to grado de Primaria"],
+    ["2027-05-24", "2027-05-28", "gestion", "Seminario de Buenas Prácticas del Nivel Primario"],
+    ["2027-05-25", "2027-05-28", "gestion", "Mesa técnica distrital: análisis de la tercera evaluación de seguimiento"],
+    ["2027-05-27", "2027-05-27", "receso", "Feriado: Corpus Christi"],
+    ["2027-06-07", "2027-06-11", "gestion", "Seminario de Buenas Prácticas del Nivel Primario"],
+    ["2027-06-07", "2027-06-18", "evaluacion", "Recuperación pedagógica final de los estudiantes"],
+    ["2027-06-11", "2027-06-11", "informes", "Cuarta entrega del informe de aprendizaje (P4)"],
+    ["2027-06-16", "2027-06-16", "actividades", "Festival Nacional de Lectura"],
+    ["2027-06-17", "2027-06-18", "gestion", "Mesa técnica distrital: análisis de resultados de la evaluación de seguimiento"],
+    ["2027-06-18", "2027-06-18", "hito", "Cierre del año escolar para los estudiantes"],
+    ["2027-06-25", "2027-06-25", "informes", "Entrega del boletín de calificaciones"],
+    ["2027-06-29", "2027-07-30", "receso", "Vacaciones docentes"],
+    ["2027-07-01", "2027-07-27", "actividades", "Campamento de verano «Aprender es Divertido»"]
+  ].map(([inicio, fin, cat, texto]) => ({ inicio, fin, cat, texto }));
 
   // Documentos. Agregue una línea por documento.
   const DOCUMENTOS = [
+    { titulo: "Calendario Escolar 2026-2027", cat: "Orientaciones", fuente: "Ministerio de Educación", url: "documentos/orientaciones/calendario-escolar-2026-2027.pdf" },
     { titulo: "Registro de 1er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "documentos/registros/registro-1er-grado-nivel-primario.pdf" },
     { titulo: "Registro de 2do grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "documentos/registros/registro-2do-grado-nivel-primario.pdf" },
     { titulo: "Registro de 3er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "documentos/registros/registro-3er-grado-nivel-primario.pdf" }
@@ -1012,6 +1180,8 @@
       r: "En la sección Documentos, filtrando por «Registros». Cada registro se abre en PDF y puede imprimirse o guardarse." },
     { p: "¿Cuántas evaluaciones se realizan en el año escolar?",
       r: "Desde el año escolar 2024-2025 la Dirección orienta cuatro evaluaciones formativas: septiembre, noviembre, marzo y mayo. Sus resultados se consultan en SIREV Primaria." },
+    { p: "¿Cuándo se entregan los informes de aprendizaje?",
+      r: "En el año escolar 2026-2027: P1 el 30 de octubre, P2 el 29 de enero, P3 el 29 de marzo y P4 el 11 de junio. El boletín de calificaciones se entrega el 25 de junio de 2027." },
     { p: "¿Puedo comparar los resultados de SIREV con la Evaluación Diagnóstica Nacional?",
       r: "No. Las evaluaciones de SIREV son formativas y no estandarizadas; tienen un propósito distinto. Sirven para ajustar la práctica en el aula y los planes de acción del centro." },
     { p: "¿Para qué sirve SIGAP?",
@@ -1156,23 +1326,145 @@
       : `<span class="pend" title="Enlace disponible próximamente">${ico}${esc(pl.nombre)}</span>`;
   }).join("");
 
-  // Calendario: marca el próximo corte según la fecha actual
+  /* ===== Calendario escolar ===== */
+  const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  const MES_C = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  const DIAS_C = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
+  const fecha = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const hoyD = (() => { const h = new Date(); return new Date(h.getFullYear(), h.getMonth(), h.getDate()); })();
+  const diasHasta = s => Math.round((fecha(s) - hoyD) / 86400000);
+  function rango(ini, fin) {
+    const a = fecha(ini), b = fecha(fin || ini);
+    if (+a === +b) return `${a.getDate()} ${MES_C[a.getMonth()]}`;
+    if (a.getMonth() === b.getMonth()) return `${a.getDate()}–${b.getDate()} ${MES_C[a.getMonth()]}`;
+    return `${a.getDate()} ${MES_C[a.getMonth()]} – ${b.getDate()} ${MES_C[b.getMonth()]}`;
+  }
+  function cuando(n) {
+    if (n === 0) return "hoy";
+    if (n === 1) return "mañana";
+    if (n > 1) return `en ${n} días`;
+    return "";
+  }
+
+  // Cortes de evaluación
   (function () {
-    const hoy = new Date().getMonth() + 1;
-    // orden del año escolar: sep(9) → may(5)
-    const pos = m => (m >= 8 ? m - 8 : m + 4);
-    const actual = pos(hoy);
-    const proximo = CORTES.find(c => pos(c.mes) >= actual) || CORTES[0];
+    const estado = c => {
+      const ini = diasHasta(c.aplicacion[0]), fin = diasHasta(c.mesa[1]);
+      if (fin < 0) return "pasado";
+      if (ini <= 0) return "encurso";
+      return "futuro";
+    };
+    const estados = CORTES.map(estado);
+    const iProx = estados.findIndex(e => e === "encurso" || e === "futuro");
     $("#timeline").innerHTML = CORTES.map((c, i) => {
-      const clase = c === proximo ? "actual" : (pos(c.mes) < actual ? "pasado" : "");
+      const clase = estados[i] === "pasado" ? "pasado" : (i === iProx ? (estados[i] === "encurso" ? "encurso" : "actual") : "");
       return `<div class="corte ${clase}">
         <div class="tipo">Corte ${i + 1}</div>
         <div class="mes">${esc(c.nombre)}</div>
         <div class="tipo">${esc(c.tipo)}</div>
+        <ul>
+          <li>Aplicación <b>${rango(...c.aplicacion)}</b></li>
+          <li>Carga en SIREV <b>${rango(...c.carga)}</b></li>
+          <li>Mesa técnica <b>${rango(...c.mesa)}</b></li>
+        </ul>
       </div>`;
     }).join("");
-    $("#hcCorteTxt").textContent = `${proximo.nombre} · ${proximo.tipo}`;
+
+    // Tarjeta de la portada
+    if (iProx >= 0) {
+      const c = CORTES[iProx], n = diasHasta(c.aplicacion[0]);
+      $("#hcCorteTxt").textContent = estados[iProx] === "encurso"
+        ? `${c.tipo} · en curso`
+        : `${c.tipo} · ${rango(...c.aplicacion)}${n > 0 ? " (" + cuando(n) + ")" : ""}`;
+    } else {
+      $("#hcCorteTxt").textContent = `Año escolar ${ANIO_ESCOLAR} concluido`;
+    }
+
+    // Entregas del informe de aprendizaje
+    const iInf = INFORMES.findIndex(x => diasHasta(x.fecha) >= 0);
+    $("#informes").innerHTML = INFORMES.map((x, i) => {
+      const d = fecha(x.fecha), n = diasHasta(x.fecha);
+      const clase = n < 0 ? "pasado" : (i === iInf ? "proximo" : "");
+      return `<div class="informe ${clase}"><small>${esc(x.etiqueta)}</small>
+        <b>${d.getDate()} ${MES_C[d.getMonth()]}</b>
+        <span>${esc(x.texto)}${i === iInf && n >= 0 ? " · " + cuando(n) : ""}</span></div>`;
+    }).join("");
   })();
+
+  // Agenda
+  let agCat = "todas", agTodo = false;
+  const AG_DIAS = 60; // por defecto se muestran los próximos 60 días
+  $("#agFiltros").innerHTML = `<button class="chip" type="button" data-cat="todas" aria-pressed="true">Todas</button>` +
+    Object.entries(CATEGORIAS).map(([k, c]) =>
+      `<button class="chip" type="button" data-cat="${k}" aria-pressed="false"><i style="background:${c.color}"></i>${esc(c.nombre)}</button>`).join("");
+  $$("#agFiltros .chip").forEach(b => b.addEventListener("click", () => {
+    agCat = b.dataset.cat;
+    $$("#agFiltros .chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+    pintarAgenda();
+  }));
+  $("#agPasadas").addEventListener("change", pintarAgenda);
+
+  function eventosVisibles() {
+    const pasadas = $("#agPasadas").checked;
+    return EVENTOS
+      .filter(e => agCat === "todas" || e.cat === agCat)
+      .filter(e => pasadas || diasHasta(e.fin) >= 0)
+      .sort((a, b) => a.inicio.localeCompare(b.inicio) || a.fin.localeCompare(b.fin));
+  }
+  function pintarAgenda() {
+    const todas = eventosVisibles();
+    const lista = agTodo || $("#agPasadas").checked ? todas : todas.filter(e => diasHasta(e.inicio) <= AG_DIAS);
+    const resto = todas.length - lista.length;
+    if (!lista.length && !resto) { $("#agenda").innerHTML = `<p class="agVacio">No hay fechas para mostrar con este filtro.</p>`; return; }
+    if (!lista.length) { agTodo = true; return pintarAgenda(); }
+    const porMes = new Map();
+    lista.forEach(e => {
+      const d = fecha(e.inicio), k = `${MESES[d.getMonth()]} ${d.getFullYear()}`;
+      if (!porMes.has(k)) porMes.set(k, []);
+      porMes.get(k).push(e);
+    });
+    $("#agenda").innerHTML = [...porMes.entries()].map(([mes, evs]) => `
+      <div class="agMes">${esc(mes)}</div>
+      <ul class="agLista">${evs.map(e => {
+        const cat = CATEGORIAS[e.cat], ini = diasHasta(e.inicio), fin = diasHasta(e.fin);
+        const enCurso = ini <= 0 && fin >= 0;
+        const clase = fin < 0 ? "pasado" : enCurso ? "hoy" : "";
+        const marca = enCurso ? `<span class="ya">${ini === 0 && fin === 0 ? "Hoy" : "En curso"}</span>`
+                    : (ini > 0 && ini <= 7 ? `<span class="ya">${cuando(ini)}</span>` : "");
+        const dia = fecha(e.inicio);
+        return `<li class="agItem ${clase}" style="--c:${cat.color}">
+          <div class="agFecha"><small>${e.inicio === e.fin ? DIAS_C[dia.getDay()] : "Del"}</small>${rango(e.inicio, e.fin)}</div>
+          <div class="agTxt"><span class="cat">${esc(cat.nombre)}</span>${esc(e.texto)}${marca}</div>
+        </li>`;
+      }).join("")}</ul>`).join("") +
+      (resto > 0 ? `<button class="btn small claro" type="button" id="agMas" style="margin-top:14px">Ver el resto del año (${resto} fechas más)</button>` : "") +
+      (agTodo && !$("#agPasadas").checked ? `<button class="btn small claro" type="button" id="agMenos" style="margin-top:14px">Mostrar solo los próximos ${AG_DIAS} días</button>` : "");
+    const mas = $("#agMas"), menos = $("#agMenos");
+    if (mas) mas.addEventListener("click", () => { agTodo = true; pintarAgenda(); });
+    if (menos) menos.addEventListener("click", () => { agTodo = false; pintarAgenda(); $("#agFiltros").scrollIntoView({ block: "start" }); });
+  }
+  pintarAgenda();
+
+  // Exportar a calendario (.ics) las fechas que se están mostrando
+  $("#agIcs").addEventListener("click", () => {
+    const lista = eventosVisibles();
+    const f = s => s.replace(/-/g, "");
+    const sig = s => { const d = fecha(s); d.setDate(d.getDate() + 1); return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`; };
+    const escIcs = s => String(s).replace(/\\/g, "\\\\").replace(/[,;]/g, m => "\\" + m);
+    const sello = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+    const lineas = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//MINERD//Direccion de Educacion Primaria//ES", "CALSCALE:GREGORIAN",
+      `X-WR-CALNAME:Nivel Primario ${ANIO_ESCOLAR}`];
+    lista.forEach((e, i) => lineas.push("BEGIN:VEVENT", `UID:primaria-${f(e.inicio)}-${i}@educacionprimaria`, `DTSTAMP:${sello}`,
+      `DTSTART;VALUE=DATE:${f(e.inicio)}`, `DTEND;VALUE=DATE:${sig(e.fin)}`,
+      `SUMMARY:${escIcs(e.texto)}`, `CATEGORIES:${escIcs(CATEGORIAS[e.cat].nombre)}`, "END:VEVENT"));
+    lineas.push("END:VCALENDAR");
+    const blob = new Blob([lineas.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `calendario-primaria-${ANIO_ESCOLAR}.ics`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  });
 
   // Documentos con filtro
   let catActiva = "Todos";
@@ -1213,6 +1505,7 @@
     $$("#accesos .quickCard").forEach(a => items.push({ tipo: "Recurso", titulo: $("strong", a).textContent, texto: $("span", a).textContent, url: a.getAttribute("href"), ext: true }));
     PREGUNTAS.forEach(f => items.push({ tipo: "Pregunta", titulo: f.p, texto: f.r, url: "#preguntas", ext: false }));
     items.push({ tipo: "Consulta", titulo: "Consulta los resultados de tu centro en SIREV", texto: "codigo sigerd centro resultados evaluacion lectura desempeno cobertura informe", url: "#consulta", ext: false });
+    EVENTOS.forEach(e => items.push({ tipo: "Fecha · " + rango(e.inicio, e.fin), titulo: e.texto, texto: CATEGORIAS[e.cat].nombre + " calendario agenda", url: "#calendario", ext: false }));
     TABLEROS.forEach(t => items.push({ tipo: "Dato oficial", titulo: t.titulo + " — " + t.pregunta, texto: t.desc + " " + t.versiones.map(v => v.e).join(" ") + " siie tablero", url: "#datos-oficiales", ext: false }));
     items.push({ tipo: "Sección", titulo: "Calendario de evaluación formativa", texto: "cortes septiembre noviembre marzo mayo evaluacion diagnostica seguimiento", url: "#calendario", ext: false });
     return items;
