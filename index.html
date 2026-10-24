@@ -916,7 +916,7 @@
         </div>
       </div>
       <div class="footBottom">
-        <div>© <span id="anio">2026</span> Ministerio de Educación de la República Dominicana</div>
+        <div>© <span id="anio">2026</span> Ministerio de Educación de la República Dominicana · Diseño y desarrollo: Aneudy Minier</div>
         <div>Dirección de Educación Primaria</div>
       </div>
     </div>
@@ -929,14 +929,12 @@
       <div><b id="visorTitulo">Tablero</b><small id="visorSub"></small></div>
       <div class="visorAcc">
         <a class="btn small claro" id="visorNueva" href="#" target="_blank" rel="noopener">Abrir en pestaña nueva ↗</a>
-        <button class="btn small azul" type="button" id="visorCerrar">Cerrar</button>
+        <button class="btn small azul" type="button" id="visorCerrar" autofocus>Cerrar</button>
       </div>
     </div>
-    <div class="visorCodigo" id="visorCodigo" hidden>
-      <span>Para ver un centro, pega su código en la casilla <b>Código SIGERD</b> del tablero.</span>
-      <label for="visorCod" class="sr-only">Código SIGERD</label>
-      <input id="visorCod" inputmode="numeric" maxlength="5" placeholder="00000" autocomplete="off">
-      <button class="btn small sirev" type="button" id="visorCopiar">Copiar código</button>
+    <div class="visorCodigo" id="visorCodigo" hidden aria-live="polite">
+      <span id="visorCodTxt"></span>
+      <button class="btn small claro" type="button" id="visorCopiar">Copiar otra vez</button>
     </div>
     <iframe id="visorFrame" title="Tablero de información" allowfullscreen></iframe>
     <div class="visorPie">Fuente: Tableros de Información del SIIE, Ministerio de Educación de la República Dominicana.</div>
@@ -1723,6 +1721,7 @@
 
   /* ===== Datos oficiales: tarjetas y visor de tableros ===== */
   const tablero = id => TABLEROS.find(t => t.id === id);
+  let visorCodigo = "";
 
   function pintarTableros(filtro) {
     const lista = TABLEROS.filter(t =>
@@ -1763,7 +1762,7 @@
     if (!cod) return false;
     try {
       await navigator.clipboard.writeText(cod);
-      if (boton) { boton.textContent = "Código copiado ✓"; setTimeout(() => { boton.textContent = "Copiar código"; }, 2500); }
+      if (boton) { boton.textContent = "Copiado ✓"; setTimeout(() => { boton.textContent = "Copiar otra vez"; }, 2500); }
       return true;
     } catch (e) { return false; }
   }
@@ -1776,10 +1775,17 @@
     $("#visorNueva").href = v.u;
     $("#visorFrame").title = t.titulo + " " + v.e;
     $("#visorFrame").src = v.u;
-    const cod = codigo || codigoActual();
-    $("#visorCodigo").hidden = !v.centro;
-    $("#visorCod").value = cod;
-    if (v.centro && cod) copiarCodigo(cod, $("#visorCopiar"));
+    // Si ya se conoce el centro, se copia su código para pegarlo en el tablero.
+    // Si no, no se muestra nada: el usuario escribe el código directamente en el tablero.
+    const cod = v.centro ? (codigo || codigoActual()) : "";
+    visorCodigo = cod;
+    $("#visorCodigo").hidden = !cod;
+    if (cod) {
+      $("#visorCodTxt").innerHTML = `Centro <b>${esc(cod)}</b>: escribe o pega este código en la casilla <b>Código SIGERD</b> del tablero.`;
+      copiarCodigo(cod).then(ok => {
+        if (ok) $("#visorCodTxt").innerHTML = `Código <b>${esc(cod)}</b> copiado. Pégalo (Ctrl+V) en la casilla <b>Código SIGERD</b> del tablero.`;
+      });
+    }
     if (typeof visor.showModal === "function") {
       visor.showModal();
       document.body.style.overflow = "hidden";
@@ -1797,11 +1803,7 @@
   });
   $("#visorCerrar").addEventListener("click", cerrarVisor);
   $("#visor").addEventListener("click", e => { if (e.target === $("#visor")) cerrarVisor(); });
-  $("#visorCopiar").addEventListener("click", e => {
-    const v = $("#visorCod").value.trim();
-    if (/^\d{1,5}$/.test(v)) { $("#visorCod").value = v.padStart(5, "0"); copiarCodigo(v.padStart(5, "0"), e.currentTarget); }
-    else $("#visorCod").focus();
-  });
+  $("#visorCopiar").addEventListener("click", e => copiarCodigo(visorCodigo, e.currentTarget));
 
   // Menú lateral activo según la sección visible + botón volver arriba
   const secciones = $$(".content .section");
