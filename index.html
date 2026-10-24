@@ -346,48 +346,65 @@
     }
     .vacio{color:var(--suave);font-size:14px;padding:12px 0}
 
-    /* Herramientas docentes */
-    .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--gris2);margin-bottom:18px}
-    .tab{
-      border:0;background:transparent;padding:11px 14px;font-weight:700;font-size:14px;
-      color:var(--suave);cursor:pointer;border-bottom:3px solid transparent;font-family:inherit;
-    }
-    .tab[aria-selected="true"]{color:var(--azul2);border-bottom-color:var(--azul2)}
-    .panel[hidden]{display:none}
-    .tool{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    /* Consulta de resultados del centro */
+    .cForm{display:grid;grid-template-columns:1.6fr 1fr auto;gap:12px;align-items:end}
+    .cForm .field{margin:0}
+    .cForm .btn{height:44px}
+    .btn:disabled{opacity:.6;cursor:wait;transform:none}
     .field{display:grid;gap:6px;margin-bottom:12px}
     .field label{font-weight:700;font-size:14px;color:#284663}
-    .field input,.field textarea,.field select{
+    .field input,.field select{
       border:1px solid #d3e0ee;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:14px;
-      width:100%;background:#fff;color:var(--texto);
+      width:100%;background:#fff;color:var(--texto);height:44px;
     }
-    .field textarea{min-height:150px;resize:vertical}
-    .hint{font-size:12px;color:var(--suave)}
-    .salida{
-      background:#f7faff;border:1px solid #dfe8f2;border-radius:14px;padding:18px;min-height:160px;
+    .hint{font-size:13px;color:var(--suave)}
+    .barra{height:10px;border-radius:999px;background:#e5edf6;overflow:hidden;margin:6px 0 0}
+    .barra span{display:block;height:100%;background:var(--azul2);border-radius:999px;transition:width .3s}
+    .cEstado{margin-top:16px;font-size:14px;color:var(--suave)}
+    .cEstado[hidden]{display:none}
+    .cAlerta{margin-top:16px;padding:12px 14px;border-radius:10px;background:#fff4d6;color:#6b4a00;font-size:14px}
+    .cAlerta.error{background:#fdecee;color:#8b1020}
+    .cand{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+    .cand button{
+      width:100%;text-align:left;border:1px solid #dfe8f2;background:#fff;border-radius:10px;
+      padding:10px 14px;cursor:pointer;font-family:inherit;font-size:14px;color:var(--texto);font-weight:700;
     }
-    .salida h4{margin:0 0 10px;color:var(--azul)}
-    .grupos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-    .grupo{background:#fff;border:1px solid #dfe8f2;border-radius:10px;padding:10px 12px;font-size:14px}
-    .grupo b{display:block;color:var(--azul2);margin-bottom:4px}
-    .grupo ol{margin:0;padding-left:18px}
-    .elegido{
-      font-family:Roboto,Arial,sans-serif;font-size:34px;font-weight:700;color:var(--azul);
-      text-align:center;padding:24px 0;
+    .cand button:hover{border-color:#b8d1ea;background:#f7fbff}
+    .cand small{color:var(--suave);display:block;font-weight:400}
+    .cCab{
+      margin-top:22px;border:1px solid #dfe8f2;border-radius:14px;padding:18px;background:#fbfdff;
+      display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start;
     }
-    .reloj{
-      font-family:Roboto,Arial,sans-serif;font-size:72px;font-weight:700;color:var(--azul);
-      text-align:center;font-variant-numeric:tabular-nums;line-height:1;padding:18px 0;
+    .cCab h3{margin:0 0 4px;color:var(--azul);font-size:21px;font-family:Roboto,Arial,sans-serif}
+    .cCab .meta{font-size:14px;color:var(--suave)}
+    .cAcc{display:flex;gap:8px;flex-wrap:wrap}
+    .cPer{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px;align-items:center}
+    .cPer .lbl{font-size:13px;font-weight:700;color:var(--suave);margin-right:2px}
+    .chip:disabled{opacity:.4;cursor:not-allowed}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 4px}
+    .kpi{border:1px solid #dfe8f2;border-radius:12px;padding:14px;background:#fff}
+    .kpi b{display:block;font-family:Roboto,Arial,sans-serif;font-size:26px;color:var(--azul);line-height:1.15}
+    .kpi span{font-size:12px;color:var(--suave)}
+    .cBloque{margin-top:26px}
+    .cBloque h4{margin:0 0 4px;color:var(--azul);font-size:17px}
+    .cBloque > .hint{margin:0 0 10px}
+    .tablaScroll{overflow-x:auto}
+    .tablaC{width:100%;border-collapse:collapse;font-size:14px}
+    .tablaC th{
+      text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--suave);
+      padding:8px 6px;border-bottom:2px solid #e5edf6;white-space:nowrap;
     }
-    .reloj.fin{color:var(--rojo)}
-    .presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
-    .controles{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-    .barra{height:14px;border-radius:999px;background:#e5edf6;overflow:hidden;margin:6px 0 12px}
-    .barra span{display:block;height:100%;background:var(--verde);border-radius:999px;transition:width .3s}
-    .cifra{font-family:Roboto,Arial,sans-serif;font-size:44px;font-weight:700;color:var(--azul);line-height:1}
-    .nivelesTabla{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
-    .nivelesTabla td{padding:6px 4px;border-bottom:1px solid #e5edf6}
-    .nivelesTabla td:last-child{text-align:right;font-weight:700}
+    .tablaC td{padding:8px 6px;border-bottom:1px solid #eef3f8;vertical-align:middle}
+    .tablaC td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .stack{display:flex;height:16px;border-radius:6px;overflow:hidden;background:#eef3f8;min-width:140px}
+    .stack span{display:block;height:100%}
+    .nE{background:#d9534f}.nA{background:#f0ad4e}.nS{background:#2e9e6b}
+    .l1{background:#c0392b}.l2{background:#e67e22}.l3{background:#f1c40f}.l4{background:#6fa8dc}.l5{background:#1f8a5b}
+    .leyenda{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--suave);margin-top:8px}
+    .leyenda i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+    .conf{font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;margin-left:4px;white-space:nowrap}
+    .conf.bb{background:#fdecee;color:#8b1020}.conf.ca{background:#fff4d6;color:#6b4a00}
+    .sube{color:#1f8a5b;font-size:11px}.bajaT{color:var(--rojo);font-size:11px}
 
     /* Preguntas frecuentes */
     .faq details{border:1px solid #dfe8f2;border-radius:12px;padding:0 16px;margin-bottom:10px;background:#fff}
@@ -440,7 +457,7 @@
       .sidebar{display:none}
       .pillars{grid-template-columns:1fr}
       .timeline{grid-template-columns:repeat(2,1fr)}
-      .tool{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
       .contactGrid{grid-template-columns:1fr}
       .footGrid{grid-template-columns:1fr 1fr}
     }
@@ -452,6 +469,7 @@
       .nav.abierto .links{display:flex}
       .platforms{grid-template-columns:1fr}
       .filtros input{margin-left:0;width:100%}
+      .cForm{grid-template-columns:1fr}
     }
     @media (min-width:761px){
       .nav .links{display:flex;flex-wrap:wrap}
@@ -468,13 +486,22 @@
       .docs li{grid-template-columns:auto 1fr}
       .docs li .download{grid-column:1/-1;text-align:center}
       .footGrid{grid-template-columns:1fr}
-      .reloj{font-size:56px}
+      .kpi b{font-size:22px}
     }
 
     @media print{
-      .topbar,.aviso,.nav,.sidebar,.toTop,.heroActions,.search,#herramientas{display:none!important}
+      .topbar,.aviso,.nav,.sidebar,.toTop,.heroActions,.search,.cForm,.cAcc,.cPer,#cCandidatos{display:none!important}
       .hero{background:#fff;color:#000;min-height:0}
       .section{box-shadow:none;break-inside:avoid}
+      #consulta{break-inside:auto}
+      .cBloque{break-inside:avoid}
+      .stack span,.leyenda i,.conf{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      body.imprimirConsulta .header,body.imprimirConsulta .hero,body.imprimirConsulta .footer,
+      body.imprimirConsulta .breadcrumb,body.imprimirConsulta .resultados,
+      body.imprimirConsulta .content > .section:not(#consulta){display:none!important}
+      body.imprimirConsulta .layout{display:block;padding:0}
+      body.imprimirConsulta #consulta{border:0;padding:0}
+      body.imprimirConsulta #consulta > .sub{display:none}
     }
   </style>
 </head>
@@ -528,7 +555,7 @@
         <a href="#plataformas">Plataformas</a>
         <a href="#accesos">Recursos</a>
         <a href="#documentos">Documentos</a>
-        <a href="#herramientas">Herramientas docentes</a>
+        <a href="#consulta">Consulta SIREV</a>
         <a href="#preguntas">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </div>
@@ -548,7 +575,7 @@
 
         <div class="heroActions">
           <a class="btn primary" href="#plataformas">Ir a las plataformas</a>
-          <a class="btn secondary" href="#herramientas">Herramientas para docentes</a>
+          <a class="btn secondary" href="#consulta">Consultar resultados de mi centro</a>
           <a class="btn sirev" href="https://www.sirevprimaria.net" target="_blank" rel="noopener">
             Acceder a SIREV Primaria
           </a>
@@ -559,9 +586,9 @@
         <h2>¿Qué necesitas hoy?</h2>
         <p>Elige tu perfil y te llevamos a lo más útil.</p>
         <div class="perfiles">
-          <a class="perfil" href="#herramientas">
+          <a class="perfil" href="#consulta">
             <span class="icon">✎</span>
-            <span><b>Soy docente</b><small>Registros, guías y herramientas para el aula</small></span>
+            <span><b>Soy docente</b><small>Resultados de mi centro, registros y guías</small></span>
           </a>
           <a class="perfil" href="#plataformas">
             <span class="icon">◎</span>
@@ -593,7 +620,7 @@
           <li><a href="#accesos"><span class="dot"></span>Recursos</a></li>
           <li><a href="#calendario"><span class="dot"></span>Calendario de evaluación</a></li>
           <li><a href="#documentos"><span class="dot"></span>Documentos</a></li>
-          <li><a href="#herramientas"><span class="dot"></span>Herramientas docentes</a></li>
+          <li><a href="#consulta"><span class="dot"></span>Consulta SIREV</a></li>
           <li><a href="#preguntas"><span class="dot"></span>Preguntas frecuentes</a></li>
           <li><a href="#enlaces"><span class="dot"></span>Enlaces de interés</a></li>
           <li><a href="#contacto"><span class="dot"></span>Contacto</a></li>
@@ -692,109 +719,31 @@
           <ul class="docs" id="listaDocs"><!-- Se genera desde DOCUMENTOS (ver script) --></ul>
         </article>
 
-        <!-- HERRAMIENTAS DOCENTES -->
-        <article class="section" id="herramientas">
-          <h2>Herramientas para el aula</h2>
-          <p class="sub">Utilidades rápidas que funcionan en el navegador. No se guarda ningún dato de los estudiantes.</p>
+        <!-- CONSULTA DE RESULTADOS DEL CENTRO -->
+        <article class="section" id="consulta">
+          <h2>Consulta los resultados de tu centro</h2>
+          <p class="sub">Escribe el código SIGERD o parte del nombre del centro y elige el año escolar.
+            Verás la cobertura, los niveles de lectura, el desempeño por área y su evolución en cada corte,
+            a partir de los reportes registrados en SIREV Primaria.</p>
 
-          <div class="tabs" role="tablist" aria-label="Herramientas">
-            <button class="tab" role="tab" aria-selected="true" aria-controls="p-logro" id="t-logro">Porcentaje de logro</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="p-grupos" id="t-grupos" tabindex="-1">Formar grupos</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="p-turno" id="t-turno" tabindex="-1">¿A quién le toca?</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="p-tiempo" id="t-tiempo" tabindex="-1">Temporizador</button>
-          </div>
+          <form class="cForm" id="cForm" role="search" aria-label="Consultar centro educativo">
+            <div class="field">
+              <label for="cCentro">Código SIGERD o nombre del centro</label>
+              <input id="cCentro" type="search" placeholder="Ej.: 00042 o Molaco" autocomplete="off" required>
+            </div>
+            <div class="field">
+              <label for="cAnio">Año escolar</label>
+              <select id="cAnio"></select>
+            </div>
+            <button class="btn azul" type="submit" id="cBtn">Consultar</button>
+          </form>
 
-          <!-- Porcentaje de logro -->
-          <div class="panel" role="tabpanel" id="p-logro" aria-labelledby="t-logro">
-            <div class="tool">
-              <div>
-                <div class="field">
-                  <label for="lgTotal">Estudiantes evaluados</label>
-                  <input id="lgTotal" type="number" min="0" inputmode="numeric" placeholder="Ej.: 28">
-                </div>
-                <div class="field">
-                  <label for="lgLogro">Estudiantes que alcanzaron el indicador</label>
-                  <input id="lgLogro" type="number" min="0" inputmode="numeric" placeholder="Ej.: 19">
-                  <span class="hint">Opcional: desglosa por nivel de desempeño abajo.</span>
-                </div>
-                <div class="field">
-                  <label>Distribución por niveles (opcional)</label>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                    <input id="lgN1" type="number" min="0" placeholder="Nivel 1" aria-label="Estudiantes en nivel 1">
-                    <input id="lgN2" type="number" min="0" placeholder="Nivel 2" aria-label="Estudiantes en nivel 2">
-                    <input id="lgN3" type="number" min="0" placeholder="Nivel 3" aria-label="Estudiantes en nivel 3">
-                    <input id="lgN4" type="number" min="0" placeholder="Nivel 4" aria-label="Estudiantes en nivel 4">
-                  </div>
-                </div>
-              </div>
-              <div class="salida" id="lgSalida" aria-live="polite">
-                <h4>Resultado</h4>
-                <p class="hint">Escribe la cantidad de evaluados para ver los porcentajes.</p>
-              </div>
-            </div>
+          <div class="cEstado" id="cEstado" aria-live="polite" hidden>
+            <span id="cEstadoTxt">Cargando…</span>
+            <div class="barra"><span id="cEstadoBarra" style="width:0%"></span></div>
           </div>
-
-          <!-- Formar grupos -->
-          <div class="panel" role="tabpanel" id="p-grupos" aria-labelledby="t-grupos" hidden>
-            <div class="tool">
-              <div>
-                <div class="field">
-                  <label for="grNombres">Nombres de los estudiantes (uno por línea)</label>
-                  <textarea id="grNombres" placeholder="Ana&#10;Luis&#10;María&#10;José"></textarea>
-                </div>
-                <div class="field">
-                  <label for="grCantidad">Cantidad de grupos</label>
-                  <input id="grCantidad" type="number" min="2" value="4">
-                </div>
-                <button class="btn azul" type="button" id="grBtn">Formar grupos al azar</button>
-              </div>
-              <div class="salida" id="grSalida" aria-live="polite">
-                <h4>Grupos</h4>
-                <p class="hint">Los grupos aparecerán aquí.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- A quién le toca -->
-          <div class="panel" role="tabpanel" id="p-turno" aria-labelledby="t-turno" hidden>
-            <div class="tool">
-              <div>
-                <div class="field">
-                  <label for="tuNombres">Nombres (uno por línea)</label>
-                  <textarea id="tuNombres" placeholder="Ana&#10;Luis&#10;María&#10;José"></textarea>
-                  <span class="hint">Nadie se repite hasta que todos hayan participado.</span>
-                </div>
-                <div class="controles" style="justify-content:flex-start">
-                  <button class="btn azul" type="button" id="tuBtn">Elegir</button>
-                  <button class="btn claro" type="button" id="tuReset">Reiniciar ronda</button>
-                </div>
-              </div>
-              <div class="salida" aria-live="polite">
-                <h4>Le toca a…</h4>
-                <div class="elegido" id="tuElegido">—</div>
-                <p class="hint" id="tuQuedan"></p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Temporizador -->
-          <div class="panel" role="tabpanel" id="p-tiempo" aria-labelledby="t-tiempo" hidden>
-            <div class="presets">
-              <button class="chip" type="button" data-min="1">1 min</button>
-              <button class="chip" type="button" data-min="3">3 min</button>
-              <button class="chip" type="button" data-min="5">5 min</button>
-              <button class="chip" type="button" data-min="10">10 min</button>
-              <button class="chip" type="button" data-min="15">15 min</button>
-              <button class="chip" type="button" data-min="20">20 min</button>
-            </div>
-            <div class="reloj" id="reloj" aria-live="off">05:00</div>
-            <div class="controles">
-              <button class="btn azul" type="button" id="tmIniciar">Iniciar</button>
-              <button class="btn claro" type="button" id="tmPausar">Pausar</button>
-              <button class="btn claro" type="button" id="tmReiniciar">Reiniciar</button>
-              <button class="btn claro" type="button" id="tmPantalla">Pantalla completa</button>
-            </div>
-          </div>
+          <div id="cCandidatos"></div>
+          <div id="cResultado" aria-live="polite"></div>
         </article>
 
         <!-- PREGUNTAS FRECUENTES -->
@@ -861,7 +810,7 @@
           <ul>
             <li><a href="#accesos">Recursos</a></li>
             <li><a href="#documentos">Documentos</a></li>
-            <li><a href="#herramientas">Herramientas docentes</a></li>
+            <li><a href="#consulta">Consulta de resultados</a></li>
             <li><a href="#preguntas">Preguntas frecuentes</a></li>
           </ul>
         </div>
@@ -951,8 +900,8 @@
       r: "No. Las evaluaciones de SIREV son formativas y no estandarizadas; tienen un propósito distinto. Sirven para ajustar la práctica en el aula y los planes de acción del centro." },
     { p: "¿Para qué sirve SIGAP?",
       r: "Para registrar los acompañamientos pedagógicos y dar seguimiento a los acuerdos con docentes y equipos de gestión, con tableros que resumen la información." },
-    { p: "¿Las herramientas para el aula guardan los nombres de mis estudiantes?",
-      r: "No. Funcionan solo en su navegador y no envían ni almacenan información." },
+    { p: "¿Cómo consulto los resultados de mi centro?",
+      r: "En la sección «Consulta SIREV», escriba el código SIGERD del centro (o parte de su nombre) y elija el año escolar. Puede cambiar de corte, imprimir el informe o copiar el enlace para compartirlo con el equipo de gestión." },
     { p: "Tengo un problema con una plataforma, ¿a quién contacto?",
       r: "Comuníquese con el técnico de su distrito o con la Dirección por los medios de la sección Contacto." }
   ];
@@ -1060,8 +1009,7 @@
     DOCUMENTOS.forEach(d => items.push({ tipo: "Documento", titulo: d.titulo, texto: d.cat + " " + d.fuente, url: d.url, ext: true }));
     $$("#accesos .quickCard").forEach(a => items.push({ tipo: "Recurso", titulo: $("strong", a).textContent, texto: $("span", a).textContent, url: a.getAttribute("href"), ext: true }));
     PREGUNTAS.forEach(f => items.push({ tipo: "Pregunta", titulo: f.p, texto: f.r, url: "#preguntas", ext: false }));
-    [["Porcentaje de logro","calculadora resultados evaluacion"],["Formar grupos","equipos azar estudiantes"],["¿A quién le toca?","turno participacion azar"],["Temporizador","reloj tiempo cronometro"]]
-      .forEach(([t, k]) => items.push({ tipo: "Herramienta", titulo: t, texto: k, url: "#herramientas", ext: false }));
+    items.push({ tipo: "Consulta", titulo: "Consulta los resultados de tu centro en SIREV", texto: "codigo sigerd centro resultados evaluacion lectura desempeno cobertura informe", url: "#consulta", ext: false });
     items.push({ tipo: "Sección", titulo: "Calendario de evaluación formativa", texto: "cortes septiembre noviembre marzo mayo evaluacion diagnostica seguimiento", url: "#calendario", ext: false });
     return items;
   }
@@ -1087,111 +1035,456 @@
     caja.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  // Pestañas de herramientas (con teclado)
-  const tabs = $$(".tab");
-  function activar(tab) {
-    tabs.forEach(t => {
-      const sel = t === tab;
-      t.setAttribute("aria-selected", sel);
-      t.tabIndex = sel ? 0 : -1;
-      $("#" + t.getAttribute("aria-controls")).hidden = !sel;
-    });
-    tab.focus();
-  }
-  tabs.forEach((t, i) => {
-    t.addEventListener("click", () => activar(t));
-    t.addEventListener("keydown", e => {
-      if (e.key === "ArrowRight") activar(tabs[(i + 1) % tabs.length]);
-      if (e.key === "ArrowLeft") activar(tabs[(i - 1 + tabs.length) % tabs.length]);
-    });
-  });
-
-  // Herramienta: porcentaje de logro
-  function calcLogro() {
-    const n = id => { const v = parseInt($(id).value, 10); return isNaN(v) || v < 0 ? null : v; };
-    const total = n("#lgTotal"), logro = n("#lgLogro");
-    const niveles = ["#lgN1", "#lgN2", "#lgN3", "#lgN4"].map(n);
-    const out = $("#lgSalida");
-    if (!total) { out.innerHTML = `<h4>Resultado</h4><p class="hint">Escribe la cantidad de evaluados para ver los porcentajes.</p>`; return; }
-    let html = `<h4>Resultado</h4>`;
-    if (logro !== null) {
-      if (logro > total) { out.innerHTML = html + `<p class="hint" style="color:var(--rojo)">Los que alcanzaron el indicador no pueden ser más que los evaluados.</p>`; return; }
-      const pct = (logro / total) * 100;
-      html += `<div class="cifra">${pct.toFixed(1)}%</div>
-        <div class="barra"><span style="width:${pct}%"></span></div>
-        <p class="hint">${logro} de ${total} estudiantes alcanzaron el indicador. ${total - logro} requieren apoyo adicional.</p>`;
+  /* =====================================================================
+     CONSULTA DE RESULTADOS DEL CENTRO (datos publicados de SIREV Primaria)
+     Las fuentes se leen de la configuración de sirevprimaria.net; si no se
+     puede acceder, se usa SIREV_RESPALDO (actualícelo al publicar un corte).
+     ===================================================================== */
+  const SIREV_URL = "https://www.sirevprimaria.net/";
+  const SIREV_RESPALDO = {
+    "2025-2026": {
+      "septiembre": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRGyIaW4kPojAC86W33opKRL4xjXEpGmzHswaTyzNMb4x_hkQsE66ZLKJkWH767lmYeG65WRwKs56sm/pub?gid=525570809&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRlY3oVzfIIO75kH3r9SzKrtVC90YyvRUzvDTg5c2XhDhus-XzKyp-kXb6D_O3hEMvIZTuZ5PfEyN7Z/pub?gid=1249893764&single=true&output=csv"
+      },
+      "noviembre": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvjFykxvReAe2HaW9CSb5QOz6SzYoy-EJ2UPuCpX0Uxvvi46t6Yrp4_wQKo02NEAc1jKkxJBwiRE1X/pub?gid=2057699743&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQGb1eLe8qRVhGk0FQIQNdrB7l-K0uEcGYI8GCaC0ge96AWKbpHRo08AFEJw6xgHadJBIjfroQ6jJkX/pub?gid=332869964&single=true&output=csv"
+      },
+      "marzo": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRk78g47JomD0N4Hdrv1hEVXWrt1qH8ugHf67WIeZ8taT87AlLiiEbHnR5pe5Ve0ihLvdGFSf2Dg2hL/pub?gid=2108212144&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vROgwJQVxEvzQtCyf-7CrVSpDBbRCmb7txXqm9LiRjKkOghlGlMjYkOMgVcUc512kh3OcLY_zcuDwpO/pub?gid=0&single=true&output=csv"
+      },
+      "mayo": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgWQ4GaAwm8gCAkOUU47IM_M0EneHHDg774yY1QfmuZeXyV0VXFJfeO752SP0yhDfVNCvZILpLpHTc/pub?gid=2108212144&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSE7lqSqf1Ugps--yciQGl9iXDwcuRXq7DmPolyClxNqtILprSaixafW7j_gFOq_tmePtoY-hpUj6XH/pub?gid=0&single=true&output=csv"
+      }
+    },
+    "2026-2027": {
+      "septiembre": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4mPQzPP4D8jyHdzf2p-pOV5b3NyLzFeabQX2kQF4Qc49OKIUh-utTnuXxrrF7g3cez6GiQa3rslqM/pub?gid=1494688475&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRLgh6YbQQPRcbvY35hINEeG2UdG2lcgzjIX-gLwVDwqubw1u6zpMN7eEZo96p4_tbp5rQYgZiCbGmo/pub?gid=686240148&single=true&output=csv"
+      }
+    },
+    "2024-2025": {
+      "septiembre": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1MfuwHmb7hHGGSEaSUQ4P_vkalpb_gxqE3dr01zq8_0Mqd3uS0QPzFYfm8CuEowLuTH-be4Ba1-ID/pub?gid=1965745367&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDKyVetZFseK2LKc8utRVe76kfRhwy7QeBkazzep-RqwM-hFn5yrsy_hZ_6aJlNwWyrR4lENlYiuQi/pub?gid=1576486094&single=true&output=csv"
+      },
+      "noviembre": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQhctgoZGNpZ1O9xFwtXaXNaONeC-OPMa0vvcGSpR3-CZQkjV5aL8Mgr8CxoDg063qOAmEhhaqZ9wG3/pub?gid=1923549360&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQUcS2cpnE9tJUCp7qFoVNk0pUMAGs2-IGY50RuL6Y7OVwpvwy20fBK4IvDTlce4QdOxun3SikcMu8A/pub?gid=1206695042&single=true&output=csv"
+      },
+      "marzo": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDBDgIR0BAWljzzJiOrEZdx2IEGJyQbTeWNhTTq6BYE3NuFFz1SkNwx6IRDltonq6Xga_MvIltY5Lq/pub?gid=1647110029&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwlkIo3nvJxfR89tKikTJbyzHSCfT98VCi2WN_SVl-slq4BuU5Ilf1DsTCsKdhYtAordwFY2TrKN4q/pub?gid=136074727&single=true&output=csv"
+      },
+      "mayo": {
+        "pc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSOSyQxqAHa1xYLTKVHYktbkeGlCdvy5Yu4S5qUssADC4J4zbmCq7KpVc2dc7L4Tb5w7qfdvS7W58OP/pub?gid=644131041&single=true&output=csv",
+        "sc": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTEb7Gh5IE3Bci2WvNPvmm80jXNTo3bzr6wFskcdckxu_VpbmelkQsfW43q51yIj9fCE-C1hOxF_0Hi/pub?gid=360501981&single=true&output=csv"
+      }
     }
-    const conDatos = niveles.some(v => v !== null);
-    if (conDatos) {
-      const suma = niveles.reduce((a, v) => a + (v || 0), 0);
-      html += `<table class="nivelesTabla">${niveles.map((v, i) =>
-        `<tr><td>Nivel ${i + 1}</td><td>${v === null ? "—" : ((v / total) * 100).toFixed(1) + "%"}</td></tr>`).join("")}</table>`;
-      if (suma !== total) html += `<p class="hint" style="color:#8a5a00">La suma por niveles (${suma}) no coincide con los evaluados (${total}).</p>`;
-    }
-    out.innerHTML = html;
+  };
+  const PERIODOS_ORDEN = ["septiembre", "noviembre", "marzo", "mayo"];
+  const AREAS = { LE: "Lengua Española", LT: "Lengua Española", MA: "Matemática", CS: "Ciencias Sociales", CN: "Ciencias de la Naturaleza" };
+  const AREA_ORDEN = ["Lengua Española", "Matemática", "Ciencias Sociales", "Ciencias de la Naturaleza"];
+  const LECT = { N1: "Lector de imágenes", N2: "Lector de sílabas", N3: "Lector de palabras", N4: "Lector no fluido", N5: "Lector fluido" };
+  const GRADO = { "1ro": 1, "2do": 2, "3ro": 3, "4to": 4, "5to": 5, "6to": 6 };
+  const gradoTxt = g => ["", "1ro", "2do", "3ro", "4to", "5to", "6to"][g] || g + "°";
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const suma = o => Object.values(o || {}).reduce((a, b) => a + b, 0);
+  const pc = v => (Math.round(v * 10) / 10).toLocaleString("es-DO", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
+  const ent = n => Math.round(n).toLocaleString("es-DO");
+
+  let fuentes = SIREV_RESPALDO;
+
+  function pintarAnios() {
+    const sel = $("#cAnio");
+    const previo = sel.value || new URLSearchParams(location.search).get("anio");
+    const anios = Object.keys(fuentes).sort().reverse();
+    sel.innerHTML = anios.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join("");
+    if (previo && anios.includes(previo)) sel.value = previo;
   }
-  ["#lgTotal", "#lgLogro", "#lgN1", "#lgN2", "#lgN3", "#lgN4"].forEach(id => $(id).addEventListener("input", calcLogro));
+  pintarAnios();
 
-  // Utilidades compartidas
-  const leerNombres = id => $(id).value.split("\n").map(s => s.trim()).filter(Boolean);
-  const barajar = arr => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-
-  // Herramienta: formar grupos
-  $("#grBtn").addEventListener("click", () => {
-    const nombres = leerNombres("#grNombres");
-    const k = Math.max(2, parseInt($("#grCantidad").value, 10) || 2);
-    const out = $("#grSalida");
-    if (nombres.length < k) { out.innerHTML = `<h4>Grupos</h4><p class="hint">Necesitas al menos ${k} nombres para formar ${k} grupos.</p>`; return; }
-    const grupos = Array.from({ length: k }, () => []);
-    barajar(nombres).forEach((n, i) => grupos[i % k].push(n));
-    out.innerHTML = `<h4>Grupos</h4><div class="grupos">${grupos.map((g, i) =>
-      `<div class="grupo"><b>Grupo ${i + 1}</b><ol>${g.map(n => `<li>${esc(n)}</li>`).join("")}</ol></div>`).join("")}</div>`;
-  });
-
-  // Herramienta: a quién le toca (sin repetir)
-  let pendientes = [], firma = "";
-  function prepararRonda() { pendientes = barajar(leerNombres("#tuNombres")); firma = $("#tuNombres").value; }
-  $("#tuBtn").addEventListener("click", () => {
-    if ($("#tuNombres").value !== firma || !pendientes.length) prepararRonda();
-    if (!pendientes.length) { $("#tuElegido").textContent = "—"; $("#tuQuedan").textContent = "Escribe al menos un nombre."; return; }
-    $("#tuElegido").textContent = pendientes.pop();
-    $("#tuQuedan").textContent = pendientes.length ? `Faltan ${pendientes.length} por participar en esta ronda.` : "¡Todos participaron! La próxima elección inicia una ronda nueva.";
-  });
-  $("#tuReset").addEventListener("click", () => { prepararRonda(); $("#tuElegido").textContent = "—"; $("#tuQuedan").textContent = "Ronda reiniciada."; });
-
-  // Herramienta: temporizador
-  let segTotal = 300, restante = 300, intervalo = null;
-  const fmt = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
-  function pintarReloj() { $("#reloj").textContent = fmt(restante); $("#reloj").classList.toggle("fin", restante === 0); }
-  function sonar() {
+  const fuentesListas = (async () => {
     try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      [0, .35, .7].forEach(t => {
-        const o = ctx.createOscillator(), g = ctx.createGain();
-        o.frequency.value = 880; o.connect(g); g.connect(ctx.destination);
-        g.gain.setValueAtTime(.25, ctx.currentTime + t); g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + t + .3);
-        o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + .3);
-      });
-    } catch (e) {}
+      const r = await fetch(SIREV_URL, { cache: "no-cache" });
+      const html = await r.text();
+      const m = html.match(/const adminDefaults\s*=\s*(\{[\s\S]*?\n\});/);
+      if (m) {
+        const cfg = JSON.parse(m[1]);
+        const f = {};
+        for (const [anio, c] of Object.entries(cfg.years || {})) {
+          const per = {};
+          for (const [p, v] of Object.entries(c.periodos || {})) if (v && (v.pc || v.sc)) per[p] = v;
+          if (Object.keys(per).length) f[anio] = per;
+        }
+        if (Object.keys(f).length) { fuentes = f; pintarAnios(); }
+      }
+    } catch (e) { /* se usa el respaldo */ }
+  })();
+
+  // --- Lectura de CSV ---
+  function csvLinea(linea) {
+    const out = []; let cel = "", q = false;
+    for (let i = 0; i < linea.length; i++) {
+      const c = linea[i];
+      if (q) {
+        if (c === '"') { if (linea[i + 1] === '"') { cel += '"'; i++; } else q = false; }
+        else cel += c;
+      } else if (c === '"') q = true;
+      else if (c === ",") { out.push(cel); cel = ""; }
+      else cel += c;
+    }
+    out.push(cel.replace(/\r$/, ""));
+    return out;
   }
-  function detener() { clearInterval(intervalo); intervalo = null; }
-  $$("#p-tiempo .presets .chip").forEach(b => b.addEventListener("click", () => {
-    detener(); segTotal = restante = parseInt(b.dataset.min, 10) * 60; pintarReloj();
-  }));
-  $("#tmIniciar").addEventListener("click", () => {
-    if (intervalo || restante === 0) return;
-    intervalo = setInterval(() => {
-      restante = Math.max(0, restante - 1); pintarReloj();
-      if (restante === 0) { detener(); sonar(); }
-    }, 1000);
+  const cacheCsv = new Map();
+  function cargarCsv(url) {
+    if (!url) return Promise.resolve(null);
+    if (!cacheCsv.has(url)) {
+      cacheCsv.set(url, fetch(url)
+        .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(t => { const l = t.split("\n"); return { enc: csvLinea(l[0].replace(/^﻿/, "")), lineas: l.slice(1) }; })
+        .catch(e => { cacheCsv.delete(url); throw e; }));
+    }
+    return cacheCsv.get(url);
+  }
+  function idx(enc, ...nombres) {
+    const n = enc.map(h => norm(h).trim());
+    for (const x of nombres) { const i = n.indexOf(x); if (i >= 0) return i; }
+    return -1;
+  }
+  function clasificar(h) {
+    h = String(h).trim(); let m;
+    if ((m = h.match(/^Matr[íi]cula\s+(\d+(?:ro|do|to))$/i))) return { t: "mat", g: GRADO[m[1].toLowerCase()] };
+    if ((m = h.match(/^EVALUADOS?\s+(\d+(?:ro|do|to))$/i))) return { t: "ev", g: GRADO[m[1].toLowerCase()] };
+    if ((m = h.match(/^G(\d)-([A-Z]+)-IND(\d+)\.(\d+)\s*\(([SAE])\)$/i))) {
+      const a = AREAS[m[2].toUpperCase()];
+      return a ? { t: "perf", g: +m[1], area: a, ind: m[3] + "." + m[4], niv: m[5].toUpperCase() } : null;
+    }
+    if ((m = h.match(/^G(\d)-LT-(N\d)/i))) return LECT[m[2].toUpperCase()] ? { t: "lect", g: +m[1], n: m[2].toUpperCase() } : null;
+    return null;
+  }
+  const num = v => { const n = parseFloat(String(v || "").trim()); return isFinite(n) && n > 0 ? n : 0; };
+
+  // --- Procesamiento de un corte para un centro (suma todas sus tandas) ---
+  function procesar(tablas, codigo) {
+    const res = { filas: 0, info: null, tandas: new Set(), mat: {}, ev: {}, lect: {}, ind: new Map() };
+    for (const tabla of tablas) {
+      if (!tabla) continue;
+      const filas = tabla.lineas.filter(l => l.startsWith(codigo + ",") || l.startsWith('"' + codigo + '"')).map(csvLinea);
+      if (!filas.length) continue;
+      const enc = tabla.enc, cols = enc.map(clasificar);
+      const iR = idx(enc, "regional"), iD = idx(enc, "distrito educativo", "distrito"),
+            iC = idx(enc, "centro educativo", "centro"), iS = idx(enc, "sector"),
+            iT = idx(enc, "tipo de centro", "tipo"), iTa = idx(enc, "tanda");
+      for (const f of filas) {
+        res.filas++;
+        if (!res.info) res.info = { centro: f[iC] || "", regional: f[iR] || "", distrito: f[iD] || "", sector: f[iS] || "", tipo: f[iT] || "" };
+        if (iTa >= 0 && f[iTa] && f[iTa].trim()) res.tandas.add(f[iTa].trim());
+        cols.forEach((c, i) => {
+          if (!c) return;
+          const v = num(f[i]);
+          if (c.t === "mat") res.mat[c.g] = (res.mat[c.g] || 0) + v;
+          else if (c.t === "ev") res.ev[c.g] = (res.ev[c.g] || 0) + v;
+          else if (c.t === "lect") { const o = res.lect[c.g] || (res.lect[c.g] = {}); o[c.n] = (o[c.n] || 0) + v; }
+          else if (c.t === "perf") {
+            const k = c.g + "|" + c.area + "|" + c.ind;
+            if (!res.ind.has(k)) res.ind.set(k, { g: c.g, area: c.area, ind: c.ind, E: 0, A: 0, S: 0 });
+            res.ind.get(k)[c.niv] += v;
+          }
+        });
+      }
+    }
+    if (!res.filas) return null;
+    // Por grado y área: promedio de los porcentajes de todos los indicadores (mismo criterio que SIREV)
+    const grupos = new Map();
+    for (const r of res.ind.values()) {
+      if (!(r.E + r.A + r.S)) continue;
+      const k = r.g + "|" + r.area;
+      if (!grupos.has(k)) grupos.set(k, []);
+      grupos.get(k).push(r);
+    }
+    res.areas = [...grupos.entries()].map(([k, regs]) => {
+      const [g, area] = k.split("|");
+      let e = 0, a = 0, s = 0;
+      regs.forEach(r => { const t = r.E + r.A + r.S; e += r.E / t; a += r.A / t; s += r.S / t; });
+      const n = regs.length;
+      return { g: +g, area, E: e / n * 100, A: a / n * 100, S: s / n * 100, evaluados: regs[0].E + regs[0].A + regs[0].S, indicadores: n };
+    }).sort((x, y) => x.g - y.g || AREA_ORDEN.indexOf(x.area) - AREA_ORDEN.indexOf(y.area));
+    return res;
+  }
+
+  // --- Interfaz ---
+  let consulta = null;
+  function estado(txt, avance) {
+    const el = $("#cEstado");
+    if (txt == null) { el.hidden = true; return; }
+    el.hidden = false;
+    $("#cEstadoTxt").textContent = txt;
+    $("#cEstadoBarra").style.width = (avance || 0) + "%";
+  }
+  function alerta(html, error) {
+    $("#cResultado").innerHTML = `<div class="cAlerta${error ? " error" : ""}">${html}</div>`;
+  }
+  const confiab = n => n < 10 ? ' <span class="conf bb" title="Menos de 10 evaluados: interpretar con mucha reserva">baja base</span>'
+                     : n < 30 ? ' <span class="conf ca" title="Entre 10 y 29 evaluados: interpretar con cautela">cautela</span>' : "";
+
+  $("#cForm").addEventListener("submit", e => {
+    e.preventDefault();
+    consultar($("#cCentro").value.trim(), $("#cAnio").value);
   });
-  $("#tmPausar").addEventListener("click", detener);
-  $("#tmReiniciar").addEventListener("click", () => { detener(); restante = segTotal; pintarReloj(); });
-  $("#tmPantalla").addEventListener("click", () => {
-    const el = $("#reloj");
-    if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
-  });
-  pintarReloj();
+
+  async function consultar(entrada, anio) {
+    $("#cCandidatos").innerHTML = "";
+    if (!entrada) return;
+    await fuentesListas;
+    if (!fuentes[anio]) anio = $("#cAnio").value;
+    const per = fuentes[anio] || {};
+    const periodos = PERIODOS_ORDEN.filter(p => per[p]);
+    if (!periodos.length) { alerta("No hay cortes publicados para ese año escolar."); return; }
+    if (!/^\d{1,5}$/.test(entrada)) return buscarPorNombre(entrada, anio, periodos);
+
+    const codigo = entrada.padStart(5, "0");
+    $("#cBtn").disabled = true;
+    $("#cResultado").innerHTML = "";
+    const urls = [...new Set(periodos.flatMap(p => [per[p].pc, per[p].sc]).filter(Boolean))];
+    let listos = 0, fallos = 0;
+    estado(`Cargando los reportes de ${anio}…`, 4);
+    try {
+      const tablas = await Promise.all(urls.map(u => cargarCsv(u)
+        .catch(() => { fallos++; return null; })
+        .then(t => { listos++; estado(`Cargando los reportes de ${anio}… (${listos} de ${urls.length})`, listos / urls.length * 100); return t; })));
+      estado(null);
+      if (fallos === urls.length) throw new Error("sin datos");
+      const porUrl = new Map(urls.map((u, i) => [u, tablas[i]]));
+      const resultados = {};
+      periodos.forEach(p => { resultados[p] = procesar([porUrl.get(per[p].pc), porUrl.get(per[p].sc)], codigo); });
+      const conDatos = periodos.filter(p => resultados[p]);
+      if (!conDatos.length) {
+        alerta(`No se encontraron reportes del centro <b>${esc(codigo)}</b> en ${esc(anio)}. Verifique el código SIGERD o pruebe con otro año escolar.`);
+        return;
+      }
+      consulta = { anio, codigo, periodos, resultados, sel: conDatos[conDatos.length - 1], fallos };
+      pintarConsulta();
+      try { history.replaceState(null, "", `?centro=${codigo}&anio=${encodeURIComponent(anio)}#consulta`); } catch (e) {}
+    } catch (err) {
+      estado(null);
+      alerta("No fue posible cargar los datos de SIREV en este momento. Verifique su conexión a internet e intente de nuevo.", true);
+    } finally {
+      $("#cBtn").disabled = false;
+    }
+  }
+
+  async function buscarPorNombre(texto, anio, periodos) {
+    const per = fuentes[anio][periodos[periodos.length - 1]];
+    $("#cBtn").disabled = true;
+    $("#cResultado").innerHTML = "";
+    estado("Buscando centros…", 35);
+    try {
+      const tablas = await Promise.all([per.pc, per.sc].filter(Boolean).map(u => cargarCsv(u).catch(() => null)));
+      estado(null);
+      if (!tablas.some(Boolean)) throw new Error("sin datos");
+      const q = norm(texto), vistos = new Map();
+      for (const t of tablas) {
+        if (!t) continue;
+        const iC = idx(t.enc, "centro educativo", "centro"), iD = idx(t.enc, "distrito educativo", "distrito"),
+              iCod = idx(t.enc, "codigo sigerd", "codigo");
+        for (const l of t.lineas) {
+          if (!norm(l.slice(0, 320)).includes(q)) continue;
+          const f = csvLinea(l);
+          if (!norm(f[iC] || "").includes(q)) continue;
+          const cod = (f[iCod] || "").trim();
+          if (cod && !vistos.has(cod)) vistos.set(cod, { cod, centro: f[iC], distrito: f[iD] });
+        }
+      }
+      const lista = [...vistos.values()];
+      if (!lista.length) { alerta(`No se encontró ningún centro con «${esc(texto)}». Pruebe con otra parte del nombre o con el código SIGERD.`); return; }
+      if (lista.length === 1) { $("#cCentro").value = lista[0].cod; return consultar(lista[0].cod, anio); }
+      $("#cCandidatos").innerHTML = `<p class="hint" style="margin:16px 0 0">${lista.length > 25 ? "Hay muchos centros con ese nombre; se muestran los primeros 25. Escriba un nombre más completo para afinar." : "Seleccione el centro:"}</p>
+        <ul class="cand">${lista.slice(0, 25).map(x => `<li><button type="button" data-cod="${esc(x.cod)}">${esc(x.centro)}<small>Código ${esc(x.cod)} · ${esc(x.distrito)}</small></button></li>`).join("")}</ul>`;
+      $$("#cCandidatos button").forEach(b => b.addEventListener("click", () => {
+        $("#cCentro").value = b.dataset.cod;
+        consultar(b.dataset.cod, anio);
+      }));
+    } catch (e) {
+      estado(null);
+      alerta("No fue posible cargar los datos de SIREV en este momento. Verifique su conexión a internet e intente de nuevo.", true);
+    } finally {
+      $("#cBtn").disabled = false;
+    }
+  }
+
+  function barra(partes) {
+    return `<div class="stack">${partes.filter(p => p.v > 0).map(p =>
+      `<span class="${p.c}" style="width:${p.v}%" title="${esc(p.t)}: ${pc(p.v)}"></span>`).join("")}</div>`;
+  }
+
+  function pintarConsulta() {
+    const c = consulta, r = c.resultados[c.sel];
+    const info = r.info;
+    const tandas = [...new Set(c.periodos.flatMap(p => c.resultados[p] ? [...c.resultados[p].tandas] : []))];
+
+    // Encabezado del centro
+    let h = `<div class="cCab">
+      <div><h3>${esc(info.centro)}</h3>
+        <div class="meta">Código SIGERD ${esc(c.codigo)} · ${esc(info.regional)} · Distrito ${esc(info.distrito)}<br>
+        ${esc(info.sector)}${info.tipo ? " · " + esc(info.tipo) : ""}${tandas.length ? " · Tanda: " + esc(tandas.join(", ")) : ""}</div></div>
+      <div class="cAcc">
+        <button class="btn small claro" type="button" id="cImprimir">Imprimir informe</button>
+        <button class="btn small claro" type="button" id="cCopiar">Copiar enlace</button>
+        <a class="btn small azul" href="${SIREV_URL}" target="_blank" rel="noopener">Abrir SIREV ↗</a>
+      </div></div>`;
+
+    h += `<div class="cPer" role="group" aria-label="Corte de evaluación"><span class="lbl">Corte:</span>${c.periodos.map(p =>
+      `<button class="chip" type="button" data-per="${p}" aria-pressed="${p === c.sel}"${c.resultados[p] ? "" : ' disabled title="El centro no reportó en este corte"'}>${cap(p)}</button>`).join("")}</div>`;
+    h += `<p class="hint" style="margin:0">Año escolar ${esc(c.anio)} · Corte de ${cap(c.sel)}${tandas.length > 1 ? " · Se suman todas las tandas del centro" : ""}</p>`;
+    if (c.fallos) h += `<div class="cAlerta">Algunos reportes no pudieron cargarse; la información puede estar incompleta.</div>`;
+
+    // Indicadores clave
+    const grados = [...new Set([...Object.keys(r.mat), ...Object.keys(r.ev)].map(Number))]
+      .filter(g => (r.mat[g] || 0) + (r.ev[g] || 0) > 0).sort((a, b) => a - b);
+    const totM = grados.reduce((a, g) => a + (r.mat[g] || 0), 0);
+    const totE = grados.reduce((a, g) => a + (r.ev[g] || 0), 0);
+    const lectG = Object.keys(r.lect).map(Number).filter(g => suma(r.lect[g]) > 0).sort((a, b) => a - b);
+    const totL = lectG.reduce((a, g) => a + suma(r.lect[g]), 0);
+    const flu = lectG.reduce((a, g) => a + (r.lect[g].N5 || 0), 0);
+    const promS = r.areas.length ? r.areas.reduce((a, x) => a + x.S, 0) / r.areas.length : null;
+    const promE = r.areas.length ? r.areas.reduce((a, x) => a + x.E, 0) / r.areas.length : null;
+    h += `<div class="kpis">
+      <div class="kpi"><b>${ent(totE)}</b><span>Estudiantes evaluados${totM ? ` de ${ent(totM)} matriculados` : ""}</span></div>
+      <div class="kpi"><b>${totM ? pc(totE / totM * 100) : "—"}</b><span>Cobertura de la evaluación</span></div>
+      <div class="kpi"><b>${totL ? pc(flu / totL * 100) : "—"}</b><span>Lectores fluidos (1ro a 3ro)</span></div>
+      <div class="kpi"><b>${promS == null ? "—" : pc(promS)}</b><span>Nivel Satisfactorio, promedio de áreas${promE == null ? "" : ` · Elemental ${pc(promE)}`}</span></div>
+    </div>`;
+
+    // Cobertura por grado
+    if (grados.length) {
+      h += `<div class="cBloque"><h4>Cobertura por grado</h4>
+        <div class="tablaScroll"><table class="tablaC"><thead><tr><th>Grado</th><th style="text-align:right">Matrícula</th><th style="text-align:right">Evaluados</th><th style="text-align:right">Cobertura</th></tr></thead><tbody>
+        ${grados.map(g => `<tr><td>${gradoTxt(g)}</td><td class="num">${ent(r.mat[g] || 0)}</td><td class="num">${ent(r.ev[g] || 0)}</td><td class="num">${r.mat[g] ? pc((r.ev[g] || 0) / r.mat[g] * 100) : "—"}</td></tr>`).join("")}
+        </tbody></table></div></div>`;
+    }
+
+    // Niveles de lectura
+    if (lectG.length) {
+      const clases = { N1: "l1", N2: "l2", N3: "l3", N4: "l4", N5: "l5" };
+      h += `<div class="cBloque"><h4>Niveles de lectura</h4>
+        <p class="hint">Distribución de los estudiantes evaluados por nivel lector.</p>
+        <div class="tablaScroll"><table class="tablaC"><thead><tr><th>Grado</th><th style="text-align:right">Evaluados</th><th style="width:45%">Distribución</th><th style="text-align:right">Fluidos</th></tr></thead><tbody>
+        ${lectG.map(g => {
+          const t = suma(r.lect[g]);
+          return `<tr><td>${gradoTxt(g)}</td><td class="num">${ent(t)}${confiab(t)}</td>
+            <td>${barra(["N1", "N2", "N3", "N4", "N5"].map(n => ({ v: (r.lect[g][n] || 0) / t * 100, c: clases[n], t: LECT[n] })))}</td>
+            <td class="num">${pc((r.lect[g].N5 || 0) / t * 100)}</td></tr>`;
+        }).join("")}
+        </tbody></table></div>
+        <div class="leyenda">${["N1", "N2", "N3", "N4", "N5"].map(n => `<span><i class="${clases[n]}"></i>${LECT[n]}</span>`).join("")}</div></div>`;
+    }
+
+    // Desempeño por grado y área
+    if (r.areas.length) {
+      let gPrev = null;
+      h += `<div class="cBloque"><h4>Desempeño por grado y área</h4>
+        <p class="hint">Promedio de los indicadores evaluados en cada área.</p>
+        <div class="tablaScroll"><table class="tablaC"><thead><tr><th>Grado</th><th>Área</th><th style="text-align:right">Evaluados</th><th style="width:30%">Niveles</th><th style="text-align:right">Elemental</th><th style="text-align:right">Aceptable</th><th style="text-align:right">Satisfactorio</th></tr></thead><tbody>
+        ${r.areas.map(x => {
+          const fila = `<tr><td>${x.g !== gPrev ? gradoTxt(x.g) : ""}</td><td>${esc(x.area)}</td><td class="num">${ent(x.evaluados)}${confiab(x.evaluados)}</td>
+            <td>${barra([{ v: x.E, c: "nE", t: "Elemental" }, { v: x.A, c: "nA", t: "Aceptable" }, { v: x.S, c: "nS", t: "Satisfactorio" }])}</td>
+            <td class="num">${pc(x.E)}</td><td class="num">${pc(x.A)}</td><td class="num">${pc(x.S)}</td></tr>`;
+          gPrev = x.g;
+          return fila;
+        }).join("")}
+        </tbody></table></div>
+        <div class="leyenda"><span><i class="nE"></i>Elemental</span><span><i class="nA"></i>Aceptable</span><span><i class="nS"></i>Satisfactorio</span></div></div>`;
+    }
+
+    // Indicadores que requieren más atención
+    const criticos = [...r.ind.values()]
+      .map(x => ({ ...x, t: x.E + x.A + x.S }))
+      .filter(x => x.t >= 5)
+      .map(x => ({ ...x, pE: x.E / x.t * 100 }))
+      .filter(x => x.pE > 0)
+      .sort((a, b) => b.pE - a.pE)
+      .slice(0, 8);
+    if (criticos.length) {
+      h += `<div class="cBloque"><h4>Indicadores que requieren más atención</h4>
+        <p class="hint">Indicadores con mayor proporción de estudiantes en nivel Elemental (con 5 o más evaluados). Consulte su descripción en la tabla de especificaciones del corte.</p>
+        <div class="tablaScroll"><table class="tablaC"><thead><tr><th>Grado</th><th>Área</th><th>Indicador</th><th style="text-align:right">Evaluados</th><th style="text-align:right">En Elemental</th></tr></thead><tbody>
+        ${criticos.map(x => `<tr><td>${gradoTxt(x.g)}</td><td>${esc(x.area)}</td><td>${esc(x.ind)}</td><td class="num">${ent(x.t)}</td><td class="num"><b>${pc(x.pE)}</b></td></tr>`).join("")}
+        </tbody></table></div></div>`;
+    }
+
+    // Evolución durante el año escolar
+    const perDatos = c.periodos.filter(p => c.resultados[p]);
+    if (perDatos.length > 1) {
+      const filas = new Map();
+      perDatos.forEach(p => {
+        const rp = c.resultados[p];
+        Object.keys(rp.lect).map(Number).sort((a, b) => a - b).forEach(g => {
+          const t = suma(rp.lect[g]); if (!t) return;
+          const k = "0|" + g;
+          if (!filas.has(k)) filas.set(k, { orden: [0, g, 0], etiqueta: `Lectores fluidos · ${gradoTxt(g)}`, v: {} });
+          filas.get(k).v[p] = (rp.lect[g].N5 || 0) / t * 100;
+        });
+        rp.areas.forEach(x => {
+          const k = "1|" + x.g + "|" + x.area;
+          if (!filas.has(k)) filas.set(k, { orden: [1, x.g, AREA_ORDEN.indexOf(x.area)], etiqueta: `${gradoTxt(x.g)} · ${x.area}`, v: {} });
+          filas.get(k).v[p] = x.S;
+        });
+      });
+      const ord = [...filas.values()].sort((a, b) => a.orden[0] - b.orden[0] || a.orden[1] - b.orden[1] || a.orden[2] - b.orden[2]);
+      h += `<div class="cBloque"><h4>Evolución durante el año escolar</h4>
+        <p class="hint">Porcentaje de lectores fluidos y de estudiantes en nivel Satisfactorio en cada corte. Las flechas comparan con el corte anterior.</p>
+        <div class="tablaScroll"><table class="tablaC"><thead><tr><th>Indicador</th>${perDatos.map(p => `<th style="text-align:right">${cap(p)}</th>`).join("")}</tr></thead><tbody>
+        ${ord.map(f => {
+          let prev = null;
+          return `<tr><td>${esc(f.etiqueta)}</td>${perDatos.map(p => {
+            const v = f.v[p];
+            if (v == null) return `<td class="num">—</td>`;
+            let flecha = "";
+            if (prev != null) {
+              const d = v - prev;
+              flecha = d >= 1 ? ` <span class="sube" title="Sube ${pc(d)}">▲</span>` : d <= -1 ? ` <span class="bajaT" title="Baja ${pc(-d)}">▼</span>` : "";
+            }
+            prev = v;
+            return `<td class="num">${pc(v)}${flecha}</td>`;
+          }).join("")}</tr>`;
+        }).join("")}
+        </tbody></table></div></div>`;
+    }
+
+    h += `<p class="nota">Resultados de evaluaciones <strong>formativas</strong>, aplicadas con rúbricas y tablas de especificaciones.
+      Úselos para ajustar el plan de acción del centro y la práctica en el aula. No son pruebas estandarizadas
+      y no deben compararse con la Evaluación Diagnóstica Nacional. Con pocos evaluados, los porcentajes cambian mucho con pocos estudiantes.</p>`;
+
+    $("#cResultado").innerHTML = h;
+
+    $$("#cResultado .cPer .chip").forEach(b => b.addEventListener("click", () => { consulta.sel = b.dataset.per; pintarConsulta(); }));
+    $("#cImprimir").addEventListener("click", () => {
+      document.body.classList.add("imprimirConsulta");
+      window.print();
+    });
+    $("#cCopiar").addEventListener("click", async e => {
+      const b = e.currentTarget;
+      try { await navigator.clipboard.writeText(location.href); b.textContent = "Enlace copiado"; }
+      catch (err) { b.textContent = "No se pudo copiar"; }
+      setTimeout(() => { b.textContent = "Copiar enlace"; }, 2200);
+    });
+  }
+  window.addEventListener("afterprint", () => document.body.classList.remove("imprimirConsulta"));
+
+  // Enlace directo: ?centro=00042&anio=2025-2026
+  (function () {
+    const p = new URLSearchParams(location.search), centro = p.get("centro");
+    if (centro) {
+      $("#cCentro").value = centro;
+      consultar(centro, p.get("anio") || "");
+      setTimeout(() => $("#consulta").scrollIntoView(), 50);
+    }
+  })();
 
   // Menú lateral activo según la sección visible + botón volver arriba
   const secciones = $$(".content .section");
