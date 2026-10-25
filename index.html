@@ -321,6 +321,36 @@
     .quickCard strong{display:block;color:var(--azul);font-size:16px;margin-bottom:6px;position:relative;z-index:1}
     .quickCard span{font-size:13px;color:var(--suave);position:relative;z-index:1}
 
+    /* Guías didácticas */
+    .gCiclos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:12px}
+    .gTab{
+      text-align:left;border:1px solid #dfe8f2;background:#fff;border-radius:12px;padding:12px 14px;cursor:pointer;
+      font-family:inherit;color:var(--texto);transition:.2s ease;
+    }
+    .gTab b{display:block;color:var(--azul);font-size:16px}
+    .gTab small{color:var(--suave);font-size:12px}
+    .gTab:hover{border-color:#b8d1ea}
+    .gTab[aria-selected="true"]{background:var(--azul2);border-color:var(--azul2)}
+    .gTab[aria-selected="true"] b,.gTab[aria-selected="true"] small{color:#fff}
+    .gAreas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+    .gArea{border:1px solid #dfe8f2;border-top:5px solid var(--c);border-radius:14px;padding:16px;background:#fff}
+    .gArea h3{margin:0 0 10px;color:var(--azul);font-size:18px;font-family:Roboto,Arial,sans-serif}
+    .gFila{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:#f6f9fc;margin-bottom:10px}
+    .gFila span{font-weight:700;color:#284663;font-size:14px}
+    .gFila span small{display:block;font-weight:400;color:var(--suave);font-size:12px}
+    .gFila.gMulti{background:#fff8e8}
+    .gTabla{width:100%;border-collapse:collapse;font-size:14px}
+    .gTabla th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--suave);padding:6px 4px;border-bottom:2px solid #e5edf6}
+    .gTabla td{padding:8px 4px;border-bottom:1px solid #eef3f8}
+    .gTabla td:first-child{font-weight:800;color:#284663;width:56px}
+    .gPdf{
+      display:inline-flex;align-items:baseline;gap:6px;background:var(--c,var(--azul2));color:#fff;border-radius:8px;
+      padding:6px 10px;font-weight:800;font-size:12px;white-space:nowrap;
+    }
+    .gPdf:hover{filter:brightness(.92)}
+    .gPdf small{font-weight:600;opacity:.85;font-size:11px}
+    .gNo{color:#b5c3d3}
+
     /* Calendario */
     .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .corte{
@@ -673,7 +703,7 @@
       <div class="links" id="navLinks">
         <a class="active" href="#inicio">Inicio</a>
         <a href="#plataformas">Plataformas</a>
-        <a href="#accesos">Recursos</a>
+        <a href="#guias">Guías</a>
         <a href="#documentos">Documentos</a>
         <a href="#consulta">Consulta SIREV</a>
         <a href="#datos-oficiales">Datos oficiales</a>
@@ -735,6 +765,7 @@
           <li><a href="#sobre-primaria"><span class="dot"></span>Sobre primaria</a></li>
           <li><a href="#plataformas"><span class="dot"></span>Plataformas</a></li>
           <li><a href="#accesos"><span class="dot"></span>Recursos</a></li>
+          <li><a href="#guias"><span class="dot"></span>Guías didácticas</a></li>
           <li><a href="#calendario"><span class="dot"></span>Calendario de evaluación</a></li>
           <li><a href="#documentos"><span class="dot"></span>Documentos</a></li>
           <li><a href="#consulta"><span class="dot"></span>Consulta SIREV</a></li>
@@ -800,11 +831,20 @@
               <strong>Orientaciones</strong>
               <span>Calendario escolar, ordenanzas y órdenes departamentales.</span>
             </a>
-            <a class="quickCard" href="#documentos" data-filtro="Guías">
-              <strong>Guías</strong>
-              <span>Guías didácticas, guías teóricas y fascículos de Con Base para el Primer Ciclo.</span>
+            <a class="quickCard" href="#guias" id="qcGuias">
+              <strong>Guías didácticas</strong>
+              <span>Por ciclo y área: Primer Ciclo (Con Base, incluye multigrado) y Segundo Ciclo.</span>
             </a>
           </div>
+        </article>
+
+        <!-- GUÍAS DIDÁCTICAS -->
+        <article class="section" id="guias">
+          <h2>Guías didácticas</h2>
+          <p class="sub">Guías y materiales para el aula, organizados por ciclo y área curricular.</p>
+          <div class="gCiclos" role="tablist" aria-label="Ciclo" id="gCiclos"></div>
+          <p class="hint" id="gNota" style="margin:0 0 14px"></p>
+          <div class="gAreas" id="gAreas"></div>
         </article>
 
         <!-- CALENDARIO -->
@@ -852,7 +892,6 @@
           <div class="filtros" role="group" aria-label="Filtrar documentos">
             <button class="chip" type="button" data-cat="Todos" aria-pressed="true">Todos</button>
             <button class="chip" type="button" data-cat="Registros" aria-pressed="false">Registros</button>
-            <button class="chip" type="button" data-cat="Guías" aria-pressed="false">Guías</button>
             <button class="chip" type="button" data-cat="Diseño Curricular" aria-pressed="false">Diseño Curricular</button>
             <button class="chip" type="button" data-cat="Orientaciones" aria-pressed="false">Orientaciones</button>
             <label for="filtroDoc" class="sr-only">Buscar documento</label>
@@ -1040,7 +1079,7 @@
       descripcion: "Alfabetización inicial y matemática en los primeros grados: secuencias didácticas, línea de base, monitoreo en el centro y formación continua.",
       tags: ["Primer Ciclo", "Lengua Española", "Matemática"],
       url: "https://programaconbase.org/",
-      extra: { texto: "Guías y fascículos", url: "#documentos", filtro: "Guías" }
+      extra: { texto: "Guías y fascículos", url: "#guias", ciclo: "primer" }
     },
     {
       sigla: "AeD",
@@ -1053,6 +1092,54 @@
       extra: null
     }
   ];
+
+  // ---------------------------------------------------------------------
+  // GUÍAS DIDÁCTICAS, agrupadas por ciclo y área curricular.
+  // tipo: "teorica" | "guia" | "fasciculo" · grado: 1-6 (vacío para materiales de todo el ciclo)
+  // ---------------------------------------------------------------------
+  const CICLOS = [
+    { id: "primer",  nombre: "Primer Ciclo",  grados: "1ro a 3ro", nota: "Materiales del Programa Construyendo la Base de los Aprendizajes (Con Base), incluida la guía multigrado para aulas que atienden 1ro, 2do y 3ro juntos." },
+    { id: "segundo", nombre: "Segundo Ciclo", grados: "4to a 6to", nota: "Guías didácticas por grado." },
+    { id: "multigrado", nombre: "Multigrado", grados: "Aulas multigrado", nota: "Guías para docentes que atienden varios grados en una misma aula." }
+  ];
+  const AREAS_CURR = [
+    { id: "lengua", nombre: "Lengua Española", color: "#0b5fa5" },
+    { id: "matematica", nombre: "Matemática", color: "#c4162a" }
+  ];
+  const GUIAS = [
+    // Primer Ciclo · Con Base (carpeta con-base/)
+    { ciclo: "primer", area: "lengua", tipo: "teorica", peso: "0.8 MB", url: "con-base/lengua-espanola/guia-teorica-lengua-espanola.pdf" },
+    { ciclo: "primer", area: "lengua", tipo: "guia", grado: 1, peso: "6.1 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-1ro.pdf" },
+    { ciclo: "primer", area: "lengua", tipo: "guia", grado: 2, peso: "6.7 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-2do.pdf" },
+    { ciclo: "primer", area: "lengua", tipo: "guia", grado: 3, peso: "2.3 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-3ro.pdf" },
+    { ciclo: "primer", area: "lengua", tipo: "fasciculo", grado: 1, peso: "3.3 MB", url: "con-base/lengua-espanola/fasciculo-lengua-espanola-1ro.pdf" },
+    { ciclo: "primer", area: "lengua", tipo: "fasciculo", grado: 2, peso: "2.4 MB", url: "con-base/lengua-espanola/fasciculo-lengua-espanola-2do.pdf" },
+    { ciclo: "primer", area: "lengua", tipo: "fasciculo", grado: 3, peso: "3.1 MB", url: "con-base/lengua-espanola/fasciculo-lengua-espanola-3ro.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "teorica", peso: "1.2 MB", url: "con-base/matematica/guia-teorica-matematica.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "guia", grado: 1, peso: "9.2 MB", url: "con-base/matematica/guia-matematica-1ro.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "guia", grado: 2, peso: "9.3 MB", url: "con-base/matematica/guia-matematica-2do.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "guia", grado: 3, peso: "15.4 MB", url: "con-base/matematica/guia-matematica-3ro.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "fasciculo", grado: 1, peso: "12 MB", url: "con-base/matematica/fasciculo-matematica-1ro.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "fasciculo", grado: 2, peso: "5.9 MB", url: "con-base/matematica/fasciculo-matematica-2do.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "fasciculo", grado: 3, peso: "15 MB", url: "con-base/matematica/fasciculo-matematica-3ro.pdf" },
+    // Segundo Ciclo (carpeta segundo-ciclo/)
+    { ciclo: "segundo", area: "lengua", tipo: "guia", grado: 4, peso: "10.1 MB", url: "segundo-ciclo/lengua-espanola/guia-lengua-espanola-4to.pdf" },
+    { ciclo: "segundo", area: "lengua", tipo: "guia", grado: 5, peso: "5.1 MB", url: "segundo-ciclo/lengua-espanola/guia-lengua-espanola-5to.pdf" },
+    { ciclo: "segundo", area: "lengua", tipo: "guia", grado: 6, peso: "8.6 MB", url: "segundo-ciclo/lengua-espanola/guia-lengua-espanola-6to.pdf" },
+    { ciclo: "segundo", area: "matematica", tipo: "guia", grado: 4, peso: "22 MB", url: "segundo-ciclo/matematica/guia-matematica-4to.pdf" },
+    { ciclo: "segundo", area: "matematica", tipo: "guia", grado: 5, peso: "6.1 MB", url: "segundo-ciclo/matematica/guia-matematica-5to.pdf" },
+    { ciclo: "segundo", area: "matematica", tipo: "guia", grado: 6, peso: "6.2 MB", url: "segundo-ciclo/matematica/guia-matematica-6to.pdf" },
+    // Guías multigrado de Con Base (1ro a 3ro en una misma aula)
+    { ciclo: "primer", area: "lengua", tipo: "multigrado", peso: "5 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-multigrado.pdf" },
+    { ciclo: "primer", area: "matematica", tipo: "multigrado", peso: "19.9 MB", url: "con-base/matematica/guia-matematica-multigrado.pdf" }
+  ];
+  const TIPO_GUIA = { teorica: "Guía teórica", guia: "Guía didáctica", fasciculo: "Fascículo", multigrado: "Guía didáctica multigrado" };
+  const GRADO_TXT = ["", "1ro", "2do", "3ro", "4to", "5to", "6to"];
+  const tituloGuia = g => {
+    const area = AREAS_CURR.find(a => a.id === g.area).nombre, ciclo = CICLOS.find(c => c.id === g.ciclo).nombre;
+    if (g.tipo === "multigrado") return `${TIPO_GUIA[g.tipo]} de ${area} · ${ciclo} (1ro a 3ro)`;
+    return `${TIPO_GUIA[g.tipo]} de ${area} · ${g.grado ? GRADO_TXT[g.grado] + " grado" : ciclo}`;
+  };
 
   // ---------------------------------------------------------------------
   // CALENDARIO ESCOLAR 2026-2027 (Calendario Escolar oficial, MINERD).
@@ -1178,23 +1265,7 @@
     { titulo: "Registro de 3er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-tercero.pdf" },
     { titulo: "Registro de 4to grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-cuarto.pdf" },
     { titulo: "Registro de 5to grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-quinto.pdf" },
-    { titulo: "Registro de 6to grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-sexto.pdf" },
-
-    // Programa Con Base · Primer Ciclo (carpeta con-base/ del repositorio)
-    { titulo: "Guía teórica de Lengua Española · Primer Ciclo", cat: "Guías", fuente: "Programa Con Base", peso: "0.8 MB", url: "con-base/lengua-espanola/guia-teorica-lengua-espanola.pdf" },
-    { titulo: "Guía didáctica de Lengua Española · 1er grado", cat: "Guías", fuente: "Programa Con Base", peso: "6.1 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-1ro.pdf" },
-    { titulo: "Guía didáctica de Lengua Española · 2do grado", cat: "Guías", fuente: "Programa Con Base", peso: "6.7 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-2do.pdf" },
-    { titulo: "Guía didáctica de Lengua Española · 3er grado", cat: "Guías", fuente: "Programa Con Base", peso: "2.3 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-3ro.pdf" },
-    { titulo: "Fascículo de Lengua Española · 1er grado", cat: "Guías", fuente: "Programa Con Base", peso: "3.3 MB", url: "con-base/lengua-espanola/fasciculo-lengua-espanola-1ro.pdf" },
-    { titulo: "Fascículo de Lengua Española · 2do grado", cat: "Guías", fuente: "Programa Con Base", peso: "2.4 MB", url: "con-base/lengua-espanola/fasciculo-lengua-espanola-2do.pdf" },
-    { titulo: "Fascículo de Lengua Española · 3er grado", cat: "Guías", fuente: "Programa Con Base", peso: "3.1 MB", url: "con-base/lengua-espanola/fasciculo-lengua-espanola-3ro.pdf" },
-    { titulo: "Guía teórica de Matemática · Primer Ciclo", cat: "Guías", fuente: "Programa Con Base", peso: "1.2 MB", url: "con-base/matematica/guia-teorica-matematica.pdf" },
-    { titulo: "Guía didáctica de Matemática · 1er grado", cat: "Guías", fuente: "Programa Con Base", peso: "9.2 MB", url: "con-base/matematica/guia-matematica-1ro.pdf" },
-    { titulo: "Guía didáctica de Matemática · 2do grado", cat: "Guías", fuente: "Programa Con Base", peso: "9.3 MB", url: "con-base/matematica/guia-matematica-2do.pdf" },
-    { titulo: "Guía didáctica de Matemática · 3er grado", cat: "Guías", fuente: "Programa Con Base", peso: "15.4 MB", url: "con-base/matematica/guia-matematica-3ro.pdf" },
-    { titulo: "Fascículo de Matemática · 1er grado", cat: "Guías", fuente: "Programa Con Base", peso: "12 MB", url: "con-base/matematica/fasciculo-matematica-1ro.pdf" },
-    { titulo: "Fascículo de Matemática · 2do grado", cat: "Guías", fuente: "Programa Con Base", peso: "5.9 MB", url: "con-base/matematica/fasciculo-matematica-2do.pdf" },
-    { titulo: "Fascículo de Matemática · 3er grado", cat: "Guías", fuente: "Programa Con Base", peso: "15 MB", url: "con-base/matematica/fasciculo-matematica-3ro.pdf" }
+    { titulo: "Registro de 6to grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-sexto.pdf" }
   ];
 
   // Preguntas frecuentes
@@ -1333,7 +1404,7 @@
         ${pl.url
           ? `<a class="btn small" href="${esc(pl.url)}" target="_blank" rel="noopener">Entrar a ${esc(pl.nombre)} ↗</a>`
           : `<span class="pendiente">Enlace disponible próximamente</span>`}
-        ${pl.extra ? `<a class="btn small alt" href="${esc(pl.extra.url)}"${pl.extra.url.startsWith("#") ? (pl.extra.filtro ? ` data-filtro-doc="${esc(pl.extra.filtro)}"` : "") : ' target="_blank" rel="noopener"'}>${esc(pl.extra.texto)}</a>` : ""}
+        ${pl.extra ? `<a class="btn small alt" href="${esc(pl.extra.url)}"${pl.extra.url.startsWith("#") ? (pl.extra.ciclo ? ` data-ciclo-guia="${esc(pl.extra.ciclo)}"` : "") : ' target="_blank" rel="noopener"'}>${esc(pl.extra.texto)}</a>` : ""}
       </div>
     </div>`).join("");
 
@@ -1489,6 +1560,46 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   });
 
+  /* ===== Guías didácticas por ciclo y área ===== */
+  let cicloSel = "primer";
+  const enlaceGuia = g => g ? `<a class="gPdf" href="${esc(g.url)}" target="_blank" rel="noopener" title="${esc(tituloGuia(g))}">PDF<small>${esc(g.peso || "")}</small></a>` : `<span class="gNo">—</span>`;
+  function pintarGuias() {
+    const ciclos = CICLOS.filter(c => GUIAS.some(g => g.ciclo === c.id));
+    if (!ciclos.some(c => c.id === cicloSel)) cicloSel = ciclos[0].id;
+    $("#gCiclos").innerHTML = ciclos.map(c => {
+      const n = GUIAS.filter(g => g.ciclo === c.id).length;
+      return `<button class="gTab" role="tab" type="button" data-ciclo="${c.id}" aria-selected="${c.id === cicloSel}">
+        <b>${esc(c.nombre)}</b><small>${esc(c.grados)} · ${n} documento${n > 1 ? "s" : ""}</small></button>`;
+    }).join("");
+    $$("#gCiclos .gTab").forEach(b => b.addEventListener("click", () => { cicloSel = b.dataset.ciclo; pintarGuias(); }));
+    const ciclo = CICLOS.find(c => c.id === cicloSel);
+    $("#gNota").textContent = ciclo.nota;
+    $("#gAreas").innerHTML = AREAS_CURR.map(a => {
+      const lista = GUIAS.filter(g => g.ciclo === cicloSel && g.area === a.id);
+      if (!lista.length) return "";
+      const teoricas = lista.filter(g => !g.grado).sort((x, y) => (x.tipo === "teorica" ? 0 : 1) - (y.tipo === "teorica" ? 0 : 1));
+      const grados = [...new Set(lista.filter(g => g.grado).map(g => g.grado))].sort((x, y) => x - y);
+      const hayFasc = lista.some(g => g.tipo === "fasciculo" && g.grado);
+      let h = `<div class="gArea" style="--c:${a.color}"><h3>${esc(a.nombre)}</h3>`;
+      h += teoricas.map(g => `<div class="gFila${g.tipo === "multigrado" ? " gMulti" : ""}"><span>${
+        g.tipo === "multigrado" ? `Guía didáctica multigrado<small>Para aulas con 1ro, 2do y 3ro</small>` : esc(TIPO_GUIA[g.tipo]) + " del ciclo"}</span>${enlaceGuia(g)}</div>`).join("");
+      if (grados.length) {
+        h += `<table class="gTabla"><thead><tr><th>Grado</th><th>Guía didáctica</th>${hayFasc ? "<th>Fascículo</th>" : ""}</tr></thead><tbody>` +
+          grados.map(gr => `<tr><td>${GRADO_TXT[gr]}</td>
+            <td>${enlaceGuia(lista.find(g => g.grado === gr && g.tipo === "guia"))}</td>
+            ${hayFasc ? `<td>${enlaceGuia(lista.find(g => g.grado === gr && g.tipo === "fasciculo"))}</td>` : ""}</tr>`).join("") +
+          `</tbody></table>`;
+      }
+      return h + `</div>`;
+    }).join("");
+  }
+  function elegirCiclo(id) { cicloSel = id; pintarGuias(); }
+  pintarGuias();
+  (function () {
+    const n = GUIAS.length, s = $("#qcGuias span");
+    s.textContent += ` ${n} documentos.`;
+  })();
+
   // Documentos con filtro
   let catActiva = "Todos";
   function pintarDocs() {
@@ -1521,13 +1632,13 @@
     const chip = $$(".filtros .chip").find(b => b.dataset.cat === cat);
     if (chip) chip.click();
   }
-  $$("#accesos .quickCard").forEach(a => {
+  $$("#accesos .quickCard[data-filtro]").forEach(a => {
     const cat = a.dataset.filtro, n = DOCUMENTOS.filter(d => d.cat === cat).length;
     const s = $("span", a);
     s.textContent += n ? ` ${n} documento${n > 1 ? "s" : ""}.` : " Próximamente.";
     a.addEventListener("click", () => filtrarDocs(cat));
   });
-  $$("[data-filtro-doc]").forEach(a => a.addEventListener("click", () => filtrarDocs(a.dataset.filtroDoc)));
+  $$("[data-ciclo-guia]").forEach(a => a.addEventListener("click", () => elegirCiclo(a.dataset.cicloGuia)));
 
   // Preguntas frecuentes
   $("#listaFaq").innerHTML = PREGUNTAS.map(f =>
@@ -1538,6 +1649,7 @@
     const items = [];
     PLATAFORMAS.forEach(p => items.push({ tipo: "Plataforma", titulo: p.nombre + " — " + p.completo, texto: p.descripcion + " " + p.tags.join(" "), url: p.url || "#plataformas", ext: !!p.url }));
     DOCUMENTOS.forEach(d => items.push({ tipo: "Documento", titulo: d.titulo, texto: d.cat + " " + d.fuente, url: d.url, ext: true }));
+    GUIAS.forEach(g => items.push({ tipo: "Guía · " + CICLOS.find(c => c.id === g.ciclo).nombre, titulo: tituloGuia(g), texto: "guia didactica fasciculo " + g.ciclo + " ciclo con base " + (g.tipo === "multigrado" ? "multigrado" : ""), url: g.url, ext: true }));
     $$("#accesos .quickCard").forEach(a => items.push({ tipo: "Recurso", titulo: $("strong", a).textContent, texto: $("span", a).textContent, url: a.getAttribute("href"), ext: false }));
     PREGUNTAS.forEach(f => items.push({ tipo: "Pregunta", titulo: f.p, texto: f.r, url: "#preguntas", ext: false }));
     items.push({ tipo: "Consulta", titulo: "Consulta los resultados de tu centro en SIREV", texto: "codigo sigerd centro resultados evaluacion lectura desempeno cobertura informe", url: "#consulta", ext: false });
