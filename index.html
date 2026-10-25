@@ -339,6 +339,7 @@
     .gFila span{font-weight:700;color:#284663;font-size:14px}
     .gFila span small{display:block;font-weight:400;color:var(--suave);font-size:12px}
     .gFila.gMulti{background:#fff8e8}
+    .gPrelim{margin:-4px 0 10px;font-size:12px;font-weight:700;color:#8a5a00;background:#fff4d6;border-radius:8px;padding:5px 10px;display:inline-block}
     .gTabla{width:100%;border-collapse:collapse;font-size:14px}
     .gTabla th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--suave);padding:6px 4px;border-bottom:2px solid #e5edf6}
     .gTabla td{padding:8px 4px;border-bottom:1px solid #eef3f8}
@@ -814,7 +815,7 @@
             </a>
             <a class="quickCard" href="#guias" id="qcGuias">
               <strong>Guías didácticas</strong>
-              <span>Por ciclo y área: Primer Ciclo (Con Base, incluye multigrado) y Segundo Ciclo.</span>
+              <span>Por ciclo y área: Primer Ciclo (Con Base y multigrado) y Segundo Ciclo (todas las áreas, STEAM y educación ambiental).</span>
             </a>
           </div>
         </article>
@@ -1080,12 +1081,17 @@
   // ---------------------------------------------------------------------
   const CICLOS = [
     { id: "primer",  nombre: "Primer Ciclo",  grados: "1ro a 3ro", nota: "Materiales del Programa Construyendo la Base de los Aprendizajes (Con Base), incluida la guía multigrado para aulas que atienden 1ro, 2do y 3ro juntos." },
-    { id: "segundo", nombre: "Segundo Ciclo", grados: "4to a 6to", nota: "Guías didácticas por grado." },
+    { id: "segundo", nombre: "Segundo Ciclo", grados: "4to a 6to", nota: "Guías didácticas por grado y área, orientaciones de Educación Moral, Cívica y Ética Ciudadana, proyectos STEAM y educación ambiental." },
     { id: "multigrado", nombre: "Multigrado", grados: "Aulas multigrado", nota: "Guías para docentes que atienden varios grados en una misma aula." }
   ];
   const AREAS_CURR = [
     { id: "lengua", nombre: "Lengua Española", color: "#0b5fa5" },
-    { id: "matematica", nombre: "Matemática", color: "#c4162a" }
+    { id: "matematica", nombre: "Matemática", color: "#c4162a" },
+    { id: "naturaleza", nombre: "Ciencias de la Naturaleza", color: "#1f8a5b" },
+    { id: "sociales", nombre: "Ciencias Sociales", color: "#c26a00" },
+    { id: "moral", nombre: "Educación Moral, Cívica y Ética Ciudadana", color: "#6a3fa0" },
+    { id: "steam", nombre: "Proyectos STEAM", color: "#0e8c9a" },
+    { id: "ambiental", nombre: "Educación Ambiental", color: "#4f8a1f" }
   ];
   const GUIAS = [
     // Primer Ciclo · Con Base (carpeta con-base/)
@@ -1110,15 +1116,28 @@
     { ciclo: "segundo", area: "matematica", tipo: "guia", grado: 4, peso: "22 MB", url: "segundo-ciclo/matematica/guia-matematica-4to.pdf" },
     { ciclo: "segundo", area: "matematica", tipo: "guia", grado: 5, peso: "6.1 MB", url: "segundo-ciclo/matematica/guia-matematica-5to.pdf" },
     { ciclo: "segundo", area: "matematica", tipo: "guia", grado: 6, peso: "6.2 MB", url: "segundo-ciclo/matematica/guia-matematica-6to.pdf" },
+    { ciclo: "segundo", area: "naturaleza", tipo: "guia", grado: 5, peso: "8.8 MB", url: "segundo-ciclo/ciencias-naturaleza/guia-ciencias-naturaleza-5to.pdf" },
+    { ciclo: "segundo", area: "naturaleza", tipo: "guia", grado: 6, peso: "1.9 MB", url: "segundo-ciclo/ciencias-naturaleza/guia-ciencias-naturaleza-6to.pdf" },
+    { ciclo: "segundo", area: "sociales", tipo: "guia", grado: 6, peso: "4.8 MB", url: "segundo-ciclo/ciencias-sociales/guia-ciencias-sociales-6to.pdf" },
+    { ciclo: "segundo", area: "moral", tipo: "orientaciones", grado: 4, peso: "10.3 MB", preliminar: true, url: "segundo-ciclo/moral-civica/orientaciones-moral-civica-4to.pdf" },
+    { ciclo: "segundo", area: "moral", tipo: "orientaciones", grado: 5, peso: "9 MB", preliminar: true, url: "segundo-ciclo/moral-civica/orientaciones-moral-civica-5to.pdf" },
+    { ciclo: "segundo", area: "moral", tipo: "orientaciones", grado: 6, peso: "9.4 MB", preliminar: true, url: "segundo-ciclo/moral-civica/orientaciones-moral-civica-6to.pdf" },
+    { ciclo: "segundo", area: "moral", tipo: "guia", grado: 5, peso: "15.4 MB", preliminar: true, url: "segundo-ciclo/moral-civica/guia-moral-civica-5to.pdf" },
+    { ciclo: "segundo", area: "moral", tipo: "guia", grado: 6, peso: "18.4 MB", preliminar: true, url: "segundo-ciclo/moral-civica/guia-moral-civica-6to.pdf" },
+    { ciclo: "segundo", area: "steam", tipo: "proyecto", nombre: "Abejas", sub: "Proyecto STEAM · 4to a 6to", peso: "1.7 MB", url: "segundo-ciclo/steam/proyecto-steam-abejas.pdf" },
+    { ciclo: "segundo", area: "steam", tipo: "proyecto", nombre: "La ciencia del sonido", sub: "Proyecto STEAM · 4to a 6to", peso: "1.7 MB", url: "segundo-ciclo/steam/proyecto-steam-ciencia-del-sonido.pdf" },
+    { ciclo: "segundo", area: "steam", tipo: "proyecto", nombre: "La secuencia Fibonacci", sub: "Proyecto STEAM · 4to a 6to", peso: "2.2 MB", url: "segundo-ciclo/steam/proyecto-steam-secuencia-fibonacci.pdf" },
+    { ciclo: "segundo", area: "ambiental", tipo: "guia", nombre: "Guía didáctica n.º 1: Ambiente", sub: "Para docentes de 4to a 6to · Fundación Propagas, aprobada por el MINERD", peso: "7.1 MB", url: "segundo-ciclo/educacion-ambiental/guia-educacion-ambiental-1.pdf" },
     // Guías multigrado de Con Base (1ro a 3ro en una misma aula)
     { ciclo: "primer", area: "lengua", tipo: "multigrado", peso: "5 MB", url: "con-base/lengua-espanola/guia-lengua-espanola-multigrado.pdf" },
     { ciclo: "primer", area: "matematica", tipo: "multigrado", peso: "19.9 MB", url: "con-base/matematica/guia-matematica-multigrado.pdf" }
   ];
-  const TIPO_GUIA = { teorica: "Guía teórica", guia: "Guía didáctica", fasciculo: "Fascículo", multigrado: "Guía didáctica multigrado" };
+  const TIPO_GUIA = { teorica: "Guía teórica", guia: "Guía didáctica", fasciculo: "Fascículo", multigrado: "Guía didáctica multigrado", orientaciones: "Orientaciones", proyecto: "Proyecto" };
   const GRADO_TXT = ["", "1ro", "2do", "3ro", "4to", "5to", "6to"];
   const tituloGuia = g => {
     const area = AREAS_CURR.find(a => a.id === g.area).nombre, ciclo = CICLOS.find(c => c.id === g.ciclo).nombre;
     if (g.tipo === "multigrado") return `${TIPO_GUIA[g.tipo]} de ${area} · ${ciclo} (1ro a 3ro)`;
+    if (g.nombre) return `${g.nombre} · ${area} · ${ciclo}`;
     return `${TIPO_GUIA[g.tipo]} de ${area} · ${g.grado ? GRADO_TXT[g.grado] + " grado" : ciclo}`;
   };
 
@@ -1237,6 +1256,7 @@
   const DOCUMENTOS = [
     { titulo: "Calendario Escolar 2026-2027", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "11.9 MB", url: "documentos/orientaciones/calendario-escolar-2026-2027.pdf" },
     { titulo: "Ordenanza 01-2023 · Política Nacional de Alfabetización Inicial en la Etapa Oportuna", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "2.6 MB", url: "ordenanza-01-2023.pdf" },
+    { titulo: "Ordenanza 02-2025 · Educación Moral, Cívica y Ética Ciudadana", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.3 MB", url: "ordenanza-02-2025.pdf" },
     { titulo: "Ordenanza 03-2023 · Currículo adecuado para los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.4 MB", url: "ordenanza-03-2023.pdf" },
     { titulo: "Ordenanza 04-2023 · Sistema de evaluación de los aprendizajes de los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "13.4 MB", url: "ordenanza-04-2023.pdf" },
     { titulo: "Orden Departamental 42-2024 · Reconocimiento a centros que lograron la alfabetización en el Primer Ciclo", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "5.4 MB", url: "orden-departamental-42-2024.pdf" },
@@ -1563,15 +1583,21 @@
       if (!lista.length) return "";
       const teoricas = lista.filter(g => !g.grado).sort((x, y) => (x.tipo === "teorica" ? 0 : 1) - (y.tipo === "teorica" ? 0 : 1));
       const grados = [...new Set(lista.filter(g => g.grado).map(g => g.grado))].sort((x, y) => x - y);
-      const hayFasc = lista.some(g => g.tipo === "fasciculo" && g.grado);
+      const cols = ["guia", "fasciculo", "orientaciones"].filter(t => lista.some(g => g.tipo === t && g.grado));
+      const prelim = lista.some(g => g.preliminar);
       let h = `<div class="gArea" style="--c:${a.color}"><h3>${esc(a.nombre)}</h3>`;
-      h += teoricas.map(g => `<div class="gFila${g.tipo === "multigrado" ? " gMulti" : ""}"><span>${
-        g.tipo === "multigrado" ? `Guía didáctica multigrado<small>Para aulas con 1ro, 2do y 3ro</small>` : esc(TIPO_GUIA[g.tipo]) + " del ciclo"}</span>${enlaceGuia(g)}</div>`).join("");
+      if (prelim) h += `<p class="gPrelim">Documentos en versión preliminar</p>`;
+      h += teoricas.map(g => {
+        let titulo, sub = "";
+        if (g.tipo === "multigrado") { titulo = "Guía didáctica multigrado"; sub = "Para aulas con 1ro, 2do y 3ro"; }
+        else if (g.nombre) { titulo = g.nombre; sub = g.sub || ""; }
+        else titulo = TIPO_GUIA[g.tipo] + " del ciclo";
+        return `<div class="gFila${g.tipo === "multigrado" ? " gMulti" : ""}"><span>${esc(titulo)}${sub ? `<small>${esc(sub)}</small>` : ""}</span>${enlaceGuia(g)}</div>`;
+      }).join("");
       if (grados.length) {
-        h += `<table class="gTabla"><thead><tr><th>Grado</th><th>Guía didáctica</th>${hayFasc ? "<th>Fascículo</th>" : ""}</tr></thead><tbody>` +
-          grados.map(gr => `<tr><td>${GRADO_TXT[gr]}</td>
-            <td>${enlaceGuia(lista.find(g => g.grado === gr && g.tipo === "guia"))}</td>
-            ${hayFasc ? `<td>${enlaceGuia(lista.find(g => g.grado === gr && g.tipo === "fasciculo"))}</td>` : ""}</tr>`).join("") +
+        h += `<table class="gTabla"><thead><tr><th>Grado</th>${cols.map(t => `<th>${esc(TIPO_GUIA[t])}</th>`).join("")}</tr></thead><tbody>` +
+          grados.map(gr => `<tr><td>${GRADO_TXT[gr]}</td>${cols.map(t =>
+            `<td>${enlaceGuia(lista.find(g => g.grado === gr && g.tipo === t))}</td>`).join("")}</tr>`).join("") +
           `</tbody></table>`;
       }
       return h + `</div>`;
