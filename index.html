@@ -137,32 +137,20 @@
         linear-gradient(115deg,rgba(5,62,103,.97),rgba(11,95,165,.88)),#0b5fa5;
       min-height:360px;color:#fff;
     }
-    /* Foto de portada (se muestra si existe portada.jpg) */
-    .hero.sinFoto .wrap{grid-template-columns:1fr}
-    .heroFoto{
-      margin:0;border-radius:22px;overflow:hidden;aspect-ratio:16/10;
-      box-shadow:0 24px 60px rgba(0,20,40,.35);border:6px solid rgba(255,255,255,.9);background:#0b5fa5;
+    /* Foto de fondo de la portada (se aplica si existe portada.jpg) */
+    .hero.conFoto{
+      background:
+        linear-gradient(100deg,rgba(4,40,72,.94) 0%,rgba(5,62,103,.86) 40%,rgba(11,95,165,.62) 72%,rgba(11,95,165,.50) 100%),
+        var(--foto) center 32%/cover no-repeat,#0b5fa5;
     }
-    .heroFoto[hidden]{display:none}
-    .heroFoto img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block}
-
-    /* Barra rápida bajo la portada */
-    .heroBar{position:relative;z-index:5;margin-top:-56px}
-    .qBar{
-      background:#fff;border-radius:18px;box-shadow:var(--sombra);border:1px solid var(--gris2);
-      padding:20px 22px;display:grid;grid-template-columns:1.35fr 1fr 1.25fr;gap:22px;align-items:center;
-    }
-    .qBar > *{min-width:0}
-    .bConsulta h2{margin:0 0 10px;color:var(--azul);font-size:18px;font-family:Roboto,Arial,sans-serif}
-    .qBar .hcCorte{margin:0;align-self:stretch}
-    .bPlat .hcTitulo{margin:0 0 8px}
+    .hero.conFoto::after{background:rgba(243,178,27,.16)}
     .hero::after{
       content:"";position:absolute;inset:auto -80px -160px auto;
       width:440px;height:440px;border-radius:50%;background:rgba(243,178,27,.22);
     }
     .hero .wrap{
-      position:relative;z-index:1;padding-top:52px;padding-bottom:112px;
-      display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;
+      position:relative;z-index:1;padding-top:58px;padding-bottom:58px;
+      display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center;
     }
     .eyebrow{
       display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);
@@ -620,9 +608,8 @@
 
     /* ---------- Responsivo ---------- */
     @media (max-width:980px){
+      .hero.conFoto{background:linear-gradient(180deg,rgba(4,40,72,.90),rgba(5,62,103,.82)),var(--foto) 60% 30%/cover no-repeat,#0b5fa5}
       .hero .wrap,.layout{grid-template-columns:1fr}
-      .qBar{grid-template-columns:1fr 1fr}
-      .bConsulta{grid-column:1/-1}
       .hero h1{font-size:38px}
       .sidebar{display:none}
       .pillars{grid-template-columns:1fr}
@@ -652,8 +639,6 @@
       .brandText{padding-left:12px}
       .brandText strong{font-size:18px}
       .hero h1{font-size:31px}
-      .qBar{grid-template-columns:1fr;padding:18px}
-      .hero .wrap{padding-bottom:96px}
       .section{padding:20px}
       .section h2{font-size:24px}
       .timeline{grid-template-columns:1fr}
@@ -666,7 +651,7 @@
     }
 
     @media print{
-      .heroBar,.heroFoto,.topbar,.aviso,.nav,.sidebar,.toTop,.heroActions,.search,.cForm,.cAcc,.cPer,#cCandidatos,.cOficial,.visor,.tbFiltros,.tbCard .pie{display:none!important}
+      .topbar,.aviso,.nav,.sidebar,.toTop,.heroActions,.search,.cForm,.cAcc,.cPer,#cCandidatos,.cOficial,.visor,.tbFiltros,.tbCard .pie{display:none!important}
       .hero{background:#fff;color:#000;min-height:0}
       .section{box-shadow:none;break-inside:avoid}
       #consulta{break-inside:auto}
@@ -756,34 +741,26 @@
         </div>
       </div>
 
-      <figure class="heroFoto" id="heroFoto" hidden>
-        <img id="heroImg" alt="Niñas y niños con uniforme escolar sonriendo mientras trabajan juntos en un cuaderno" width="1600" height="900" decoding="async">
-      </figure>
-    </div>
-  </section>
+      <aside class="heroCard" aria-label="Consulta rápida y accesos directos">
+        <h2>Resultados de tu centro</h2>
+        <p>Escribe el código SIGERD o el nombre del centro.</p>
+        <form class="hcForm" id="hcForm" role="search" aria-label="Consulta rápida de centro">
+          <label for="hcCentro" class="sr-only">Código SIGERD o nombre del centro</label>
+          <input id="hcCentro" type="search" placeholder="Ej.: 00042 o Molaco" autocomplete="off" required>
+          <button class="btn sirev" type="submit">Ver resultados</button>
+        </form>
 
-  <!-- Barra rápida: consulta del centro, próximo corte y plataformas -->
-  <section class="heroBar" aria-label="Consulta rápida y accesos directos">
-    <div class="wrap">
-      <div class="qBar">
-        <div class="bConsulta">
-          <h2>Resultados de tu centro</h2>
-          <form class="hcForm" id="hcForm" role="search" aria-label="Consulta rápida de centro">
-            <label for="hcCentro" class="sr-only">Código SIGERD o nombre del centro</label>
-            <input id="hcCentro" type="search" placeholder="Código SIGERD o nombre" autocomplete="off" required>
-            <button class="btn sirev" type="submit">Ver resultados</button>
-          </form>
-        </div>
         <a class="hcCorte" href="#calendario" id="hcCorte">
           <span class="icon">▦</span>
           <span><small>Próximo corte de evaluación</small><b id="hcCorteTxt">—</b></span>
         </a>
-        <div class="bPlat">
-          <div class="hcTitulo">Plataformas</div>
-          <div class="hcPlat" id="hcPlat"><!-- Se genera desde PLATAFORMAS --></div>
-        </div>
-      </div>
+
+        <div class="hcTitulo">Plataformas</div>
+        <div class="hcPlat" id="hcPlat"><!-- Se genera desde PLATAFORMAS --></div>
+      </aside>
     </div>
+    <!-- Foto de fondo: guarde la imagen como "portada.jpg" en la raíz del repositorio. -->
+
   </section>
 
   <section class="resultados" id="resultados" hidden aria-live="polite">
@@ -1413,10 +1390,9 @@
   // Imagen de portada (opcional): se muestra solo si existe el archivo
   (function () {
     const IMAGEN_PORTADA = "portada.jpg";   // cambie aquí el nombre si usa otro archivo
-    const hero = $(".hero"), foto = $("#heroImg");
-    hero.classList.add("sinFoto");
-    foto.onload = () => { $("#heroFoto").hidden = false; hero.classList.remove("sinFoto"); };
-    foto.src = IMAGEN_PORTADA;
+    const img = new Image();
+    img.onload = () => { const h = $(".hero"); h.style.setProperty("--foto", `url('${IMAGEN_PORTADA}')`); h.classList.add("conFoto"); };
+    img.src = IMAGEN_PORTADA;
   })();
 
   // Aviso cerrable (se recuerda en este navegador)
