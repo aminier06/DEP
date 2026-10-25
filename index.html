@@ -1751,7 +1751,28 @@
   }
 
   // --- Interfaz ---
-  let consulta = null;
+  let consulta = null, consultaVersion = 0;
+
+  // Limpia la consulta del centro (resultados, campos, estado de carga y parámetros de la URL)
+  function limpiarConsulta() {
+    consultaVersion++;            // descarta cualquier consulta que aún esté cargando
+    consulta = null;
+    $("#cCentro").value = "";
+    $("#hcCentro").value = "";
+    $("#cResultado").innerHTML = "";
+    $("#cCandidatos").innerHTML = "";
+    $("#cBtn").disabled = false;
+    estado(null);
+    try { history.replaceState(null, "", location.pathname + "#inicio"); } catch (e) {}
+  }
+  $$('a[href="#inicio"], a.brand').forEach(a => a.addEventListener("click", e => {
+    if (a.classList.contains("brand")) e.preventDefault();
+    limpiarConsulta();
+    $("#resultados").hidden = true;
+    $("#buscar").value = "";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }));
+
   function estado(txt, avance) {
     const el = $("#cEstado");
     if (txt == null) { el.hidden = true; return; }
@@ -1771,14 +1792,16 @@
   });
 
   async function consultar(entrada, anio) {
+    const v = ++consultaVersion;
     $("#cCandidatos").innerHTML = "";
     if (!entrada) return;
     await fuentesListas;
+    if (v !== consultaVersion) return;
     if (!fuentes[anio]) anio = $("#cAnio").value;
     const per = fuentes[anio] || {};
     const periodos = PERIODOS_ORDEN.filter(p => per[p]);
     if (!periodos.length) { alerta("No hay cortes publicados para ese año escolar."); return; }
-    if (!/^\d{1,5}$/.test(entrada)) return buscarPorNombre(entrada, anio, periodos);
+    if (!/^\d{1,5}$/.test(entrada)) return buscarPorNombre(entrada, anio, periodos, v);
 
     const codigo = entrada.padStart(5, "0");
     $("#cBtn").disabled = true;
@@ -1789,7 +1812,8 @@
     try {
       const tablas = await Promise.all(urls.map(u => cargarCsv(u)
         .catch(() => { fallos++; return null; })
-        .then(t => { listos++; estado(`Cargando los reportes de ${anio}… (${listos} de ${urls.length})`, listos / urls.length * 100); return t; })));
+        .then(t => { if (v === consultaVersion) { listos++; estado(`Cargando los reportes de ${anio}… (${listos} de ${urls.length})`, listos / urls.length * 100); } return t; })));
+      if (v !== consultaVersion) return;
       estado(null);
       if (fallos === urls.length) throw new Error("sin datos");
       const porUrl = new Map(urls.map((u, i) => [u, tablas[i]]));
@@ -1804,20 +1828,22 @@
       pintarConsulta();
       try { history.replaceState(null, "", `?centro=${codigo}&anio=${encodeURIComponent(anio)}#consulta`); } catch (e) {}
     } catch (err) {
+      if (v !== consultaVersion) return;
       estado(null);
       alerta("No fue posible cargar los datos de SIREV en este momento. Verifique su conexión a internet e intente de nuevo.", true);
     } finally {
-      $("#cBtn").disabled = false;
+      if (v === consultaVersion) $("#cBtn").disabled = false;
     }
   }
 
-  async function buscarPorNombre(texto, anio, periodos) {
+  async function buscarPorNombre(texto, anio, periodos, v) {
     const per = fuentes[anio][periodos[periodos.length - 1]];
     $("#cBtn").disabled = true;
     $("#cResultado").innerHTML = "";
     estado("Buscando centros…", 35);
     try {
       const tablas = await Promise.all([per.pc, per.sc].filter(Boolean).map(u => cargarCsv(u).catch(() => null)));
+      if (v !== consultaVersion) return;
       estado(null);
       if (!tablas.some(Boolean)) throw new Error("sin datos");
       const q = norm(texto), vistos = new Map();
@@ -1843,10 +1869,11 @@
         consultar(b.dataset.cod, anio);
       }));
     } catch (e) {
+      if (v !== consultaVersion) return;
       estado(null);
       alerta("No fue posible cargar los datos de SIREV en este momento. Verifique su conexión a internet e intente de nuevo.", true);
     } finally {
-      $("#cBtn").disabled = false;
+      if (v === consultaVersion) $("#cBtn").disabled = false;
     }
   }
 
