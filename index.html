@@ -798,7 +798,7 @@
             </a>
             <a class="quickCard" href="#documentos" data-filtro="Orientaciones">
               <strong>Orientaciones</strong>
-              <span>Calendario escolar y lineamientos para regionales, distritos y centros.</span>
+              <span>Calendario escolar, ordenanzas y órdenes departamentales.</span>
             </a>
             <a class="quickCard" href="#documentos" data-filtro="Guías">
               <strong>Guías</strong>
@@ -1167,7 +1167,11 @@
 
   // Documentos. Agregue una línea por documento.
   const DOCUMENTOS = [
-    { titulo: "Calendario Escolar 2026-2027", cat: "Orientaciones", fuente: "Ministerio de Educación", url: "documentos/orientaciones/calendario-escolar-2026-2027.pdf" },
+    { titulo: "Calendario Escolar 2026-2027", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "20 MB", url: "documentos/orientaciones/calendario-escolar-2026-2027.pdf" },
+    { titulo: "Ordenanza 01-2023 · Política Nacional de Alfabetización Inicial en la Etapa Oportuna", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "2.6 MB", url: "ordenanza-01-2023.pdf" },
+    { titulo: "Ordenanza 03-2023 · Currículo adecuado para los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.4 MB", url: "ordenanza-03-2023.pdf" },
+    { titulo: "Ordenanza 04-2023 · Sistema de evaluación de los aprendizajes de los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "13.7 MB", url: "ordenanza-04-2023.pdf" },
+    { titulo: "Orden Departamental 42-2024 · Reconocimiento a centros que lograron la alfabetización en el Primer Ciclo", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "5.4 MB", url: "orden-departamental-42-2024.pdf" },
     { titulo: "Diseño Curricular del Nivel Primario", cat: "Diseño Curricular", fuente: "Ministerio de Educación", url: "curriculo-primaria.pdf" },
     { titulo: "Registro de 1er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-primero.pdf" },
     { titulo: "Registro de 2do grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-segundo.pdf" },
@@ -1483,7 +1487,7 @@
         <span class="docIcon" aria-hidden="true">PDF</span>
         <div>
           <div class="docTitle">${esc(d.titulo)}</div>
-          <div class="docMeta">${esc(d.cat)} · ${esc(d.fuente)}</div>
+          <div class="docMeta">${esc(d.cat)} · ${esc(d.fuente)}${d.peso ? " · PDF " + esc(d.peso) : ""}</div>
         </div>
         <a class="download" href="${esc(d.url)}" target="_blank" rel="noopener">Ver PDF</a>
       </li>`).join("")
