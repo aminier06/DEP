@@ -79,17 +79,6 @@
     .toplinks{display:flex;gap:18px;flex-wrap:wrap;opacity:.95}
     .toplinks a:hover{text-decoration:underline}
 
-    /* ---------- Aviso ---------- */
-    .aviso{
-      background:#fff7e0;border-bottom:1px solid #f1dfa6;color:#5a4508;font-size:14px;
-    }
-    .aviso .wrap{display:flex;gap:12px;align-items:center;padding-top:10px;padding-bottom:10px}
-    .aviso strong{white-space:nowrap}
-    .aviso button{
-      margin-left:auto;border:0;background:transparent;font-size:20px;line-height:1;
-      cursor:pointer;color:#5a4508;padding:2px 6px;
-    }
-    .aviso[hidden]{display:none}
 
     /* ---------- Encabezado ---------- */
     .header{background:#fff;border-bottom:1px solid var(--gris2)}
@@ -653,7 +642,7 @@
     }
 
     @media print{
-      .topbar,.aviso,.nav,.sidebar,.toTop,.heroActions,.search,.cForm,.cAcc,.cPer,#cCandidatos,.cOficial,.visor,.tbFiltros,.tbCard .pie{display:none!important}
+      .topbar,.nav,.sidebar,.toTop,.heroActions,.search,.cForm,.cAcc,.cPer,#cCandidatos,.cOficial,.visor,.tbFiltros,.tbCard .pie{display:none!important}
       .hero{background:#fff;color:#000;min-height:0}
       .section{box-shadow:none;break-inside:avoid}
       #consulta{break-inside:auto}
@@ -683,13 +672,6 @@
     </div>
   </div>
 
-  <!-- Aviso editable: cambie el texto o elimine este bloque cuando no haya avisos -->
-  <div class="aviso" id="aviso" role="status">
-    <div class="wrap">
-      <strong>Aviso:</strong>
-      <span id="avisoTexto">Consulte en SIREV Primaria el calendario de cortes de evaluación formativa del año escolar.</span>
-      <button type="button" aria-label="Cerrar aviso" id="cerrarAviso">×</button>
-    </div>
   </div>
 
   <header class="header">
@@ -1381,12 +1363,6 @@
     img.src = IMAGEN_PORTADA;
   })();
 
-  // Aviso cerrable (se recuerda en este navegador)
-  try { if (localStorage.getItem("avisoCerrado") === $("#avisoTexto").textContent) $("#aviso").hidden = true; } catch (e) {}
-  $("#cerrarAviso").addEventListener("click", () => {
-    $("#aviso").hidden = true;
-    try { localStorage.setItem("avisoCerrado", $("#avisoTexto").textContent); } catch (e) {}
-  });
 
   // Menú móvil
   $("#navToggle").addEventListener("click", () => {
