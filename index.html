@@ -140,10 +140,12 @@
     /* Foto de fondo de la portada (se aplica si existe portada.jpg) */
     .hero.conFoto{
       background:
-        linear-gradient(100deg,rgba(4,40,72,.94) 0%,rgba(5,62,103,.86) 40%,rgba(11,95,165,.62) 72%,rgba(11,95,165,.50) 100%),
+        linear-gradient(100deg,rgba(4,40,72,.93) 0%,rgba(5,62,103,.82) 36%,rgba(11,95,165,.42) 66%,rgba(11,95,165,.22) 100%),
         var(--foto) center 32%/cover no-repeat,#0b5fa5;
     }
-    .hero.conFoto::after{background:rgba(243,178,27,.16)}
+    .hero.conFoto::after{display:none}
+    .hero .wrap{grid-template-columns:minmax(0,780px)}
+    .hero.conFoto .wrap{padding-top:96px;padding-bottom:110px}
     .hero::after{
       content:"";position:absolute;inset:auto -80px -160px auto;
       width:440px;height:440px;border-radius:50%;background:rgba(243,178,27,.22);
@@ -736,28 +738,12 @@
         </p>
 
         <div class="heroActions">
-          <a class="btn primary" href="#documentos">Registros y documentos</a>
+          <a class="btn primary" href="#consulta">Consultar mi centro</a>
+          <a class="btn secondary" href="#documentos">Registros y documentos</a>
           <a class="btn secondary" href="#calendario">Calendario de evaluación</a>
         </div>
       </div>
 
-      <aside class="heroCard" aria-label="Consulta rápida y accesos directos">
-        <h2>Resultados de tu centro</h2>
-        <p>Escribe el código SIGERD o el nombre del centro.</p>
-        <form class="hcForm" id="hcForm" role="search" aria-label="Consulta rápida de centro">
-          <label for="hcCentro" class="sr-only">Código SIGERD o nombre del centro</label>
-          <input id="hcCentro" type="search" placeholder="Ej.: 00042 o Molaco" autocomplete="off" required>
-          <button class="btn sirev" type="submit">Ver resultados</button>
-        </form>
-
-        <a class="hcCorte" href="#calendario" id="hcCorte">
-          <span class="icon">▦</span>
-          <span><small>Próximo corte de evaluación</small><b id="hcCorteTxt">—</b></span>
-        </a>
-
-        <div class="hcTitulo">Plataformas</div>
-        <div class="hcPlat" id="hcPlat"><!-- Se genera desde PLATAFORMAS --></div>
-      </aside>
     </div>
     <!-- Foto de fondo: guarde la imagen como "portada.jpg" en la raíz del repositorio. -->
 
@@ -1434,7 +1420,7 @@
   ).join("");
 
   // Accesos directos a plataformas en la portada
-  $("#hcPlat").innerHTML = PLATAFORMAS.map(pl => {
+  if ($("#hcPlat")) $("#hcPlat").innerHTML = PLATAFORMAS.map(pl => {
     const ico = `<i style="background:${pl.color}" aria-hidden="true">${esc(pl.sigla)}</i>`;
     return pl.url
       ? `<a href="${esc(pl.url)}" target="_blank" rel="noopener" title="${esc(pl.completo)}">${ico}${esc(pl.nombre)}</a>`
@@ -1485,8 +1471,9 @@
       </div>`;
     }).join("");
 
-    // Tarjeta de la portada
-    if (iProx >= 0) {
+    // Tarjeta de la portada (si existe)
+    if (!$("#hcCorteTxt")) {}
+    else if (iProx >= 0) {
       const c = CORTES[iProx], n = diasHasta(c.aplicacion[0]);
       $("#hcCorteTxt").textContent = estados[iProx] === "encurso"
         ? `${c.tipo} · en curso`
@@ -1891,7 +1878,7 @@
     consultaVersion++;            // descarta cualquier consulta que aún esté cargando
     consulta = null;
     $("#cCentro").value = "";
-    $("#hcCentro").value = "";
+    if ($("#hcCentro")) $("#hcCentro").value = "";
     $("#cResultado").innerHTML = "";
     $("#cCandidatos").innerHTML = "";
     $("#cBtn").disabled = false;
@@ -2189,7 +2176,7 @@
   window.addEventListener("afterprint", () => document.body.classList.remove("imprimirConsulta"));
 
   // Consulta rápida desde la portada
-  $("#hcForm").addEventListener("submit", e => {
+  if ($("#hcForm")) $("#hcForm").addEventListener("submit", e => {
     e.preventDefault();
     const v = $("#hcCentro").value.trim();
     if (!v) return;
@@ -2244,7 +2231,7 @@
   // Código del centro más reciente que el usuario haya consultado o escrito
   function codigoActual() {
     if (consulta && consulta.codigo) return consulta.codigo;
-    const v = ($("#cCentro").value || $("#hcCentro").value || "").trim();
+    const v = ($("#cCentro").value || ($("#hcCentro") ? $("#hcCentro").value : "") || "").trim();
     return /^\d{1,5}$/.test(v) ? v.padStart(5, "0") : "";
   }
   async function copiarCodigo(cod, boton) {
