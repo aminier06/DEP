@@ -981,8 +981,7 @@
         <!-- DATOS OFICIALES (tableros del SIIE) -->
         <article class="section" id="datos-oficiales">
           <h2>Datos oficiales del Nivel Primario</h2>
-          <p class="sub">Tableros estadísticos del MINERD publicados en el SIIE, organizados según la pregunta que responden.
-            Se abren aquí mismo, sin salir de la página.</p>
+          <p class="sub">Tableros estadísticos del MINERD publicados en el SIIE, organizados según la pregunta que responden.</p>
 
           <div class="tbFiltros" role="group" aria-label="Filtrar tableros">
             <button class="chip" type="button" data-tbf="todos" aria-pressed="true">Todos</button>
@@ -2221,7 +2220,7 @@
       grados.some(g => g <= 3) && { t: "edn3", txt: "Evaluación Diagnóstica de 3er grado" }
     ].filter(Boolean);
     h += `<div class="cBloque cOficial"><h4>Otros datos oficiales del centro</h4>
-      <p class="hint">Tableros del MINERD publicados en el SIIE. Se abren aquí mismo y el código ${esc(c.codigo)} se copia
+      <p class="hint">Tableros del MINERD publicados en el SIIE. Al abrirlos, el código ${esc(c.codigo)} se copia
         para que lo pegues en la casilla «Código SIGERD» del tablero.</p>
       <div class="ofiGrid">${ofi.map(o => {
         const tb = tablero(o.t);
