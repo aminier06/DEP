@@ -393,6 +393,17 @@
     .calDatos b{display:block;font-family:Roboto,Arial,sans-serif;font-size:19px;color:var(--azul);line-height:1.2}
     .calDatos span{font-size:12px;color:var(--suave)}
     .calTit{margin:26px 0 6px;color:var(--azul);font-size:18px;font-family:Roboto,Arial,sans-serif}
+    .ednCaja{
+      display:flex;gap:18px;align-items:center;margin-top:16px;padding:16px 18px;border-radius:14px;
+      background:linear-gradient(100deg,#053e67,#0b5fa5);color:#fff;
+    }
+    .ednFecha{flex:none;text-align:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 14px}
+    .ednFecha b{display:block;font-family:Roboto,Arial,sans-serif;font-size:24px;color:var(--dorado);line-height:1.1}
+    .ednFecha span{font-size:12px;color:rgba(255,255,255,.9)}
+    .ednCaja h3{margin:0 0 4px;font-size:17px;font-family:Roboto,Arial,sans-serif}
+    .ednCaja p{margin:0;font-size:14px;color:rgba(255,255,255,.9)}
+    .ednCuenta{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;background:var(--dorado);color:#1d2d3e;border-radius:999px;padding:3px 10px}
+    .ednCuenta:empty{display:none}
     .informes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
     .informe{border:1px solid #dfe8f2;border-radius:12px;padding:12px;text-align:center;background:#fff}
     .informe small{display:block;font-size:11px;font-weight:800;color:var(--azul2);text-transform:uppercase;letter-spacing:.05em}
@@ -644,6 +655,7 @@
       .nav .links{display:flex;flex-wrap:wrap}
     }
     @media (max-width:560px){
+      .ednCaja{flex-direction:column;align-items:flex-start}
       .topbar .wrap,.header .wrap{align-items:flex-start;flex-direction:column}
       .brand img{height:60px}
       .brandText{padding-left:12px}
@@ -891,6 +903,16 @@
           <p class="hint" style="margin:0 0 12px">Cuatro cortes durante el año. Sus resultados se cargan y consultan en SIREV Primaria
             y se analizan en mesas técnicas distritales con los equipos de gestión.</p>
           <div class="timeline" id="timeline"><!-- Se genera desde CORTES (ver script) --></div>
+
+          <div class="ednCaja" id="ednCaja">
+            <div class="ednFecha"><b>18 al 28</b><span>de mayo de 2027</span></div>
+            <div>
+              <h3>Evaluación Diagnóstica Nacional de 6to grado</h3>
+              <p>Aplicación censal a los estudiantes de 6to grado del Nivel Primario.
+                Es una prueba estandarizada externa, distinta de las evaluaciones formativas de SIREV.</p>
+              <span class="ednCuenta" id="ednCuenta"></span>
+            </div>
+          </div>
 
           <h3 class="calTit">Entregas del informe de aprendizaje</h3>
           <div class="informes" id="informes"><!-- Se genera desde INFORMES --></div>
@@ -1283,7 +1305,7 @@
     ["2027-05-17", "2027-05-21", "actividades", "Feria Científica Regional del Segundo Ciclo"],
     ["2027-05-18", "2027-05-21", "evaluacion", "Carga de resultados de la evaluación de seguimiento"],
     ["2027-05-18", "2027-05-21", "gestion", "Evaluación e informe del plan de reducción de la sobreedad"],
-    ["2027-05-18", "2027-05-28", "evaluacion", "Evaluación Diagnóstica Censal de 6to grado de Primaria"],
+    ["2027-05-18", "2027-05-28", "evaluacion", "Evaluación Diagnóstica Nacional (EDN) censal de 6to grado del Nivel Primario"],
     ["2027-05-24", "2027-05-28", "gestion", "Seminario de Buenas Prácticas del Nivel Primario"],
     ["2027-05-25", "2027-05-28", "gestion", "Mesa técnica distrital: análisis de la tercera evaluación de seguimiento"],
     ["2027-05-27", "2027-05-27", "receso", "Feriado: Corpus Christi"],
@@ -1533,6 +1555,12 @@
         <b>${d.getDate()} ${MES_C[d.getMonth()]}</b>
         <span>${esc(x.texto)}${i === iInf && n >= 0 ? " · " + cuando(n) : ""}</span></div>`;
     }).join("");
+  })();
+
+  // Cuenta regresiva para la EDN de 6to
+  (function () {
+    const ini = diasHasta("2027-05-18"), fin = diasHasta("2027-05-28");
+    $("#ednCuenta").textContent = fin < 0 ? "Aplicada" : ini <= 0 ? "En aplicación" : `Faltan ${ini} días`;
   })();
 
   // Agenda
