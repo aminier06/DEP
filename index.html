@@ -830,7 +830,7 @@
               <p>Orientamos la puesta en práctica del Diseño Curricular y ofrecemos guías didácticas por grado y área.</p>
               <span class="pLink">Ver currículo y guías</span>
             </a>
-            <a class="pillar" href="https://aminier06.github.io/sigap" target="_blank" rel="noopener">
+            <a class="pillar" href="https://sigap.nivelprimario.net" target="_blank" rel="noopener">
               <span class="pIcono" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3 3 0 0 1 0 5.8M18 14.2c1.8.8 3 2.7 3 4.8"/></svg></span>
               <h3>Acompañamiento pedagógico</h3>
               <p>Visitamos y apoyamos a docentes y equipos de gestión, y damos seguimiento a los acuerdos en SIGAP.</p>
@@ -868,7 +868,7 @@
             </a>
             <a class="quickCard" href="#documentos" data-filtro="Orientaciones">
               <strong>Orientaciones</strong>
-              <span>Calendario escolar, ordenanzas y órdenes departamentales.</span>
+              <span>Calendario escolar, ordenanzas, protocolos y manuales de uso.</span>
             </a>
             <a class="quickCard" href="#guias" id="qcGuias">
               <strong>Guías didácticas</strong>
@@ -1107,8 +1107,8 @@
       color: "#0b5fa5",
       descripcion: "Registro y seguimiento de los acompañamientos pedagógicos a docentes y equipos de gestión, con instrumentos y tableros de análisis.",
       tags: ["Acompañamiento", "Equipos de gestión", "Técnicos"],
-      url: "https://aminier06.github.io/sigap",
-      extra: null
+      url: "https://sigap.nivelprimario.net",
+      extra: { texto: "Manual de uso", url: "documentos/orientaciones/manual-sigap.pdf" }
     },
     {
       sigla: "SIREV",
@@ -1322,12 +1322,14 @@
 
   // Documentos. Agregue una línea por documento.
   const DOCUMENTOS = [
+    { titulo: "Protocolo de transición de los estudiantes del Nivel Primario al Nivel Secundario", cat: "Orientaciones", fuente: "Direcciones de Educación Primaria y Secundaria, 2024", peso: "0.8 MB", url: "documentos/orientaciones/protocolo-transicion-primaria-secundaria.pdf" },
+    { titulo: "Manual de uso del SIGAP", cat: "Orientaciones", fuente: "Dirección de Educación Primaria, versión 3.0", peso: "0.5 MB", url: "documentos/orientaciones/manual-sigap.pdf" },
     { titulo: "Calendario Escolar 2026-2027", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "11.9 MB", url: "documentos/orientaciones/calendario-escolar-2026-2027.pdf" },
-    { titulo: "Ordenanza 01-2023 · Política Nacional de Alfabetización Inicial en la Etapa Oportuna", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "2.6 MB", url: "ordenanza-01-2023.pdf" },
-    { titulo: "Ordenanza 02-2025 · Educación Moral, Cívica y Ética Ciudadana", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.3 MB", url: "ordenanza-02-2025.pdf" },
-    { titulo: "Ordenanza 03-2023 · Currículo adecuado para los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.4 MB", url: "ordenanza-03-2023.pdf" },
-    { titulo: "Ordenanza 04-2023 · Sistema de evaluación de los aprendizajes de los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "13.4 MB", url: "ordenanza-04-2023.pdf" },
-    { titulo: "Orden Departamental 42-2024 · Reconocimiento a centros que lograron la alfabetización en el Primer Ciclo", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "5.4 MB", url: "orden-departamental-42-2024.pdf" },
+    { titulo: "Ordenanza 01-2023, Política Nacional de Alfabetización Inicial en la Etapa Oportuna", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "2.6 MB", url: "ordenanza-01-2023.pdf" },
+    { titulo: "Ordenanza 02-2025, Educación Moral, Cívica y Ética Ciudadana", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.3 MB", url: "ordenanza-02-2025.pdf" },
+    { titulo: "Ordenanza 03-2023, Currículo adecuado para los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.4 MB", url: "ordenanza-03-2023.pdf" },
+    { titulo: "Ordenanza 04-2023, Sistema de evaluación de los aprendizajes de los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "13.4 MB", url: "ordenanza-04-2023.pdf" },
+    { titulo: "Orden Departamental 42-2024, Reconocimiento a centros que lograron la alfabetización en el Primer Ciclo", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "5.4 MB", url: "orden-departamental-42-2024.pdf" },
     { titulo: "Diseño Curricular del Nivel Primario", cat: "Diseño Curricular", fuente: "Ministerio de Educación", url: "curriculo-primaria.pdf" },
     { titulo: "Registro de 1er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-primero.pdf" },
     { titulo: "Registro de 2do grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-segundo.pdf" },
