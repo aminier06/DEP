@@ -326,6 +326,11 @@
 
     /* Recursos */
     .quickGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+    @media (min-width:761px){
+      .quickGrid{grid-template-columns:repeat(6,1fr)}
+      .quickCard{grid-column:span 2}
+      .quickCard:nth-child(n+4){grid-column:span 3}
+    }
     .quickCard{
       background:#fff;border:1px solid #dfe8f2;border-radius:16px;padding:18px;min-height:126px;
       transition:.2s ease;position:relative;overflow:hidden;
@@ -866,13 +871,17 @@
               <strong>Diseño Curricular</strong>
               <span>Currículo del Nivel Primario y orientaciones oficiales.</span>
             </a>
+            <a class="quickCard" href="#documentos" data-filtro="Normativas">
+              <strong>Normativas</strong>
+              <span>Ordenanzas del Consejo Nacional de Educación y órdenes departamentales.</span>
+            </a>
             <a class="quickCard" href="#documentos" data-filtro="Orientaciones">
               <strong>Orientaciones</strong>
-              <span>Calendario escolar, ordenanzas, protocolos y manuales de uso.</span>
+              <span>Calendario escolar, protocolos y manuales de uso.</span>
             </a>
             <a class="quickCard" href="#guias" id="qcGuias">
               <strong>Guías didácticas</strong>
-              <span>Por ciclo y área: Primer Ciclo (Con Base y multigrado) y Segundo Ciclo (todas las áreas, STEAM y educación ambiental).</span>
+              <span>Por ciclo y área curricular, con materiales de Con Base, CRECE, multigrado, STEAM y educación ambiental.</span>
             </a>
           </div>
         </article>
@@ -943,6 +952,7 @@
             <button class="chip" type="button" data-cat="Todos" aria-pressed="true">Todos</button>
             <button class="chip" type="button" data-cat="Registros" aria-pressed="false">Registros</button>
             <button class="chip" type="button" data-cat="Diseño Curricular" aria-pressed="false">Diseño Curricular</button>
+            <button class="chip" type="button" data-cat="Normativas" aria-pressed="false">Normativas</button>
             <button class="chip" type="button" data-cat="Orientaciones" aria-pressed="false">Orientaciones</button>
             <label for="filtroDoc" class="sr-only">Buscar documento</label>
             <input id="filtroDoc" type="search" placeholder="Buscar documento…">
@@ -1325,12 +1335,12 @@
     { titulo: "Protocolo de transición de los estudiantes del Nivel Primario al Nivel Secundario", cat: "Orientaciones", fuente: "Direcciones de Educación Primaria y Secundaria, 2024", peso: "0.8 MB", url: "documentos/orientaciones/protocolo-transicion-primaria-secundaria.pdf" },
     { titulo: "Manual de uso del SIGAP", cat: "Orientaciones", fuente: "Dirección de Educación Primaria, versión 3.0", peso: "0.5 MB", url: "documentos/orientaciones/manual-sigap.pdf" },
     { titulo: "Calendario Escolar 2026-2027", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "11.9 MB", url: "documentos/orientaciones/calendario-escolar-2026-2027.pdf" },
-    { titulo: "Ordenanza 01-2023, Política Nacional de Alfabetización Inicial en la Etapa Oportuna", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "2.6 MB", url: "ordenanza-01-2023.pdf" },
-    { titulo: "Ordenanza 02-2025, Educación Moral, Cívica y Ética Ciudadana", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.3 MB", url: "ordenanza-02-2025.pdf" },
-    { titulo: "Ordenanza 03-2023, Currículo adecuado para los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "0.4 MB", url: "ordenanza-03-2023.pdf" },
-    { titulo: "Ordenanza 04-2023, Sistema de evaluación de los aprendizajes de los niveles Inicial, Primario y Secundario", cat: "Orientaciones", fuente: "Consejo Nacional de Educación", peso: "13.4 MB", url: "ordenanza-04-2023.pdf" },
-    { titulo: "Orden Departamental 29-2024, Protocolo de la Unidad Distrital de Evaluación y Servicios Académicos", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "5.3 MB", url: "orden-departamental-29-2024.pdf" },
-    { titulo: "Orden Departamental 42-2024, Reconocimiento a centros que lograron la alfabetización en el Primer Ciclo", cat: "Orientaciones", fuente: "Ministerio de Educación", peso: "5.4 MB", url: "orden-departamental-42-2024.pdf" },
+    { titulo: "Ordenanza 01-2023, Política Nacional de Alfabetización Inicial en la Etapa Oportuna", cat: "Normativas", fuente: "Consejo Nacional de Educación", peso: "2.6 MB", url: "ordenanza-01-2023.pdf" },
+    { titulo: "Ordenanza 02-2025, Educación Moral, Cívica y Ética Ciudadana", cat: "Normativas", fuente: "Consejo Nacional de Educación", peso: "0.3 MB", url: "ordenanza-02-2025.pdf" },
+    { titulo: "Ordenanza 03-2023, Currículo adecuado para los niveles Inicial, Primario y Secundario", cat: "Normativas", fuente: "Consejo Nacional de Educación", peso: "0.4 MB", url: "ordenanza-03-2023.pdf" },
+    { titulo: "Ordenanza 04-2023, Sistema de evaluación de los aprendizajes de los niveles Inicial, Primario y Secundario", cat: "Normativas", fuente: "Consejo Nacional de Educación", peso: "13.4 MB", url: "ordenanza-04-2023.pdf" },
+    { titulo: "Orden Departamental 29-2024, Protocolo de la Unidad Distrital de Evaluación y Servicios Académicos", cat: "Normativas", fuente: "Ministerio de Educación", peso: "5.3 MB", url: "orden-departamental-29-2024.pdf" },
+    { titulo: "Orden Departamental 42-2024, Reconocimiento a centros que lograron la alfabetización en el Primer Ciclo", cat: "Normativas", fuente: "Ministerio de Educación", peso: "5.4 MB", url: "orden-departamental-42-2024.pdf" },
     { titulo: "Diseño Curricular del Nivel Primario", cat: "Diseño Curricular", fuente: "Ministerio de Educación", url: "curriculo-primaria.pdf" },
     { titulo: "Registro de 1er grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-primero.pdf" },
     { titulo: "Registro de 2do grado del Nivel Primario", cat: "Registros", fuente: "Dirección de Educación Primaria", url: "registro-segundo.pdf" },
